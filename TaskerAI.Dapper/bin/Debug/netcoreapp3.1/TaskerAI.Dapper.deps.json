@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TaskerAI.Dapper/1.0.0": {
+        "dependencies": {
+          "TaskerAI.Persistence": "1.0.0"
+        },
+        "runtime": {
+          "TaskerAI.Dapper.dll": {}
+        }
+      },
+      "TaskerAI.Domain/1.0.0": {
+        "runtime": {
+          "TaskerAI.Domain.dll": {}
+        }
+      },
+      "TaskerAI.Persistence/1.0.0": {
+        "dependencies": {
+          "TaskerAI.Domain": "1.0.0"
+        },
+        "runtime": {
+          "TaskerAI.Persistence.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TaskerAI.Dapper/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaskerAI.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaskerAI.Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

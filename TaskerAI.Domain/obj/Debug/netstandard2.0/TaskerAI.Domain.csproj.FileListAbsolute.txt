@@ -1,0 +1,8 @@
+C:\src\projects\TaskerAI\TaskerAI.Domain\bin\Debug\netstandard2.0\TaskerAI.Domain.deps.json
+C:\src\projects\TaskerAI\TaskerAI.Domain\bin\Debug\netstandard2.0\TaskerAI.Domain.dll
+C:\src\projects\TaskerAI\TaskerAI.Domain\bin\Debug\netstandard2.0\TaskerAI.Domain.pdb
+C:\src\projects\TaskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.csproj.CoreCompileInputs.cache
+C:\src\projects\TaskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.AssemblyInfoInputs.cache
+C:\src\projects\TaskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.AssemblyInfo.cs
+C:\src\projects\TaskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.dll
+C:\src\projects\TaskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.pdb

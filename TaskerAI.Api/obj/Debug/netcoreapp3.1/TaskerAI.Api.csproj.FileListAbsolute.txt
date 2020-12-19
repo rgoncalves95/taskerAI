@@ -1,0 +1,16 @@
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Api.deps.json
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Api.dll
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.csprojAssemblyReference.cache
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.AssemblyInfoInputs.cache
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.AssemblyInfo.cs
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Api.pdb
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Application.dll
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Application.pdb
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.csproj.CoreCompileInputs.cache
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.csproj.CopyComplete
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.dll
+C:\src\projects\TaskerAI\TaskerAI.Api\obj\Debug\netcoreapp3.1\TaskerAI.Api.pdb
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Domain.dll
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Persistence.dll
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Domain.pdb
+C:\src\projects\TaskerAI\TaskerAI.Api\bin\Debug\netcoreapp3.1\TaskerAI.Persistence.pdb

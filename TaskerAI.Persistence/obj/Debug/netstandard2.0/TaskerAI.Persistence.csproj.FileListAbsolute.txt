@@ -1,0 +1,12 @@
+C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Persistence.deps.json
+C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Persistence.dll
+C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Persistence.pdb
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csproj.CoreCompileInputs.cache
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.AssemblyInfoInputs.cache
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.AssemblyInfo.cs
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.dll
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.pdb
+C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Domain.dll
+C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Domain.pdb
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csprojAssemblyReference.cache
+C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csproj.CopyComplete
