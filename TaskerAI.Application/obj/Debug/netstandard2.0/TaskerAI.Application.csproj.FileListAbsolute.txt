@@ -1,9 +1,0 @@
-C:\src\projects\TaskerAI\TaskerAI.Application\bin\Debug\netstandard2.0\TaskerAI.Application.deps.json
-C:\src\projects\TaskerAI\TaskerAI.Application\bin\Debug\netstandard2.0\TaskerAI.Application.dll
-C:\src\projects\TaskerAI\TaskerAI.Application\obj\Debug\netstandard2.0\TaskerAI.Application.AssemblyInfoInputs.cache
-C:\src\projects\TaskerAI\TaskerAI.Application\obj\Debug\netstandard2.0\TaskerAI.Application.AssemblyInfo.cs
-C:\src\projects\TaskerAI\TaskerAI.Application\bin\Debug\netstandard2.0\TaskerAI.Application.pdb
-C:\src\projects\TaskerAI\TaskerAI.Application\obj\Debug\netstandard2.0\TaskerAI.Application.csproj.CoreCompileInputs.cache
-C:\src\projects\TaskerAI\TaskerAI.Application\obj\Debug\netstandard2.0\TaskerAI.Application.dll
-C:\src\projects\TaskerAI\TaskerAI.Application\obj\Debug\netstandard2.0\TaskerAI.Application.pdb
-C:\src\projects\TaskerAI\TaskerAI.Application\obj\Debug\netstandard2.0\TaskerAI.Application.csprojAssemblyReference.cache

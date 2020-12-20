@@ -1,61 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("TaskerAI.Application")]
+[assembly: InternalsVisibleTo("TaskerAI.Api.Tests")]
 namespace TaskerAI.Domain
 {
-    internal class Plan : IPlan
+    public class Plan
     {
-        internal static Plan Create(string name)
-        {
-            var plan = new Plan(name);
+        private List<TaskRoute> taskRoutes;
 
-            return plan;
+        internal static Plan Create(IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date)
+        {
+            return new Plan(taskRoutes, date);
         }
 
-        internal static Plan Create(int id, string name)
+        internal static Plan Create(int id, IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date)
         {
-            var plan = new Plan(name);
-
-            return plan;
+            return new Plan(id, taskRoutes, date);
         }
 
-        internal void ReorderTasks(List<Task> tasks)
+        private Plan(IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date)
         {
-            this.Tasks = tasks;
+            this.Date = date;
+            this.Status = PlanWorkflowState.Draft;
+            this.taskRoutes = new List<TaskRoute>(taskRoutes);
         }
 
-        internal Plan(string name)
-        {
-            this.Name = name;
-        }
-
-        internal Plan(int id, string name) : this(name)
+        private Plan(int id, IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date) : this(taskRoutes, date)
         {
             this.Id = id;
         }
 
         public int Id { get; private set; }
         public string Name { get; private set; }
-        public List<Task> Tasks { get; private set; }
-        public User Accountable { get; private set; }
-        public User Responsible { get; private set; }
+        public Assignee Accountable { get; private set; }
+        public Admin Responsible { get; private set; }
         public DateTimeOffset Date { get; private set; }
-        public int Status { get; private set; }
+        public PlanWorkflowState Status { get; private set; }
+        public decimal EstimatedExecutionTime => TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
+        public IReadOnlyCollection<TaskRoute> TaskRoutes => this.taskRoutes.AsReadOnly();
+
+        internal void ReorderTasks(IEnumerable<TaskRoute> taskRoutes)
+        {
+            this.taskRoutes = new List<TaskRoute>(taskRoutes);
+        }
 
         internal void Recalc()
         {
 
         }
 
-        internal void CancelTasks()
+        internal void RemoveTasks()
         {
 
         }
 
         internal void Finish()
         {
+
+        }
+
+        internal void Assign(Assignee user)
+        {
+            Accountable = user;
+            Status = PlanWorkflowState.Approved;
+        }
+
+        internal List<Assignee> GetAvailableAssignees()
+        {
+            var result = new List<Assignee>();
+
+            return result;
 
         }
     }

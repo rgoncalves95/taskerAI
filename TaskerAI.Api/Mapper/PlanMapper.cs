@@ -1,15 +1,29 @@
-﻿using System;
-using TaskerAI.Api.Models;
-using TaskerAI.Domain;
-using TaskerAI.Infrastructure;
-
-namespace TaskerAI.Api.Mapper
+﻿namespace TaskerAI.Api.Mapper
 {
-    public class PlanMapper : IMapper<IPlan, PlanModel>
+    using System.Collections.Generic;
+    using System.Linq;
+    using TaskerAI.Api.Models;
+    using TaskerAI.Domain;
+    using TaskerAI.Infrastructure;
+
+    public class PlanMapper : IMapper<Plan, PlanModel>
     {
-        public void Map<Tin, Tout>(Tin from, Tout to)
+        public void Map(Plan from, PlanModel to)
         {
-            throw new NotImplementedException();
+
         }
+
+        public PlanModel Map(Plan from)
+        {
+            var to = new PlanModel();
+
+            Map(from, to);
+
+            return to;
+        }
+
+        public void Map(IEnumerable<Plan> from, IEnumerable<PlanModel> to) => to = from.Select(f => Map(f)).ToArray();
+
+        public IEnumerable<PlanModel> Map(IEnumerable<Plan> from) => from.Select(f => Map(f)).ToArray();
     }
 }
