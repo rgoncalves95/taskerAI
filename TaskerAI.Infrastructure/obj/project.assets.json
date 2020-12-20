@@ -180,24 +180,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rui\\.nuget\\packages\\": {},
+    "C:\\Users\\ruifs\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\src\\projects\\TaskerAI\\TaskerAI.Infrastructure\\TaskerAI.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Infrastructure\\TaskerAI.Infrastructure.csproj",
       "projectName": "TaskerAI.Infrastructure",
-      "projectPath": "C:\\src\\projects\\TaskerAI\\TaskerAI.Infrastructure\\TaskerAI.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Rui\\.nuget\\packages\\",
-      "outputPath": "C:\\src\\projects\\TaskerAI\\TaskerAI.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Infrastructure\\TaskerAI.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\ruifs\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Rui\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ruifs\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"

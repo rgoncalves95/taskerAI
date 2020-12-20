@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "vpMoxYV1Qyzg8Ih8y+g5C/vQ8NNJtX4eh2WFaai9KPQWPhlYG+u1QYe/npJHR1B09Ubelwv+noo090/3sBBG9w==",
+  "dgSpecHash": "ZUrdAnp0+ihw0sqo5HU/M9h/STXKUndFI85EmTAh6AMCby9hiaJ0dMrwOsCcDWfCcWrO5HAlvZnw9hK12qHzZw==",
   "success": true,
-  "projectFilePath": "C:\\src\\projects\\TaskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Rui\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Rui\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\ruifs\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\ruifs\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

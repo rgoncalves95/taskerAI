@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
 {
-    internal class Plan : IPlan
+    public class Plan 
     {
         internal static Plan Create(string name)
         {

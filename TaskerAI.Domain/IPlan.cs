@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TaskerAI.Domain
 {
-    public interface IPlan
+    internal interface IPlan
     {
         int Id { get; }
         string Name { get; }

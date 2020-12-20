@@ -10,3 +10,15 @@ C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.
 C:\src\projects\TaskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Domain.pdb
 C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csprojAssemblyReference.cache
 C:\src\projects\TaskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csproj.CopyComplete
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csprojAssemblyReference.cache
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.AssemblyInfoInputs.cache
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.AssemblyInfo.cs
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.dll
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.pdb
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Persistence.deps.json
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Persistence.dll
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Persistence.pdb
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Domain.dll
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\bin\Debug\netstandard2.0\TaskerAI.Domain.pdb
+C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Persistence\obj\Debug\netstandard2.0\TaskerAI.Persistence.csproj.CopyComplete

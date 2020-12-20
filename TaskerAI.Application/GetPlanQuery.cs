@@ -3,7 +3,7 @@ using TaskerAI.Domain;
 
 namespace TaskerAI.Application
 {
-    public class GetPlanQuery : IRequest<IPlan>
+    public class GetPlanQuery : IRequest<Plan>
     {
         public int Id { get; }
 

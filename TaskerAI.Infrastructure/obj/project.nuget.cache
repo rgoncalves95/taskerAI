@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "U/49ofsSwV6WCeHtbI0DSWjJ7fVZu8z1Fl3km+K6sm04Lx7w3upMusYjy7/pBcfYlIWdDFct51azIda6P9N95w==",
+  "dgSpecHash": "GySUl9HG8Y9yPXBZgPxwPAHCqKu29G5NnMNZkgLtrd7ZsXppr9STdv3eskQleZDuhiZ7YtvnuY8ii4zflXM5Pg==",
   "success": true,
-  "projectFilePath": "C:\\src\\projects\\TaskerAI\\TaskerAI.Infrastructure\\TaskerAI.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Infrastructure\\TaskerAI.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Rui\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Rui\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\ruifs\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\ruifs\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

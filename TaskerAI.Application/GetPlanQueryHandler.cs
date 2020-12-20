@@ -6,7 +6,7 @@ using TaskerAI.Persistence;
 
 namespace TaskerAI.Application
 {
-    public class GetPlanQueryHandler : IRequestHandler<GetPlanQuery, IPlan>
+    public class GetPlanQueryHandler : IRequestHandler<GetPlanQuery, Plan>
     {
         private readonly IPlanRepository repo;
 
@@ -15,7 +15,7 @@ namespace TaskerAI.Application
             this.repo = repo;
         }
 
-        public async Task<IPlan> Handle(GetPlanQuery request, CancellationToken cancellationToken)
+        public async Task<Plan> Handle(GetPlanQuery request, CancellationToken cancellationToken)
         {
             var plan = repo.GetPlan(0);
 

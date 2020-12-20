@@ -6,12 +6,12 @@ namespace TaskerAI.Dapper
 {
     public class PlanRepository : IPlanRepository
     {
-        public IPlan CreatePlan(IPlan plan)
+        public Plan CreatePlan(Plan plan)
         {
             throw new NotImplementedException();
         }
 
-        public IPlan GetPlan(int id)
+        public Plan GetPlan(int id)
         {
             var sql = "select * from";
 

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bvAXDUHxQ7E+e+SQmoUA16vO1HoMUaIpuhyZwJBp5siKPqFa+nfJKujP7IOnK/tbXYsFjbCEIN5K4ziSGybwDw==",
+  "dgSpecHash": "teBsxpV4kmzDj07DNcsyStXmjPUJcjcpiJWTKQYmCVsHcW+0mxvBaNmJgDMLNX9fhotVUovgoky3QVTHPIiKNg==",
   "success": true,
-  "projectFilePath": "C:\\src\\projects\\TaskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj",
+  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Rui\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
-    "C:\\Users\\Rui\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Rui\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\ruifs\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
+    "C:\\Users\\ruifs\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\ruifs\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

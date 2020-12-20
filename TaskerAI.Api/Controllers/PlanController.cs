@@ -14,9 +14,9 @@ namespace TaskerAI.Controllers
     public class PlanController : ControllerBase
     {
         private readonly IMediator mediator;
-        private readonly IMapper<IPlan, PlanModel> mapper;
+        private readonly IMapper<Plan, PlanModel> mapper;
 
-        public PlanController(IMediator mediator, IMapper<IPlan, PlanModel> mapper)
+        public PlanController(IMediator mediator, IMapper<Plan, PlanModel> mapper)
         {
             this.mediator = mediator;
             this.mapper = mapper;
