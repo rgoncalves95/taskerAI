@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y8oym/W5uRuHf2ah4buwyhtTVPXshSRr6lFeDmK8ToD0cgN8dow9416UtYvUxARzzn8LKyBp4wFzW4vwODjuOA==",
+  "dgSpecHash": "ih1Gz+Hl+imRHqIOoST2KRM+KE/Zz8Kz5FBG4AQqwV59QUqtg38SWaR5nLQ8EruSPhAZBzfLw3xu3Sbzj92scA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Api\\TaskerAI.Api.csproj",
+  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Api\\TaskerAI.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ruifs\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\ruifs\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

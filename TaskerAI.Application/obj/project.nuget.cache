@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "teBsxpV4kmzDj07DNcsyStXmjPUJcjcpiJWTKQYmCVsHcW+0mxvBaNmJgDMLNX9fhotVUovgoky3QVTHPIiKNg==",
+  "dgSpecHash": "cx/qTrWnhWkjYfupFYwi6NHYd9SIOitliBQOvWDn96HP53TkNMxmAlID/fkKZMrrX6MvJBHbmq7Kvy+oz8fqZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj",
+  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ruifs\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\ruifs\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

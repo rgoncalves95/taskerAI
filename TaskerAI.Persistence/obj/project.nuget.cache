@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZUrdAnp0+ihw0sqo5HU/M9h/STXKUndFI85EmTAh6AMCby9hiaJ0dMrwOsCcDWfCcWrO5HAlvZnw9hK12qHzZw==",
+  "dgSpecHash": "iMEAZhif9PqhpUReIHxe1lLwTSryi4Fd2mUGn1JM4fiMzWuxhY0gbqhwP1Ar2/9JqEfsEdR+lEOHWwkud+VqnA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ruifs\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\ruifs\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

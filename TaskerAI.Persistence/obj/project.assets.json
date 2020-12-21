@@ -203,11 +203,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
       "projectName": "TaskerAI.Persistence",
-      "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
+      "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Persistence\\TaskerAI.Persistence.csproj",
       "packagesPath": "C:\\Users\\ruifs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Persistence\\obj\\",
+      "outputPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -228,8 +228,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Domain\\TaskerAI.Domain.csproj": {
-              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Domain\\TaskerAI.Domain.csproj"
+            "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Domain\\TaskerAI.Domain.csproj": {
+              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Domain\\TaskerAI.Domain.csproj"
             }
           }
         }

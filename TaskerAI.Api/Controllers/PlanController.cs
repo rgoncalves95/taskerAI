@@ -38,5 +38,16 @@ namespace TaskerAI.Controllers
 
             return planModel;
         }
+
+        [HttpGet]
+        public async Task<PlanModel> GetAllAvailableTasks(int id)
+        {
+            var plan = await this.mediator.Send(new GetPlanQuery(id));
+            var planModel = new PlanModel();
+
+            mapper.Map(plan, planModel);
+
+            return planModel;
+        }
     }
 }
