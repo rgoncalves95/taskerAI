@@ -1151,6 +1151,19 @@
           "bin/placeholder/TaskerAI.Application.dll": {}
         }
       },
+      "TaskerAI.Dapper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "TaskerAI.Persistence": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskerAI.Dapper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskerAI.Dapper.dll": {}
+        }
+      },
       "TaskerAI.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -4150,6 +4163,11 @@
       "path": "../TaskerAI.Application/TaskerAI.Application.csproj",
       "msbuildProject": "../TaskerAI.Application/TaskerAI.Application.csproj"
     },
+    "TaskerAI.Dapper/1.0.0": {
+      "type": "project",
+      "path": "../TaskerAI.Dapper/TaskerAI.Dapper.csproj",
+      "msbuildProject": "../TaskerAI.Dapper/TaskerAI.Dapper.csproj"
+    },
     "TaskerAI.Domain/1.0.0": {
       "type": "project",
       "path": "../TaskerAI.Domain/TaskerAI.Domain.csproj",
@@ -4173,7 +4191,8 @@
       "Swashbuckle.AspNetCore >= 5.6.3",
       "Swashbuckle.AspNetCore.Swagger >= 5.6.3",
       "TaskerAI.Api >= 1.0.0",
-      "TaskerAI.Application >= 1.0.0"
+      "TaskerAI.Application >= 1.0.0",
+      "TaskerAI.Dapper >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4214,6 +4233,9 @@
             },
             "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj": {
               "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj"
+            },
+            "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Dapper\\TaskerAI.Dapper.csproj": {
+              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Dapper\\TaskerAI.Dapper.csproj"
             }
           }
         }

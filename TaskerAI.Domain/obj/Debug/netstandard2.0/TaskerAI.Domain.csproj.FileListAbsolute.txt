@@ -14,3 +14,12 @@ C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Domain\obj\Debug\netstandar
 C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.AssemblyInfo.cs
 C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.dll
 C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.pdb
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\bin\Debug\netstandard2.0\TaskerAI.Domain.deps.json
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\bin\Debug\netstandard2.0\TaskerAI.Domain.dll
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\bin\Debug\netstandard2.0\TaskerAI.Domain.pdb
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.csprojAssemblyReference.cache
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.AssemblyInfoInputs.cache
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.AssemblyInfo.cs
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.dll
+C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Domain\obj\Debug\netstandard2.0\TaskerAI.Domain.pdb

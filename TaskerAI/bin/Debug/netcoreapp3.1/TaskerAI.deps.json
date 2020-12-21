@@ -30,6 +30,7 @@
           "Swashbuckle.AspNetCore.Swagger": "5.6.3",
           "TaskerAI.Api": "1.0.0",
           "TaskerAI.Application": "1.0.0",
+          "TaskerAI.Dapper": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -1000,6 +1001,17 @@
         },
         "compile": {
           "TaskerAI.Application.dll": {}
+        }
+      },
+      "TaskerAI.Dapper/1.0.0": {
+        "dependencies": {
+          "TaskerAI.Persistence": "1.0.0"
+        },
+        "runtime": {
+          "TaskerAI.Dapper.dll": {}
+        },
+        "compile": {
+          "TaskerAI.Dapper.dll": {}
         }
       },
       "TaskerAI.Domain/1.0.0": {
@@ -3302,6 +3314,11 @@
       "sha512": ""
     },
     "TaskerAI.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaskerAI.Dapper/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

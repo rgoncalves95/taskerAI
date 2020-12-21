@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TaskerAI.Persistence;
+using TaskerAI.Dapper;
 using TaskerAI.Setup;
 
 namespace TaskerAI
@@ -24,6 +26,8 @@ namespace TaskerAI
             services.AddSwagger();
 
             services.AddMediatr();
+
+            services.AddTransient<IPlanRepository, PlanRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
