@@ -4184,11 +4184,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI\\TaskerAI.csproj",
+      "projectUniqueName": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI\\TaskerAI.csproj",
       "projectName": "TaskerAI",
-      "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI\\TaskerAI.csproj",
+      "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI\\TaskerAI.csproj",
       "packagesPath": "C:\\Users\\ruifs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI\\obj\\",
+      "outputPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -4209,11 +4209,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Api\\TaskerAI.Api.csproj": {
-              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Api\\TaskerAI.Api.csproj"
+            "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Api\\TaskerAI.Api.csproj": {
+              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Api\\TaskerAI.Api.csproj"
             },
-            "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj": {
-              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\ruifss\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj"
+            "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj": {
+              "projectPath": "C:\\Users\\ruifs\\Source\\Repos\\rgoncalves95\\taskerAI\\TaskerAI.Application\\TaskerAI.Application.csproj"
             }
           }
         }
