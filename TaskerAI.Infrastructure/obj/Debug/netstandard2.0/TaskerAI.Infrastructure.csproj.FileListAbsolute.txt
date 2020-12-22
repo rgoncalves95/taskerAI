@@ -9,7 +9,6 @@ C:\Users\ruifs\Source\Repos\ruifss\taskerAI\TaskerAI.Infrastructure\obj\Debug\ne
 C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\bin\Debug\netstandard2.0\TaskerAI.Infrastructure.deps.json
 C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\bin\Debug\netstandard2.0\TaskerAI.Infrastructure.dll
 C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\bin\Debug\netstandard2.0\TaskerAI.Infrastructure.pdb
-C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\obj\Debug\netstandard2.0\TaskerAI.Infrastructure.csprojAssemblyReference.cache
 C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\obj\Debug\netstandard2.0\TaskerAI.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\obj\Debug\netstandard2.0\TaskerAI.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\ruifs\Source\Repos\rgoncalves95\taskerAI\TaskerAI.Infrastructure\obj\Debug\netstandard2.0\TaskerAI.Infrastructure.AssemblyInfo.cs

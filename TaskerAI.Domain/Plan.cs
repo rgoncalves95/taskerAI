@@ -7,6 +7,27 @@ namespace TaskerAI.Domain
 {
     public class Plan 
     {
+
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public List<Task> Tasks { get; private set; }
+        public Assignee Accountable { get; private set; }
+        public Admin Responsible { get; private set; }
+        public DateTimeOffset Date { get; private set; }
+        public int Status { get; private set; }
+
+        public int TotalDurationInMins { get; private set; }
+
+        internal Plan(string name)
+        {
+            this.Name = name;
+        }
+
+        internal Plan(int id, string name) : this(name)
+        {
+            this.Id = id;
+        }
+
         internal static Plan Create(string name)
         {
             var plan = new Plan(name);
@@ -26,36 +47,32 @@ namespace TaskerAI.Domain
             this.Tasks = tasks;
         }
 
-        internal Plan(string name)
-        {
-            this.Name = name;
-        }
-
-        internal Plan(int id, string name) : this(name)
-        {
-            this.Id = id;
-        }
-
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public List<Task> Tasks { get; private set; }
-        public User Accountable { get; private set; }
-        public User Responsible { get; private set; }
-        public DateTimeOffset Date { get; private set; }
-        public int Status { get; private set; }
-
         internal void Recalc()
         {
 
         }
 
-        internal void CancelTasks()
+
+        internal void RemoveTasks()
         {
 
         }
 
         internal void Finish()
         {
+
+        }
+
+        internal void Assign(Assignee assignee)
+        {
+
+        }
+
+        internal List<Assignee> GetAvailableAssignees() 
+        {
+            var result = new List<Assignee>();
+
+            return result;
 
         }
     }

@@ -28,15 +28,28 @@ namespace TaskerAI.Domain
 
         }
 
-        internal virtual void Cancel()
+
+        internal void Cancel()
         {
 
         }
 
-        internal virtual void Finish()
+        internal void Start()
         {
 
         }
+
+        internal void Finish()
+        {
+
+        }
+
+        internal void ChangePosition(int position)
+        {
+            this.Position = position;
+        }
+
+
 
     }
 }
