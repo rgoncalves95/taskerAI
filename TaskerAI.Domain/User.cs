@@ -48,6 +48,15 @@ namespace TaskerAI.Domain
         {
 
         }
+
+        internal virtual List<Plan> GetPlans()
+        {
+            var result = new List<Plan>();
+
+
+            return result;
+
+        }
     }
 
 
@@ -68,13 +77,12 @@ namespace TaskerAI.Domain
 
         }
 
-        internal List<Plan> GetPlans()
+        internal override List<Plan> GetPlans()
         {
             var result = new List<Plan>();
 
 
             return result;
-
         }
     }
 }

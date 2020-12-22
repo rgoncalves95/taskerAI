@@ -7,9 +7,18 @@ namespace TaskerAI.Api.Mapper
 {
     public class PlanMapper : IMapper<Plan, PlanModel>
     {
-        public void Map<Tin, Tout>(Tin from, Tout to)
+        public void Map(Plan from, PlanModel to)
         {
             throw new NotImplementedException();
+        }
+
+        public PlanModel Map(Plan from)
+        {
+            var to = new PlanModel();
+
+            this.Map(from, to);
+
+            return to;
         }
     }
 }

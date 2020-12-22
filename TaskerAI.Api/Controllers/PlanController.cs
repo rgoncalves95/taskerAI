@@ -23,20 +23,15 @@ namespace TaskerAI.Controllers
         }
 
         [HttpPost]
-        public async Task<object> Post(PlanModel model)
+        public async Task<IActionResult> Post(PlanModel model)
         {
-            return await this.mediator.Send(new CreatePlanCommand(model.Name, model.Description));
+            return CreatedAtAction(nameof(PlanController.Post), await this.mediator.Send(new CreatePlanCommand(model.Name, model.Description)));
         }
 
         [HttpGet]
-        public async Task<PlanModel> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var plan = await this.mediator.Send(new GetPlanQuery(id));
-            var planModel = new PlanModel();
-
-            mapper.Map(plan, planModel);
-
-            return planModel;
+            return Ok(mapper.Map(await this.mediator.Send(new GetPlanQuery(id))));
         }
 
         [HttpGet("GetAllTasks")]
