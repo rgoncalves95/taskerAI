@@ -15,12 +15,12 @@ namespace TaskerAI.Domain
 
         internal TaskType(int id, string name, double cost, Location location, int durationInSeconds, IDictionary<string, string> properties)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Cost = cost;
-            this.Location = location;
-            this.DurationInSeconds = durationInSeconds;
-            this.Properties = properties;
+            Id = id;
+            Name = name;
+            Cost = cost;
+            Location = location;
+            DurationInSeconds = durationInSeconds;
+            Properties = properties;
 
 
         }

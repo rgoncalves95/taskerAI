@@ -1,11 +1,9 @@
-﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using TaskerAI.Application;
-using TaskerAI.Dapper;
-using TaskerAI.Persistence;
-
-namespace TaskerAI.Setup
+﻿namespace TaskerAI.Setup
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using TaskerAI.Dapper;
+    using TaskerAI.Persistence;
+
     public static class SetupApp
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services)

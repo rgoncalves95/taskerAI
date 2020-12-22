@@ -1,7 +1,7 @@
-﻿using TaskerAI.Domain;
-
-namespace TaskerAI.Persistence
+﻿namespace TaskerAI.Persistence
 {
+    using TaskerAI.Domain;
+
     public interface IPlanRepository
     {
         Plan GetPlan(int id);

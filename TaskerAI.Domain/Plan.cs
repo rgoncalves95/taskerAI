@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
 {
-    public class Plan 
+    public class Plan
     {
 
         public int Id { get; private set; }
@@ -18,15 +18,9 @@ namespace TaskerAI.Domain
 
         public int TotalDurationInMins { get; private set; }
 
-        internal Plan(string name)
-        {
-            this.Name = name;
-        }
+        internal Plan(string name) => Name = name;
 
-        internal Plan(int id, string name) : this(name)
-        {
-            this.Id = id;
-        }
+        internal Plan(int id, string name) : this(name) => Id = id;
 
         internal static Plan Create(string name)
         {
@@ -42,10 +36,7 @@ namespace TaskerAI.Domain
             return plan;
         }
 
-        internal void ReorderTasks(List<Task> tasks)
-        {
-            this.Tasks = tasks;
-        }
+        internal void ReorderTasks(List<Task> tasks) => Tasks = tasks;
 
         internal void Recalc()
         {
@@ -68,7 +59,7 @@ namespace TaskerAI.Domain
 
         }
 
-        internal List<Assignee> GetAvailableAssignees() 
+        internal List<Assignee> GetAvailableAssignees()
         {
             var result = new List<Assignee>();
 

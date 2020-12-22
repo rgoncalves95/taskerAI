@@ -1,14 +1,13 @@
-﻿using System.Threading.Tasks;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using TaskerAI.Api.Models;
-using TaskerAI.Application;
-using TaskerAI.Domain;
-using TaskerAI.Infrastructure;
-
-namespace TaskerAI.Controllers
+﻿namespace TaskerAI.Controllers
 {
+    using System.Threading.Tasks;
+    using MediatR;
+    using Microsoft.AspNetCore.Mvc;
+    using TaskerAI.Api.Models;
+    using TaskerAI.Application;
+    using TaskerAI.Domain;
+    using TaskerAI.Infrastructure;
+
     [ApiController]
     [Route("[controller]")]
     public class PlanController : ControllerBase
@@ -22,28 +21,29 @@ namespace TaskerAI.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get() => Ok(mapper.Map(await mediator.Send(new GetPlansQuery())));
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id) => Ok(mapper.Map(await mediator.Send(new GetPlanByIdQuery(id))));
+
         [HttpPost]
         public async Task<IActionResult> Post(PlanModel model)
         {
-            return CreatedAtAction(nameof(PlanController.Post), await this.mediator.Send(new CreatePlanCommand(model.Name, model.Description)));
+            return CreatedAtAction
+            (
+                nameof(PlanController.Post),
+                await mediator.Send
+                (
+                    new CreatePlanCommand
+                    (
+                        model.TaskIds,
+                        model.LocationId,
+                        model.MaxTimeForPlan,
+                        model.MaxNumberOfTasks
+                    )
+                )
+            );
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Get(int id)
-        {
-            return Ok(mapper.Map(await this.mediator.Send(new GetPlanQuery(id))));
-        }
-
-        [HttpGet("GetAllTasks")]
-        public async Task<PlanModel> GetAllTasks(int id)
-        {
-            var plan = await this.mediator.Send(new GetPlanQuery(id));
-            var planModel = new PlanModel();
-
-            mapper.Map(plan, planModel);
-
-            return planModel;
-        }
-
     }
 }

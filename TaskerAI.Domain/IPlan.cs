@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TaskerAI.Domain
+﻿namespace TaskerAI.Domain
 {
+    using System;
+    using System.Collections.Generic;
+
     internal interface IPlan
     {
         int Id { get; }

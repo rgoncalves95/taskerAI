@@ -14,12 +14,12 @@ namespace TaskerAI.Domain
 
         public Assignee User { get; private set; }
 
-    public Availability(int id, DateTimeOffset startDate, DateTimeOffset endDate, Assignee user)
+        public Availability(int id, DateTimeOffset startDate, DateTimeOffset endDate, Assignee user)
         {
-            this.Id = id;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.User = user;
+            Id = id;
+            StartDate = startDate;
+            EndDate = endDate;
+            User = user;
         }
 
 

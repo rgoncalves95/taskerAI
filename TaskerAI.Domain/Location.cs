@@ -1,6 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Security;
-using System.Transactions;
 
 [assembly: InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
@@ -32,22 +30,22 @@ namespace TaskerAI.Domain
 
         internal Location(string street, string number, string floor, string zipCode, string city, string country, User user)
         {
-            this.Street = street;
-            this.Number = number;
-            this.Floor = floor;
-            this.ZipCode = zipCode;
-            this.City = city;
-            this.Country = country;
-            this.User = user;
+            Street = street;
+            Number = number;
+            Floor = floor;
+            ZipCode = zipCode;
+            City = city;
+            Country = country;
+            User = user;
 
-          
+
         }
 
         internal Location(string street, string number, string floor, string zipCode, string city, string country, User user, double lat, double lon) : this(street, number, floor, zipCode, city, country, user)
         {
 
-            this.Lat = lat;
-            this.Lon = lon;
+            Lat = lat;
+            Lon = lon;
 
         }
 

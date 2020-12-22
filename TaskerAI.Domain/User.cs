@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
@@ -13,76 +12,13 @@ namespace TaskerAI.Domain
         public string Email { get; private set; }
 
 
-        internal User(int id, string firstName, string lastName, string email, string password)
+        internal User(int id, string firstName, string lastName, string email)
         {
-            this.Id = id;
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Email = email;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
 
-        }
-
-    }
-
-
-
-
-    public class Assignee : User
-    {
-
-        public List<Availability> ListAvailability { get; private set; }
-
-        internal Assignee(int id, string firstName, string lastName, string email, string password, List<Availability> listAvailability) : base(id, firstName, lastName, email, password)
-        {
-
-            this.ListAvailability = listAvailability;
-        }
-
-        internal void AddAvailability(Availability availability)
-        {
-
-            this.ListAvailability.Add(availability);
-        }
-
-        internal void NotifyPlanAssigned()
-        {
-
-        }
-
-        internal virtual List<Plan> GetPlans()
-        {
-            var result = new List<Plan>();
-
-
-            return result;
-
-        }
-    }
-
-
-    public partial class Admin : Assignee
-    {
-        internal Admin(int id, string firstName, string lastName, string email, string password, List<Availability> listAvailability) : base(id, firstName, lastName, email, password, listAvailability)
-        {
-
-        }
-
-        internal void NotifyPlanAccepted()
-        {
-
-        }
-
-        internal void NotifyPlanRefused()
-        {
-
-        }
-
-        internal override List<Plan> GetPlans()
-        {
-            var result = new List<Plan>();
-
-
-            return result;
         }
     }
 }

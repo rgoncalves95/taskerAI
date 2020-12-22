@@ -1,12 +1,12 @@
-﻿using Community.AspNetCore.ExceptionHandling;
-using Community.AspNetCore.ExceptionHandling.Mvc;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-
-namespace TaskerAI.Setup
+﻿namespace TaskerAI.Setup
 {
+    using System;
+    using Community.AspNetCore.ExceptionHandling;
+    using Community.AspNetCore.ExceptionHandling.Mvc;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     public static class SetupExceptions
     {
         public static IServiceCollection AddExceptionPolicies(this IServiceCollection services)

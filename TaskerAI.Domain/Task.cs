@@ -7,27 +7,29 @@ namespace TaskerAI.Domain
     public class Task
     {
         public int Id { get; private set; }
-        public TaskType Type { get; private set; }
+        public string Name { get; set; }
         public int Status { get; private set; }
-        public DateTimeOffset PlannedEndDate { get; private set; }
+        public TaskType Type { get; private set; }
         public Location Location { get; private set; }
-        public DateTimeOffset StartDate{ get; private set; }
-        public DateTimeOffset EndDate { get; private set; }
-        public int Position { get; private set; }
+        public DateTimeOffset DueDate { get; set; }
+        public DateTimeOffset FinishDate { get; set; }
+        public int Duration { get; set; }
+        public int Position { get; set; }
+        public string Notes { get; set; }
 
-        internal Task(int id, TaskType type, int status, DateTimeOffset plannedEndDate, Location location, DateTimeOffset startDate, DateTimeOffset endDate, int position)
+        internal Task(int id, string name, int status, TaskType type, Location location, DateTimeOffset dueDate, DateTimeOffset finishDate, int duration, int position, string notes)
         {
-            this.Id = id;
-            this.Type = type;
-            this.Status = status;
-            this.PlannedEndDate = plannedEndDate;
-            this.Location = location;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.Position = position;
-
+            Id = id;
+            Name = name;
+            Status = status;
+            Type = type;
+            Location = location;
+            DueDate = dueDate;
+            FinishDate = finishDate;
+            Duration = duration;
+            Position = position;
+            Notes = notes;
         }
-
 
         internal void Cancel()
         {
@@ -44,12 +46,6 @@ namespace TaskerAI.Domain
 
         }
 
-        internal void ChangePosition(int position)
-        {
-            this.Position = position;
-        }
-
-
-
+        internal void ChangePosition(int position) => Position = position;
     }
 }
