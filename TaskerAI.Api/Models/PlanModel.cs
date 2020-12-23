@@ -4,6 +4,7 @@
 
     public class PlanModel
     {
+        public int Id { get; set; }
         public List<int> TaskIds { get; set; }
         public int LocationId { get; set; }
         public int MaxTimeForPlan { get; set; }

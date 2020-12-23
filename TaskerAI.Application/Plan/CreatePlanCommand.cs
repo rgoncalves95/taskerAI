@@ -1,4 +1,5 @@
-﻿namespace TaskerAI.Application
+﻿
+namespace TaskerAI.Application
 {
     using System.Collections.Generic;
     using System.Threading;

@@ -45,5 +45,22 @@
                 )
             );
         }
+
+        [HttpPost("AssignPlan")]
+        public async Task<IActionResult> AssignPlan(PlanModel model, int idUser)
+        {
+            return CreatedAtAction
+            (
+                nameof(PlanController.Post),
+                await mediator.Send
+                (
+                    new AssignPlanCommand
+                    (
+                        model.Id,
+                        idUser
+                    )
+                )
+            );
+        }
     }
 }

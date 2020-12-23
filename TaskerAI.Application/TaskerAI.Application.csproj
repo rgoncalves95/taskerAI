@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskerAI.Domain\TaskerAI.Domain.csproj" />
     <ProjectReference Include="..\TaskerAI.Persistence\TaskerAI.Persistence.csproj" />
   </ItemGroup>
 
