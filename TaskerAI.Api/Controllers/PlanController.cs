@@ -46,8 +46,8 @@
             );
         }
 
-        [HttpPost("AssignPlan")]
-        public async Task<IActionResult> AssignPlan(PlanModel model, int idUser)
+        [HttpPost("{id}/User/{userId}")]
+        public async Task<IActionResult> AssignPlan(int id, int userId)
         {
             return CreatedAtAction
             (
@@ -56,8 +56,8 @@
                 (
                     new AssignPlanCommand
                     (
-                        model.Id,
-                        idUser
+                        id,
+                        userId
                     )
                 )
             );
