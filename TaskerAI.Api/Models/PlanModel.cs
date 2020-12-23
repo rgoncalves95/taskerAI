@@ -9,5 +9,7 @@
         public int LocationId { get; set; }
         public int MaxTimeForPlan { get; set; }
         public int MaxNumberOfTasks { get; set; }
+        public int AssigneeId { get; set; }
+        public int SupervisorId { get; set; }
     }
 }

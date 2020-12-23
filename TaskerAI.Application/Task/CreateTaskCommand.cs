@@ -1,9 +1,9 @@
-﻿using System;
-using MediatR;
-using TaskerAI.Domain;
-
-namespace TaskerAI.Application
+﻿namespace TaskerAI.Application
 {
+    using System;
+    using MediatR;
+    using TaskerAI.Domain;
+
     public class CreateTaskCommand : IRequest<Task>
     {
         public CreateTaskCommand(string name, string notes, int locationId, int duration, int typeId, DateTimeOffset dueDate)

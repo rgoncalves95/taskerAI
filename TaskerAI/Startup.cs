@@ -14,10 +14,10 @@ namespace TaskerAI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwagger();
             services.AddMediatr();
-            //services.AddExceptionPolicies();
+            services.AddExceptionPolicies();
             services.AddPersistence().AddApi();
         }
 
@@ -31,7 +31,7 @@ namespace TaskerAI
                 endpoints.MapControllers();
             });
             app.UseSwaggerApp();
-            //app.UseExceptionPolicies();
+            app.UseExceptionPolicies();
         }
     }
 }

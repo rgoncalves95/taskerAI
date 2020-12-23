@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TaskerAI.Infrastructure
+﻿namespace TaskerAI.Infrastructure
 {
+    using System.Collections.Generic;
+
     public interface IMapper<Tin, Tout>
     {
         void Map(Tin from, Tout to);

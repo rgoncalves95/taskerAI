@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using MediatR;
+    using Microsoft.AspNetCore.JsonPatch;
     using Microsoft.AspNetCore.Mvc;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
@@ -46,12 +47,25 @@
             );
         }
 
-        [HttpPost("{id}/User/{userId}")]
-        public async Task<IActionResult> Post(int id, int userId)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<PlanModel> model)
         {
-            var result = await mediator.Send(new AssignPlanCommand(id, userId));
+            var result = mapper.Map(await mediator.Send(new GetPlanByIdQuery(id)));
 
-            return CreatedAtAction(nameof(PlansController.Post), new { id = 0 }, result); //TODO set correct id from PlanUser relation
+            model.ApplyTo(result);
+
+            await mediator.Send(new UpdatePlanCommand
+            (
+                result.Id,
+                result.TaskIds,
+                result.MaxNumberOfTasks,
+                result.MaxTimeForPlan,
+                result.LocationId,
+                result.SupervisorId,
+                result.AssigneeId)
+            );
+
+            return NoContent();
         }
     }
 }

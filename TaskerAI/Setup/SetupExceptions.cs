@@ -19,7 +19,7 @@
                            lo.LogAction = (l, c, e) => l.LogError(e, "UnhandledException");
                            lo.Category = (context, exception) => "MyCategory";
                        })
-                      .Response(null, ResponseAlreadyStartedBehaviour.GoToNextHandler)
+                      .Response(e => 500, ResponseAlreadyStartedBehaviour.GoToNextHandler)
                       .ClearCacheHeaders()
                       .WithObjectResult((r, e) => new { msg = e.Message, path = r.Path })
                       .Handled();
