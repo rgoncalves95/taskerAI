@@ -1,5 +1,7 @@
 ﻿namespace TaskerAI.Api.Mapper
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using TaskerAI.Api.Models;
     using TaskerAI.Domain;
     using TaskerAI.Infrastructure;
@@ -19,5 +21,9 @@
 
             return to;
         }
+
+        public void Map(IEnumerable<Plan> from, IEnumerable<PlanModel> to) => to = from.Select(f => Map(f)).ToArray();
+
+        public IEnumerable<PlanModel> Map(IEnumerable<Plan> from) => from.Select(f => Map(f)).ToArray();
     }
 }

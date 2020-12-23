@@ -17,8 +17,8 @@ namespace TaskerAI
             services.AddControllers();
             services.AddSwagger();
             services.AddMediatr();
-            services.AddExceptionPolicies();
-            services.AddPersistence();
+            //services.AddExceptionPolicies();
+            services.AddPersistence().AddApi();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,7 +31,7 @@ namespace TaskerAI
                 endpoints.MapControllers();
             });
             app.UseSwaggerApp();
-            app.UseExceptionPolicies();
+            //app.UseExceptionPolicies();
         }
     }
 }

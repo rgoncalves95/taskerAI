@@ -11,19 +11,19 @@
     {
         public static IServiceCollection AddExceptionPolicies(this IServiceCollection services)
         {
-            //services.AddExceptionHandlingPolicies(options =>
-            //{
-            //    options.For<Exception>()
-            //           .Log(lo =>
-            //           {
-            //               lo.LogAction = (l, c, e) => l.LogError(e, "UnhandledException");
-            //               lo.Category = (context, exception) => "MyCategory";
-            //           })
-            //          .Response(null, ResponseAlreadyStartedBehaviour.GoToNextHandler)
-            //          .ClearCacheHeaders()
-            //          .WithObjectResult((r, e) => new { msg = e.Message, path = r.Path })
-            //          .Handled();
-            //});
+            services.AddExceptionHandlingPolicies(options =>
+            {
+                options.For<Exception>()
+                       .Log(lo =>
+                       {
+                           lo.LogAction = (l, c, e) => l.LogError(e, "UnhandledException");
+                           lo.Category = (context, exception) => "MyCategory";
+                       })
+                      .Response(null, ResponseAlreadyStartedBehaviour.GoToNextHandler)
+                      .ClearCacheHeaders()
+                      .WithObjectResult((r, e) => new { msg = e.Message, path = r.Path })
+                      .Handled();
+            });
 
             return services;
         }

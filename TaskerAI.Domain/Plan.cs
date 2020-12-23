@@ -7,10 +7,9 @@ namespace TaskerAI.Domain
 {
     public class Plan
     {
-
         public int Id { get; private set; }
         public string Name { get; private set; }
-        public List<Task> Tasks { get; private set; }
+        public IList<Task> Tasks { get; private set; }
         public Assignee Accountable { get; private set; }
         public Admin Responsible { get; private set; }
         public DateTimeOffset Date { get; private set; }
@@ -54,9 +53,9 @@ namespace TaskerAI.Domain
 
         }
 
-        internal void Assign(Assignee assignee)
+        internal void Assign(Assignee user)
         {
-
+            this.Accountable = user;
         }
 
         internal List<Assignee> GetAvailableAssignees()

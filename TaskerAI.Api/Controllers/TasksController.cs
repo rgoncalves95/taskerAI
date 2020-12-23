@@ -1,6 +1,7 @@
 ﻿namespace TaskerAI.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,12 @@
 
     [ApiController]
     [Route("[controller]")]
-    public class TaskController : ControllerBase
+    public class TasksController : ControllerBase
     {
         private readonly IMediator mediator;
         private readonly IMapper<Domain.Task, TaskModel> mapper;
 
-        public TaskController(IMediator mediator, IMapper<Domain.Task, TaskModel> mapper)
+        public TasksController(IMediator mediator, IMapper<Domain.Task, TaskModel> mapper)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -28,23 +29,21 @@
         public async Task<IActionResult> Get(int id) => Ok(mapper.Map(await mediator.Send(new GetTaskByIdQuery(id))));
 
         [HttpPost]
-        public async Task<IActionResult> Post(List<TaskModel> model) =>
-            //return CreatedAtAction
-            //(
-            //    nameof(TaskController.Post),
-            //    await mediator.Send
-            //    (
-            //        new CreatePlanCommand
-            //        (
-            //            model.Tasks,
-            //            model.Location?.Lat,
-            //            model.Location?.Long,
-            //            model.MaxTimeForPlan,
-            //            model.MaxNumberOfTasks
-            //        )
-            //    )
-            //);
+        public async Task<IActionResult> Post(TaskModel model)
+        {
+            var result = mapper.Map(await mediator.Send(new CreateTaskCommand()));
 
-            null;
+            return CreatedAtAction(nameof(TasksController.Post), new { result.Id }, result);
+        }
+
+        [HttpPost]
+        public IActionResult Post(IEnumerable<TaskModel> models)
+        {
+            var commands = models.Select(m => new CreateTaskCommand(m.Email, m.LastName, m.FirstName, m.Phone));
+
+            System.Threading.Tasks.Task.WhenAll(mediator.Send(commands));
+
+            return Accepted();
+        }
     }
 }

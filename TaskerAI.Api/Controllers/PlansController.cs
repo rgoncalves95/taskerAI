@@ -10,12 +10,12 @@
 
     [ApiController]
     [Route("[controller]")]
-    public class PlanController : ControllerBase
+    public class PlansController : ControllerBase
     {
         private readonly IMediator mediator;
         private readonly IMapper<Plan, PlanModel> mapper;
 
-        public PlanController(IMediator mediator, IMapper<Plan, PlanModel> mapper)
+        public PlansController(IMediator mediator, IMapper<Plan, PlanModel> mapper)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -32,7 +32,7 @@
         {
             return CreatedAtAction
             (
-                nameof(PlanController.Post),
+                nameof(PlansController.Post),
                 await mediator.Send
                 (
                     new CreatePlanCommand
@@ -47,20 +47,11 @@
         }
 
         [HttpPost("{id}/User/{userId}")]
-        public async Task<IActionResult> AssignPlan(int id, int userId)
+        public async Task<IActionResult> Post(int id, int userId)
         {
-            return CreatedAtAction
-            (
-                nameof(PlanController.Post),
-                await mediator.Send
-                (
-                    new AssignPlanCommand
-                    (
-                        id,
-                        userId
-                    )
-                )
-            );
+            var result = await mediator.Send(new AssignPlanCommand(id, userId));
+
+            return CreatedAtAction(nameof(PlansController.Post), new { id = 0 }, result); //TODO set correct id from PlanUser relation
         }
     }
 }
