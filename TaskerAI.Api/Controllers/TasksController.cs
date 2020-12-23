@@ -1,6 +1,5 @@
 ﻿namespace TaskerAI.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using MediatR;
@@ -29,21 +28,22 @@
         public async Task<IActionResult> Get(int id) => Ok(mapper.Map(await mediator.Send(new GetTaskByIdQuery(id))));
 
         [HttpPost]
-        public async Task<IActionResult> Post(TaskModel model)
+        public Task<IActionResult> Post(TaskModel[] models) => models.Length > 1 ? Create(models) : Create(models.First());
+
+        private async Task<IActionResult> Create(TaskModel model)
         {
             var result = mapper.Map(await mediator.Send(new CreateTaskCommand(model.Name, model.Notes, model.LocationId, model.Duration, model.TypeId, model.DueDate)));
 
             return CreatedAtAction(nameof(TasksController.Post), new { result.Id }, result);
         }
 
-        [HttpPost]
-        public IActionResult Post(IEnumerable<TaskModel> models)
+        private Task<IActionResult> Create(TaskModel[] models)
         {
-            var commands = models.Select(m =>new CreateTaskCommand(m.Name, m.Notes, m.LocationId, m.Duration, m.TypeId, m.DueDate));
+            var commands = models.Select(m => new CreateTaskCommand(m.Name, m.Notes, m.LocationId, m.Duration, m.TypeId, m.DueDate));
 
-            System.Threading.Tasks.Task.WhenAll(mediator.Send(commands));
+            Task.WhenAll(mediator.Send(commands));
 
-            return Accepted();
+            return Task.FromResult((IActionResult)Accepted());
         }
     }
 }

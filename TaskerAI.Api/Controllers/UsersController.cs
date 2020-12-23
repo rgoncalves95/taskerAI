@@ -32,30 +32,29 @@
             string latitude,
             string longitude,
             string name
-        )
-        {
-            return Ok(await this.mediator.Send(new GetUsersQuery(availabilityStartDate, availabilityEndDate, latitude, longitude, name)));
-        }
+        ) => Ok(await mediator.Send(new GetUsersQuery(availabilityStartDate, availabilityEndDate, latitude, longitude, name)));
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id) => Ok(await this.mediator.Send(new GetUserByIdQuery(id)));
+        public async Task<IActionResult> Get(int id) => Ok(await mediator.Send(new GetUserByIdQuery(id)));
+
 
         [HttpPost]
-        public async Task<IActionResult> Post(UserModel model)
+        public Task<IActionResult> Post(UserModel[] models) => models.Length > 1 ? Create(models) : Create(models.First());
+
+        private async Task<IActionResult> Create(UserModel model)
         {
-            var result = this.mapper.Map(await this.mediator.Send(new CreateUserCommand(model.Email, model.LastName, model.FirstName, model.Phone)));
+            var result = mapper.Map(await mediator.Send(new CreateUserCommand(model.Email, model.LastName, model.FirstName, model.Phone)));
 
             return CreatedAtAction(nameof(UserController.Post), new { result.Id }, result);
         }
 
-        [HttpPost]
-        public IActionResult Post(IEnumerable<UserModel> models)
+        private Task<IActionResult> Create(UserModel[] models)
         {
             var commands = models.Select(m => new CreateUserCommand(m.Email, m.LastName, m.FirstName, m.Phone));
-            
-            System.Threading.Tasks.Task.WhenAll(this.mediator.Send(commands));
 
-            return Accepted();
+            System.Threading.Tasks.Task.WhenAll(mediator.Send(commands));
+
+            return System.Threading.Tasks.Task.FromResult((IActionResult)Accepted());
         }
     }
 }
