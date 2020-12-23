@@ -31,7 +31,7 @@
         [HttpPost]
         public async Task<IActionResult> Post(TaskModel model)
         {
-            var result = mapper.Map(await mediator.Send(new CreateTaskCommand()));
+            var result = mapper.Map(await mediator.Send(new CreateTaskCommand(model.Name, model.Notes, model.LocationId, model.Duration, model.TypeId, model.DueDate)));
 
             return CreatedAtAction(nameof(TasksController.Post), new { result.Id }, result);
         }
@@ -39,7 +39,7 @@
         [HttpPost]
         public IActionResult Post(IEnumerable<TaskModel> models)
         {
-            var commands = models.Select(m => new CreateTaskCommand(m.Email, m.LastName, m.FirstName, m.Phone));
+            var commands = models.Select(m =>new CreateTaskCommand(m.Name, m.Notes, m.LocationId, m.Duration, m.TypeId, m.DueDate));
 
             System.Threading.Tasks.Task.WhenAll(mediator.Send(commands));
 
