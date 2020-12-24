@@ -47,6 +47,24 @@
             );
         }
 
+        [HttpPost("AssignPlan")]
+        public async Task<IActionResult> Post(PlanModel model, int userId)
+        {
+            return CreatedAtAction
+            (
+                nameof(PlansController.Post),
+                await mediator.Send
+                (
+                    new AssignPlanCommand
+                    (
+                        model.Id,
+                        userId
+                    )
+                )
+            );
+        }
+
+
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<PlanModel> model)
         {
