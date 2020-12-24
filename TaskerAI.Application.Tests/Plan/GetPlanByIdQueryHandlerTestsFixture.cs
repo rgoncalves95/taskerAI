@@ -1,5 +1,6 @@
 ﻿namespace TaskerAI.Application.Tests.Plan
 {
+    using AutoFixture;
     using NSubstitute;
     using TaskerAI.Persistence;
 
@@ -7,9 +8,9 @@
     {
         public IPlanRepository PlanRepository { get; private set; }
 
-        public GetPlanByIdQueryHandlerTestsFixture()
+        public GetPlanByIdQueryHandlerTestsFixture(IFixture fixture)
         {
-            PlanRepository = Substitute.For<IPlanRepository>();
+            PlanRepository = fixture.Create<IPlanRepository>();
         }
     }
 }

@@ -5,23 +5,18 @@
     using Domain;
     using System.Threading;
     using FluentAssertions;
+    using Common.Tests;
 
-    public class GetPlanByIdQueryHandlerTests : IClassFixture<GetPlanByIdQueryHandlerTestsFixture>
+    public class GetPlanByIdQueryHandlerTests
     {
-        private readonly GetPlanByIdQueryHandlerTestsFixture _fixture;
-
-        public GetPlanByIdQueryHandlerTests(GetPlanByIdQueryHandlerTestsFixture fixture)
-        {
-            _fixture = fixture;
-        }
-
-        [Fact]
-        public async void ShouldReturnPlanWhenIsRequested()
+        [Theory]
+        [AutoDomainData]
+        public async void ShouldReturnPlanWhenIsRequested(GetPlanByIdQueryHandlerTestsFixture fixture)
         {
             //Arrange
             var plan = Plan.Create(1, "new plan");
-            _fixture.PlanRepository.GetPlan(Arg.Any<int>()).Returns(plan);
-            var sut = new GetPlanByIdQueryHandler(_fixture.PlanRepository);
+            fixture.PlanRepository.GetPlan(Arg.Any<int>()).Returns(plan);
+            var sut = new GetPlanByIdQueryHandler(fixture.PlanRepository);
 
             //Act
             var result = await sut.Handle(new GetPlansQuery(), CancellationToken.None);

@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Tests\Common.Tests.csproj" />
     <ProjectReference Include="..\TaskerAI.Application\TaskerAI.Application.csproj" />
     <ProjectReference Include="..\TaskerAI.Domain\TaskerAI.Domain.csproj" />
     <ProjectReference Include="..\TaskerAI.Persistence\TaskerAI.Persistence.csproj" />

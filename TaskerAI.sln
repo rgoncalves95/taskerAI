@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Api.Tests", "Taske
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Application.Tests", "TaskerAI.Application.Tests\TaskerAI.Application.Tests.csproj", "{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Common.Tests\Common.Tests.csproj", "{A723AB96-73D7-4AD4-A0B1-B54FEFD42CAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A723AB96-73D7-4AD4-A0B1-B54FEFD42CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A723AB96-73D7-4AD4-A0B1-B54FEFD42CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A723AB96-73D7-4AD4-A0B1-B54FEFD42CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A723AB96-73D7-4AD4-A0B1-B54FEFD42CAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
