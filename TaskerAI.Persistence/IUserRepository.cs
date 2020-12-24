@@ -2,10 +2,12 @@
 {
     using TaskerAI.Domain;
 
-    public interface IPlanRepository
+    public interface IUserRepository
     {
-        Plan GetPlan(int id);
+        User GetUser(int id);
 
-        Plan CreatePlan(Plan plan);
+        User CreateUser(User user);
+
+        User AcceptPlan();
     }
 }
