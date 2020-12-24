@@ -13,6 +13,8 @@
         public static IServiceCollection AddPersistence(this IServiceCollection services)
         {
             services.AddTransient<IPlanRepository, PlanRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITaskRepository, TaskRepository>();
 
             return services;
         }

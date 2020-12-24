@@ -31,6 +31,9 @@ namespace TaskerAI.Domain
             Notes = notes;
         }
 
+        public Task()
+        {
+        }
 
         internal void Cancel()
         {

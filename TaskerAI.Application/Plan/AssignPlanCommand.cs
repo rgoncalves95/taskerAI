@@ -6,7 +6,7 @@ using TaskerAI.Persistence;
 
 namespace TaskerAI.Controllers
 {
-    public class AssignPlanCommand : IRequest
+    public class AssignPlanCommand : IRequest<Plan>
     {
         public AssignPlanCommand(int id, int userId)
         {
@@ -18,17 +18,17 @@ namespace TaskerAI.Controllers
         public int UserId { get; }
     }
 
-    public class AssignPlanCommandHandler : IRequestHandler<AssignPlanCommand>
+    public class AssignPlanCommandHandler : IRequestHandler<AssignPlanCommand,Plan>
     {
         private readonly IPlanRepository repo;
 
         public AssignPlanCommandHandler(IPlanRepository repo) => this.repo = repo;
 
-        public async Task<Unit> Handle(AssignPlanCommand request, CancellationToken cancellationToken)
+        public async Task<Plan> Handle(AssignPlanCommand request, CancellationToken cancellationToken)
         {
             var plan = Plan.Create("");
 
-            return Unit.Value;
+            return plan;
         }
     }
 }
