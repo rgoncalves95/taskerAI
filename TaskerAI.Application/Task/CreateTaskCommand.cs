@@ -7,7 +7,7 @@
     using TaskerAI.Domain;
     using TaskerAI.Persistence;
 
-    public class CreateTaskCommand : IRequest
+    public class CreateTaskCommand : IRequest<Domain.Task>
     {
         public CreateTaskCommand(string name, string notes, int locationId, int duration, int typeId, DateTimeOffset dueDate)
         {
@@ -29,19 +29,19 @@
 
     }
 
-    public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand>
+    public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Task>
     {
         private readonly ITaskRepository repo;
 
         public CreateTaskCommandHandler(ITaskRepository repo) => this.repo = repo;
 
-        public async Task<Unit> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
+        public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            //var task = new Domain.Task();
+            var task = new Domain.Task();
 
             //insert task in the DB
 
-            return Unit.Value;
+            return task;
         }
     }
 }
