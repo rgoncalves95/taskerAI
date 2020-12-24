@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("TaskerAI.Application")]
+[assembly: InternalsVisibleTo("TaskerAI.Api.Tests")]
+[assembly: InternalsVisibleTo("TaskerAI.Application.Tests")]
 namespace TaskerAI.Domain
 {
     public class Plan
@@ -30,7 +32,7 @@ namespace TaskerAI.Domain
 
         internal static Plan Create(int id, string name)
         {
-            var plan = new Plan(name);
+            var plan = new Plan(id, name);
 
             return plan;
         }

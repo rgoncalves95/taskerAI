@@ -5,17 +5,21 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI", "TaskerAI\TaskerAI.csproj", "{B177EF44-14B1-49A3-931E-C562C14191BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Domain", "TaskerAI.Domain\TaskerAI.Domain.csproj", "{DDEA1EE5-5346-4F3A-AB80-E8D950116CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Domain", "TaskerAI.Domain\TaskerAI.Domain.csproj", "{DDEA1EE5-5346-4F3A-AB80-E8D950116CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Application", "TaskerAI.Application\TaskerAI.Application.csproj", "{C146D389-8B55-4F16-80CE-DC95D380C4BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Application", "TaskerAI.Application\TaskerAI.Application.csproj", "{C146D389-8B55-4F16-80CE-DC95D380C4BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Persistence", "TaskerAI.Persistence\TaskerAI.Persistence.csproj", "{8D263192-E9E0-496D-BF5F-D92F5EDBE4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Persistence", "TaskerAI.Persistence\TaskerAI.Persistence.csproj", "{8D263192-E9E0-496D-BF5F-D92F5EDBE4F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Api", "TaskerAI.Api\TaskerAI.Api.csproj", "{AF4F8AAA-B92E-47AA-9C30-1AE81DB6DE60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Api", "TaskerAI.Api\TaskerAI.Api.csproj", "{AF4F8AAA-B92E-47AA-9C30-1AE81DB6DE60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Dapper", "TaskerAI.Dapper\TaskerAI.Dapper.csproj", "{641F48A0-C425-4C8E-976B-5B3729066BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Dapper", "TaskerAI.Dapper\TaskerAI.Dapper.csproj", "{641F48A0-C425-4C8E-976B-5B3729066BF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Infrastructure", "TaskerAI.Infrastructure\TaskerAI.Infrastructure.csproj", "{438186C0-EF43-4B79-A0A2-286C2F7FF36D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Infrastructure", "TaskerAI.Infrastructure\TaskerAI.Infrastructure.csproj", "{438186C0-EF43-4B79-A0A2-286C2F7FF36D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Api.Tests", "TaskerAI.Api.Tests\TaskerAI.Api.Tests.csproj", "{74D72D37-62AD-47B7-9E81-0929F930B0F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskerAI.Application.Tests", "TaskerAI.Application.Tests\TaskerAI.Application.Tests.csproj", "{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{438186C0-EF43-4B79-A0A2-286C2F7FF36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438186C0-EF43-4B79-A0A2-286C2F7FF36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438186C0-EF43-4B79-A0A2-286C2F7FF36D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D72D37-62AD-47B7-9E81-0929F930B0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74D72D37-62AD-47B7-9E81-0929F930B0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74D72D37-62AD-47B7-9E81-0929F930B0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74D72D37-62AD-47B7-9E81-0929F930B0F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCAFE38-A3A3-4DDF-B57C-CA69550E62B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
