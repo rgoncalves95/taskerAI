@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("TaskerAI.Application")]
-[assembly: InternalsVisibleTo("TaskerAI.Api.Tests")]
-[assembly: InternalsVisibleTo("TaskerAI.Application.Tests")]
 namespace TaskerAI.Domain
 {
     public class Plan
