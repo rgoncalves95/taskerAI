@@ -47,8 +47,8 @@
             );
         }
 
-        [HttpPost("AssignPlan")]
-        public async Task<IActionResult> Post(PlanModel model, int userId)
+        [HttpPost("{id}/assign_user/{userId}")]
+        public async Task<IActionResult> Post(int id, int userId)
         {
             return CreatedAtAction
             (
@@ -57,13 +57,12 @@
                 (
                     new AssignPlanCommand
                     (
-                        model.Id,
+                        id,
                         userId
                     )
                 )
             );
         }
-
 
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<PlanModel> model)

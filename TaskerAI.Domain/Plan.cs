@@ -15,7 +15,7 @@ namespace TaskerAI.Domain
         public Assignee Accountable { get; private set; }
         public Admin Responsible { get; private set; }
         public DateTimeOffset Date { get; private set; }
-        public int Status { get; private set; }
+        public PlanWorkflowState Status { get; private set; }
 
         public int TotalDurationInMins { get; private set; }
 
@@ -58,6 +58,7 @@ namespace TaskerAI.Domain
         internal void Assign(Assignee user)
         {
             this.Accountable = user;
+            this.Status = PlanWorkflowState.Approved;
         }
 
         internal List<Assignee> GetAvailableAssignees()

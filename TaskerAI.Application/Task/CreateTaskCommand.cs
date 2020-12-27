@@ -38,7 +38,6 @@
         public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
             var task = new Domain.Task();
-
             //insert task in the DB
 
             return task;

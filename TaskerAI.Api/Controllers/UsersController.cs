@@ -57,12 +57,10 @@
             return System.Threading.Tasks.Task.FromResult((IActionResult)Accepted());
         }
 
-        [HttpPost("AcceptTask")]
-        public async Task<IActionResult> Post(int userId, int taskId) {
-
-
-            var result = await mediator.Send(new AcceptTaskCommand(userId, taskId));
-
+        [HttpPost("{id}/accept_plan/{taskId}")]
+        public async Task<IActionResult> Post(int userId, int taskId) 
+        {
+            var result = await mediator.Send(new AcceptPlanCommand(userId, taskId));
             return Ok(result);
         }
     }
