@@ -3,7 +3,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using TaskerAI.Api.Mapper;
     using TaskerAI.Api.Models;
-    using TaskerAI.Dapper;
+    using TaskerAI.MockRepository;
     using TaskerAI.Domain;
     using TaskerAI.Infrastructure;
     using TaskerAI.Persistence;

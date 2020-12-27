@@ -16,6 +16,7 @@
     <ProjectReference Include="..\TaskerAI.Api\TaskerAI.Api.csproj" />
     <ProjectReference Include="..\TaskerAI.Application\TaskerAI.Application.csproj" />
     <ProjectReference Include="..\TaskerAI.Dapper\TaskerAI.Dapper.csproj" />
+    <ProjectReference Include="..\TaskerAI.MockRepository\TaskerAI.MockRepository.csproj" />
   </ItemGroup>
 
 
