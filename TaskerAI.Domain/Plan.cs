@@ -65,5 +65,24 @@ namespace TaskerAI.Domain
             return result;
 
         }
+
+
+        private void generatePlan(List<Task> tasks, int maxTasks, int maxTimeInMinutes, Location location, int radius)
+        {
+
+            //calculate distance and time between each task location
+
+            //sort tasks by distance and end time 
+
+            //calculate plan totalTime
+
+            //return the one that meet all the constraints
+
+
+
+
+            
+
+        }
     }
 }
