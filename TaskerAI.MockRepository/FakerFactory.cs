@@ -15,9 +15,9 @@
                 .RuleFor(o => o.Accountable, f => CreateAssignee())
                 .RuleFor(o => o.Date, f => DateTimeOffset.Now.AddDays(1))
                 .RuleFor(o => o.Responsible, f => CreateAdmin())
-                .RuleFor(o => o.Status, f => f.Random.Int(0, 5))
+                .RuleFor(o => o.Status, f => PlanWorkflowState.Draft)
                 .RuleFor(o => o.Tasks, f => new[] { CreateTask(), CreateTask(), CreateTask(), CreateTask() })
-                .RuleFor(o => o.TotalDurationInMins, f => f.Random.Int(60, 120));
+                .RuleFor(o => o.TotalDurationInSecs, f => f.Random.Int(60, 120));
 
             return planFaker.Generate();
         }
@@ -31,6 +31,9 @@
                     f.Random.Int(0, 5),
                     CreateTaskType(),
                     CreateLocation(),
+                    DateTimeOffset.Now.AddDays(1),
+                    DateTimeOffset.Now.AddDays(1),
+                    DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.MinValue,
                     f.Random.Int(60, 120),
@@ -49,6 +52,9 @@
                     f.Random.Int(0, 5),
                     CreateTaskType(),
                     CreateLocation(),
+                    DateTimeOffset.Now.AddDays(1),
+                    DateTimeOffset.Now.AddDays(1),
+                    DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.MinValue,
                     f.Random.Int(60, 120),

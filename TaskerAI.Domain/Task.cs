@@ -36,7 +36,7 @@ namespace TaskerAI.Domain
             Notes = notes;
         }
 
-        internal Task(int id, string name, int status, TaskType type, Location location, DateTimeOffset estimatedStartDate, DateTimeOffset estimatedEndDate, DateTimeOffset date, DateTimeOffset dueDate, DateTimeOffset finishDate, int duration, int position, string notes)
+        public Task(int id, string name, int status, TaskType type, Location location, DateTimeOffset estimatedStartDate, DateTimeOffset estimatedEndDate, DateTimeOffset date, DateTimeOffset dueDate, DateTimeOffset finishDate, int duration, int position, string notes)
         {
             Id = id;
             Name = name;

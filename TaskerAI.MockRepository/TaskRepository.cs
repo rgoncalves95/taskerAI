@@ -8,7 +8,7 @@
 
     public class TaskRepository : ITaskRepository
     {
-        public Task CreateTask(Task task) => new Task(1, task.Name, task.Status, task.Type, task.Location, task.DueDate, task.FinishDate, task.Duration, task.Position, task.Notes);
+        public Task CreateTask(Task task) => new Task(1, task.Name, task.Status, task.Type, task.Location,task.EstimatedEndDate, task.EstimatedEndDate, task.Date, task.DueDate, task.FinishDate, task.Duration, task.Position, task.Notes);
         public Task GetTask(int id) => FakerFactory.CreateTask(id);
         public Task GetTaskByUser(int UserId) => throw new NotImplementedException();
     }
