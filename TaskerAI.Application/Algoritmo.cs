@@ -43,9 +43,9 @@ namespace TaskerAI.Application
                 var nextTask = new Task();
                 var taskRoute = new TaskDistance();
 
-                if (taskDistancesList.FindAll(td => td.TaskFromId == thisTask.Id && planTasksList.Find(pt => pt.Id == td.TaskToId).DueDate <= thisTask.EstimatedEndDate.AddSeconds(td.TimeInSeconds).AddSeconds(thisTask.Duration)).Count > 0)
+                if (taskDistancesList.FindAll(td => td.TaskFromId == thisTask.Id && planTasksList.Find(pt => pt.Id == td.TaskToId).DueDate >= thisTask.EstimatedEndDate.AddSeconds(td.TimeInSeconds).AddSeconds(thisTask.Duration)).Count > 0)
                 {
-                    taskRoute = taskDistancesList.FindAll(td => td.TaskFromId == thisTask.Id && planTasksList.Find(pt => pt.Id == td.TaskToId).DueDate <= thisTask.EstimatedEndDate.AddSeconds(td.TimeInSeconds).AddSeconds(thisTask.Type.DurationInSeconds)).OrderBy(td => td.TimeInSeconds).First<TaskDistance>();
+                    taskRoute = taskDistancesList.FindAll(td => td.TaskFromId == thisTask.Id && planTasksList.Find(pt => pt.Id == td.TaskToId).DueDate >= thisTask.EstimatedEndDate.AddSeconds(td.TimeInSeconds).AddSeconds(thisTask.Type.DurationInSeconds)).OrderBy(td => td.TimeInSeconds).First<TaskDistance>();
                     nextTask = planTasksList.Find(t => t.Id == taskRoute.TaskToId);
                 }
                 else
