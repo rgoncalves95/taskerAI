@@ -1,53 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
 {
     public class Plan
     {
+        internal static Plan Create(IList<TaskRoute> tasks, DateTimeOffset date) => new Plan(tasks, date);
+
+        private Plan(IList<TaskRoute> tasks, DateTimeOffset date)
+        {
+            TaskRoutes = tasks;
+            Date = date;
+            Status = PlanWorkflowState.Draft;
+        }
+
         public int Id { get; private set; }
         public string Name { get; private set; }
-        public IList<Task> Tasks { get; private set; }
+        public IList<TaskRoute> TaskRoutes { get; private set; }
         public Assignee Accountable { get; private set; }
         public Admin Responsible { get; private set; }
         public DateTimeOffset Date { get; private set; }
         public PlanWorkflowState Status { get; private set; }
+        public decimal EstimatedExecutionTime => TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
 
-        public int TotalDurationInSecs { get; private set; }
-
-        public Plan(string name, IList<Task> tasks, DateTimeOffset date, int totalDurationInSecs)
-        {
-            Name = name;
-            Tasks = tasks;
-            Date = date;
-            TotalDurationInSecs = totalDurationInSecs;
-            Status = PlanWorkflowState.Draft;
-        }
-
-        public Plan(string name) => Name = name;
-
-        public Plan(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        internal static Plan Create(string name)
-        {
-            var plan = new Plan(name);
-
-            return plan;
-        }
-
-        internal static Plan Create(int id, string name)
-        {
-            var plan = new Plan(id, name);
-
-            return plan;
-        }
-
-        internal void ReorderTasks(List<Task> tasks) => Tasks = tasks;
+        internal void ReorderTasks(List<TaskRoute> tasks) => TaskRoutes = tasks;
 
         internal void Recalc()
         {
@@ -67,8 +46,8 @@ namespace TaskerAI.Domain
 
         internal void Assign(Assignee user)
         {
-            this.Accountable = user;
-            this.Status = PlanWorkflowState.Approved;
+            Accountable = user;
+            Status = PlanWorkflowState.Approved;
         }
 
         internal List<Assignee> GetAvailableAssignees()
@@ -76,27 +55,6 @@ namespace TaskerAI.Domain
             var result = new List<Assignee>();
 
             return result;
-
-        }
-
-
-        private void generatePlan(List<Task> tasks, int maxTasks, int maxTimeInMinutes, Location location, int radius)
-        {
-
-            //calculate distance and time between each task location
-
-            //sort tasks by distance and end time 
-
-            //calculate plan totalTime
-
-            //return the one that meet all the constraints
-
-            
-
-
-
-
-            
 
         }
     }

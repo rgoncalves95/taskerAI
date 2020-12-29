@@ -1,8 +1,7 @@
 ﻿namespace TaskerAI.Application.Tests.Plan
 {
     using AutoFixture;
-    using NSubstitute;
-    using TaskerAI.Persistence;
+    using TaskerAI.Domain;
 
     public class GetPlanByIdQueryHandlerTestsFixture 
     {

@@ -1,7 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace TaskerAI.Domain
+﻿namespace TaskerAI.Domain
 {
+    using System.Runtime.CompilerServices;
+
     public class User
     {
 

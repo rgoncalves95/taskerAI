@@ -1,11 +1,10 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
-using TaskerAI.Domain;
-using TaskerAI.Persistence;
-
-namespace TaskerAI.Controllers
+﻿namespace TaskerAI.Controllers
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MediatR;
+    using TaskerAI.Domain;
+
     public class AssignPlanCommand : IRequest<Plan>
     {
         public AssignPlanCommand(int id, int userId)
@@ -26,9 +25,7 @@ namespace TaskerAI.Controllers
 
         public async Task<Plan> Handle(AssignPlanCommand request, CancellationToken cancellationToken)
         {
-            var plan = Plan.Create("");
-
-            return plan;
+            return null;
         }
     }
 }

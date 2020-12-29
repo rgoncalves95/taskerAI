@@ -6,7 +6,6 @@
     using TaskerAI.MockRepository;
     using TaskerAI.Domain;
     using TaskerAI.Infrastructure;
-    using TaskerAI.Persistence;
 
     public static class SetupApp
     {

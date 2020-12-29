@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using MediatR;
     using TaskerAI.Domain;
-    using TaskerAI.Persistence;
 
     public class CreateTaskCommand : IRequest<Domain.Task>
     {
@@ -37,10 +36,10 @@
 
         public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            var task = new Domain.Task();
+            //var task = new Domain.Task();
             //insert task in the DB
 
-            return task;
+            return null;
         }
     }
 }

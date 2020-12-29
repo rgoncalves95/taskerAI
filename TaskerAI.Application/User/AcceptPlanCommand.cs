@@ -1,11 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
-using TaskerAI.Domain;
-using TaskerAI.Persistence;
-
-namespace TaskerAI.Application.User
+﻿namespace TaskerAI.Application.User
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MediatR;
+    using TaskerAI.Domain;
 
 
     public class AcceptPlanCommand : IRequest<Domain.Plan>

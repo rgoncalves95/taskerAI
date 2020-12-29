@@ -2,7 +2,6 @@
 {
     using System;
     using TaskerAI.Domain;
-    using TaskerAI.Persistence;
 
     public class TaskRepository : ITaskRepository
     {

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using Bogus;
     using TaskerAI.Domain;
 
@@ -10,29 +9,28 @@
     {
         public static Plan CreatePlan(int id)
         {
-            var planFaker = new Faker<Plan>()
-                .CustomInstantiator(f => new Plan(id, f.Lorem.Sentence(2)))
-                .RuleFor(o => o.Accountable, f => CreateAssignee())
-                .RuleFor(o => o.Date, f => DateTimeOffset.Now.AddDays(1))
-                .RuleFor(o => o.Responsible, f => CreateAdmin())
-                .RuleFor(o => o.Status, f => PlanWorkflowState.Draft)
-                .RuleFor(o => o.Tasks, f => new[] { CreateTask(), CreateTask(), CreateTask(), CreateTask() })
-                .RuleFor(o => o.TotalDurationInSecs, f => f.Random.Int(60, 120));
+            //var planFaker = new Faker<Plan>()
+            //    .CustomInstantiator(f => new Plan(id, f.Lorem.Sentence(2)))
+            //    .RuleFor(o => o.Accountable, f => CreateAssignee())
+            //    .RuleFor(o => o.Date, f => DateTimeOffset.Now.AddDays(1))
+            //    .RuleFor(o => o.Responsible, f => CreateAdmin())
+            //    .RuleFor(o => o.Status, f => PlanWorkflowState.Draft)
+            //    .RuleFor(o => o.TaskRoutes, f => new[] { CreateTask(), CreateTask(), CreateTask(), CreateTask() })
+            //    .RuleFor(o => o.TotalDurationInSecs, f => f.Random.Int(60, 120));
 
-            return planFaker.Generate();
+            //return planFaker.Generate();
+            return null;
         }
 
         public static Task CreateTask()
         {
             var taskFaker = new Faker<Task>()
-                .CustomInstantiator(f => new Task(
+                .CustomInstantiator(f => Task.Create(
                     f.UniqueIndex,
                     f.Lorem.Sentence(2),
                     f.Random.Int(0, 5),
                     CreateTaskType(),
                     CreateLocation(),
-                    DateTimeOffset.Now.AddDays(1),
-                    DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.MinValue,
@@ -46,7 +44,7 @@
         public static Task CreateTask(int id)
         {
             var taskFaker = new Faker<Task>()
-                .CustomInstantiator(f => new Task(
+                .CustomInstantiator(f => Task.Create(
                     id,
                     f.Lorem.Sentence(2),
                     f.Random.Int(0, 5),
@@ -54,8 +52,7 @@
                     CreateLocation(),
                     DateTimeOffset.Now.AddDays(1),
                     DateTimeOffset.Now.AddDays(1),
-                    DateTimeOffset.Now.AddDays(1),
-                    DateTimeOffset.Now.AddDays(1),
+
                     DateTimeOffset.MinValue,
                     f.Random.Int(60, 120),
                     f.Random.Int(0, 10),

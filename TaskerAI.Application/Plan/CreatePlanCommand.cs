@@ -6,7 +6,6 @@ namespace TaskerAI.Application
     using System.Threading.Tasks;
     using MediatR;
     using TaskerAI.Domain;
-    using TaskerAI.Persistence;
 
     public class CreatePlanCommand : IRequest
     {
@@ -31,8 +30,6 @@ namespace TaskerAI.Application
 
         public async Task<Unit> Handle(CreatePlanCommand request, CancellationToken cancellationToken)
         {
-            var plan = Plan.Create("");
-
             return Unit.Value;
         }
     }

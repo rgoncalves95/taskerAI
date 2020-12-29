@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using AutoFixture.AutoNSubstitute;
-using AutoFixture.Xunit2;
-
-namespace Common.Tests
+﻿namespace Common.Tests
 {
+    using AutoFixture;
+    using AutoFixture.AutoNSubstitute;
+    using AutoFixture.Xunit2;
+
     public class AutoDomainDataAttribute : AutoDataAttribute
     {
         public AutoDomainDataAttribute()

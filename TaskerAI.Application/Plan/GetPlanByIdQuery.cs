@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using MediatR;
     using TaskerAI.Domain;
-    using TaskerAI.Persistence;
 
     public class GetPlanByIdQuery : IRequest<Plan>
     {
