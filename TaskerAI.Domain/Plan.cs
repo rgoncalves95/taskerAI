@@ -14,11 +14,24 @@ namespace TaskerAI.Domain
         public DateTimeOffset Date { get; private set; }
         public PlanWorkflowState Status { get; private set; }
 
-        public int TotalDurationInMins { get; private set; }
+        public int TotalDurationInSecs { get; private set; }
 
-        internal Plan(string name) => Name = name;
+        public Plan(string name, IList<Task> tasks, DateTimeOffset date, int totalDurationInSecs)
+        {
+            Name = name;
+            Tasks = tasks;
+            Date = date;
+            TotalDurationInSecs = totalDurationInSecs;
+            Status = PlanWorkflowState.Draft;
+        }
 
-        internal Plan(int id, string name) : this(name) => Id = id;
+        public Plan(string name) => Name = name;
+
+        public Plan(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
         internal static Plan Create(string name)
         {
@@ -77,6 +90,8 @@ namespace TaskerAI.Domain
             //calculate plan totalTime
 
             //return the one that meet all the constraints
+
+            
 
 
 

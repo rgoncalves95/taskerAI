@@ -11,19 +11,41 @@ namespace TaskerAI.Domain
         public int Status { get; private set; }
         public TaskType Type { get; private set; }
         public Location Location { get; private set; }
-        public DateTimeOffset DueDate { get; set; }
-        public DateTimeOffset FinishDate { get; set; }
-        public int Duration { get; set; }
-        public int Position { get; set; }
-        public string Notes { get; set; }
 
-        internal Task(int id, string name, int status, TaskType type, Location location, DateTimeOffset dueDate, DateTimeOffset finishDate, int duration, int position, string notes)
+        public DateTimeOffset EstimatedStartDate { get; private set; }
+
+        public DateTimeOffset EstimatedEndDate { get; private set; }
+
+        public DateTimeOffset Date { get; private set; }
+        public DateTimeOffset DueDate { get; private set; }
+        public DateTimeOffset FinishDate { get; private set; }
+        public int Duration { get; private set; }
+        public int Position { get; private set; }
+        public string Notes { get; private set; }
+
+        internal Task(string name, int status, TaskType type, Location location, DateTimeOffset date, DateTimeOffset dueDate, int duration, int position, string notes)
+        {
+            Name = name;
+            Status = status;
+            Type = type;
+            Location = location;
+            Date = date;
+            DueDate = dueDate;
+            Duration = duration;
+            Position = position;
+            Notes = notes;
+        }
+
+        internal Task(int id, string name, int status, TaskType type, Location location, DateTimeOffset estimatedStartDate, DateTimeOffset estimatedEndDate, DateTimeOffset date, DateTimeOffset dueDate, DateTimeOffset finishDate, int duration, int position, string notes)
         {
             Id = id;
             Name = name;
             Status = status;
             Type = type;
             Location = location;
+            EstimatedStartDate = estimatedStartDate;
+            EstimatedEndDate = estimatedEndDate;
+            Date = date;
             DueDate = dueDate;
             FinishDate = finishDate;
             Duration = duration;
@@ -49,6 +71,17 @@ namespace TaskerAI.Domain
         {
 
         }
+
+
+        internal void Estimate(DateTimeOffset estimatedStartDate)
+        {
+
+            this.EstimatedStartDate = estimatedStartDate;
+
+            this.EstimatedEndDate = estimatedStartDate.AddSeconds(this.Duration);
+
+        }
+
 
         internal void ChangePosition(int position) => Position = position;
     }
