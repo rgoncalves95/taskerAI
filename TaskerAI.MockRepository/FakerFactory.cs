@@ -9,17 +9,34 @@
     {
         public static Plan CreatePlan(int id)
         {
-            //var planFaker = new Faker<Plan>()
-            //    .CustomInstantiator(f => new Plan(id, f.Lorem.Sentence(2)))
-            //    .RuleFor(o => o.Accountable, f => CreateAssignee())
-            //    .RuleFor(o => o.Date, f => DateTimeOffset.Now.AddDays(1))
-            //    .RuleFor(o => o.Responsible, f => CreateAdmin())
-            //    .RuleFor(o => o.Status, f => PlanWorkflowState.Draft)
-            //    .RuleFor(o => o.TaskRoutes, f => new[] { CreateTask(), CreateTask(), CreateTask(), CreateTask() })
-            //    .RuleFor(o => o.TotalDurationInSecs, f => f.Random.Int(60, 120));
+            var planFaker = new Faker<Plan>()
+                .CustomInstantiator(f => Plan.Create(new[] { CreateTaskRoute(), CreateTaskRoute(), CreateTaskRoute(), CreateTaskRoute() }, DateTimeOffset.UtcNow));
 
-            //return planFaker.Generate();
-            return null;
+            return CreatePlan(planFaker.Generate(), id);
+        }
+
+        public static Plan CreatePlan(Plan plan, int? id = null)
+        {
+            var planFaker = new Faker<Plan>()
+                .CustomInstantiator(f => Plan.Create(id ?? f.UniqueIndex, plan.TaskRoutes, plan.Date))
+                .RuleFor(o => o.Accountable, f => CreateAssignee())
+                .RuleFor(o => o.Date, f => DateTimeOffset.Now.AddDays(1))
+                .RuleFor(o => o.Responsible, f => CreateAdmin())
+                .RuleFor(o => o.Status, f => PlanWorkflowState.Draft);
+
+            return planFaker.Generate();
+        }
+
+        public static TaskRoute CreateTaskRoute()
+        {
+            var taskFaker = new Faker<TaskRoute>()
+                .CustomInstantiator(f => TaskRoute.Create(
+                    CreateTask(),
+                    CreateTask(),
+                    f.Random.Decimal(100, 100000),
+                    f.Random.Int(1800, 7200)));
+
+            return taskFaker.Generate();
         }
 
         public static Task CreateTask()

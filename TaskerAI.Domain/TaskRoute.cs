@@ -4,7 +4,6 @@
 
     public class TaskRoute
     {
-
         internal static TaskRoute Create(Task from, Task to, decimal distance, int timeInSeconds)
         {
             return new TaskRoute(from, to, distance, timeInSeconds);

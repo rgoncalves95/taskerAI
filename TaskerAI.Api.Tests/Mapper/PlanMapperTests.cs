@@ -1,6 +1,7 @@
 namespace TaskerAI.Api.Tests.Mapper
 {
     using System;
+    using System.Collections.Generic;
     using FluentAssertions;
     using TaskerAI.Api.Mapper;
     using TaskerAI.Domain;
@@ -11,15 +12,18 @@ namespace TaskerAI.Api.Tests.Mapper
         [Fact]
         public void ShouldMapToNewPlanModelWhenMappingDomainPlan()
         {
-            ////Arrange
-            //var sut = new PlanMapper();
-            //var plan = Plan.Create(10, "new plan name");
+            //Arrange
+            var now = DateTimeOffset.UtcNow;
 
-            ////Act
-            //var result = sut.Map(plan);
+            var sut = new PlanMapper();
+            var plan = Plan.Create(10, new List<TaskRoute>(), now);
 
-            ////Assert
-            //result.Id.Should().Be(10);
+            //Act
+            var result = sut.Map(plan);
+
+            //Assert
+            result.Id.Should().Be(10);
+            result.Date.Should().Be(now);
         }
     }
 }

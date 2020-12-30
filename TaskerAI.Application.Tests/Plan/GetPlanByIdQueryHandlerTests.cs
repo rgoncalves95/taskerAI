@@ -6,6 +6,8 @@
     using System.Threading;
     using FluentAssertions;
     using Common.Tests;
+    using System.Collections.Generic;
+    using System;
 
     public class GetPlanByIdQueryHandlerTests
     {
@@ -13,18 +15,18 @@
         [AutoDomainData]
         public async void ShouldReturnPlanWhenIsRequested(GetPlanByIdQueryHandlerTestsFixture fixture)
         {
-            ////Arrange
-            //var plan = Plan.Create(1, "new plan");
-            //fixture.PlanRepository.GetPlan(Arg.Any<int>()).Returns(plan);
-            //var sut = new GetPlanByIdQueryHandler(fixture.PlanRepository);
+            //Arrange
+            var plan = Plan.Create(10, new List<TaskRoute>(), DateTimeOffset.UtcNow);
+            fixture.PlanRepository.GetPlan(Arg.Any<int>()).Returns(plan);
+            var sut = new GetPlanByIdQueryHandler(fixture.PlanRepository);
 
-            ////Act
-            //var result = await sut.Handle(new GetPlansQuery(), CancellationToken.None);
+            //Act
+            var result = await sut.Handle(new GetPlansQuery(), CancellationToken.None);
 
-            ////Assert
-            //result.Should().NotBeNull();
-            //result.Id.Should().Be(1);
-            //result.Name.Should().Be("new plan");
+            //Assert
+            result.Should().NotBeNull();
+            result.Id.Should().Be(1);
+            result.Name.Should().Be("new plan");
         }
     }
 }
