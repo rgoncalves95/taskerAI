@@ -8,24 +8,23 @@
 
     public class CreateTaskCommand : IRequest<Domain.Task>
     {
-        public CreateTaskCommand(string name, string notes, int locationId, int duration, int typeId, DateTimeOffset dueDate)
+        public CreateTaskCommand(string name, int typeId, int duration, DateTimeOffset dueDate, int locationId, string notes)
         {
             Name = name;
-            Notes = notes;
-            LocationId = locationId;
-            Duration = duration;
             TypeId = typeId;
+            DurationInSeconds = duration;
             DueDate = dueDate;
+            LocationId = locationId;
+            Notes = notes;
         }
 
         public string Name { get; }
-        public string Notes { get; }
-        public int LocationId { get; }
-        public int Duration { get; }
         public int TypeId { get; }
+        public int DurationInSeconds { get; }
+        public DateTimeOffset Date { get; }
         public DateTimeOffset DueDate { get; }
-
-
+        public int LocationId { get; }
+        public string Notes { get; }
     }
 
     public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Task>
@@ -36,10 +35,7 @@
 
         public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            //var task = new Domain.Task();
-            //insert task in the DB
-
-            return null;
+            return await this.repo.CreateAsync(Domain.Task.Create(request.Name, null, null, request.Date, request.DueDate, request.DurationInSeconds, request.Notes));
         }
     }
 }

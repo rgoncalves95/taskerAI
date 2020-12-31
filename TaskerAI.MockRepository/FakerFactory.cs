@@ -43,9 +43,7 @@
         {
             var taskFaker = new Faker<Task>()
                 .CustomInstantiator(f => Task.Create(
-                    f.UniqueIndex,
                     f.Lorem.Sentence(2),
-                    f.Random.Int(0, 5),
                     CreateTaskType(),
                     CreateLocation(),
                     DateTimeOffset.Now.AddDays(1),
@@ -53,7 +51,9 @@
                     DateTimeOffset.MinValue,
                     f.Random.Int(60, 120),
                     f.Random.Int(0, 10),
-                    f.Lorem.Sentences(2)));
+                    f.Lorem.Sentences(2),
+                    f.Random.Int(0, 5),
+                    f.UniqueIndex));
             
             return taskFaker.Generate();
         }
@@ -62,9 +62,7 @@
         {
             var taskFaker = new Faker<Task>()
                 .CustomInstantiator(f => Task.Create(
-                    id,
                     f.Lorem.Sentence(2),
-                    f.Random.Int(0, 5),
                     CreateTaskType(),
                     CreateLocation(),
                     DateTimeOffset.Now.AddDays(1),
@@ -73,7 +71,9 @@
                     DateTimeOffset.MinValue,
                     f.Random.Int(60, 120),
                     f.Random.Int(0, 10),
-                    f.Lorem.Sentences(2)));
+                    f.Lorem.Sentences(2),
+                    f.Random.Int(0, 5),
+                    id));
 
             return taskFaker.Generate();
         }

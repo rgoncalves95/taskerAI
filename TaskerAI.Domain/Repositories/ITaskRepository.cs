@@ -1,11 +1,14 @@
 ﻿namespace TaskerAI.Domain
 {
-    using TaskerAI.Domain;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ITaskRepository
     {
-        Task GetTask(int id);
-        Task CreateTask(Task task);
-        Task GetTaskByUser(int UserId);
+        Task<IEnumerable<Task>> GetAsync();
+        Task<Task> GetAsync(int id);
+        Task<Task> CreateAsync(Task domainEntity);
+        Task<Task> UpdateAsync(Task domainEntity);
+        System.Threading.Tasks.Task DeleteAsync(int id);
     }
 }

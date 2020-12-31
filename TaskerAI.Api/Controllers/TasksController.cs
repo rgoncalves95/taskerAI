@@ -32,14 +32,14 @@
 
         private async Task<IActionResult> Create(TaskModel model)
         {
-            var result = mapper.Map(await mediator.Send(new CreateTaskCommand(model.Name, model.Notes, model.LocationId, model.Duration, model.TypeId, model.DueDate)));
+            var result = mapper.Map(await mediator.Send(new CreateTaskCommand(model.Name, model.TypeId, model.Duration, model.DueDate, model.LocationId, model.Notes)));
 
             return CreatedAtAction(nameof(TasksController.Post), new { result.Id }, result);
         }
 
         private Task<IActionResult> Create(TaskModel[] models)
         {
-            var commands = models.Select(m => new CreateTaskCommand(m.Name, m.Notes, m.LocationId, m.Duration, m.TypeId, m.DueDate));
+            var commands = models.Select(m => new CreateTaskCommand(m.Name, m.TypeId, m.Duration, m.DueDate, m.LocationId, m.Notes));
 
             Task.WhenAll(mediator.Send(commands));
 
