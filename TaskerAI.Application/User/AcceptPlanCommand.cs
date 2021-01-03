@@ -1,8 +1,8 @@
-﻿namespace TaskerAI.Application.User
+﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
     using TaskerAI.Domain;
 
 
@@ -12,8 +12,8 @@
 
         public AcceptPlanCommand(int userId, int planId)
         {
-            UserId = userId;
-            PlanId = planId;
+            this.UserId = userId;
+            this.PlanId = planId;
 
         }
 
@@ -25,22 +25,20 @@
     {
         private readonly IPlanRepository _planRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IUserFactory _userFactory;
 
-        public AcceptPlanCommandHandler(IPlanRepository planRepository, IUserRepository userRepository, IUserFactory userFactory)
+        public AcceptPlanCommandHandler(IPlanRepository planRepository, IUserRepository userRepository)
         {
-            _planRepository = planRepository;
-            _userRepository = userRepository;
-            _userFactory = userFactory;
+            this._planRepository = planRepository;
+            this._userRepository = userRepository;
         }
 
         public async Task<Domain.Plan> Handle(AcceptPlanCommand request, CancellationToken cancellationToken)
         {
 
-            var plan = _planRepository.GetPlan(request.PlanId);
-            var user = _userRepository.GetUser(request.UserId);
+            Plan plan = this._planRepository.GetPlan(request.PlanId);
+            User user = this._userRepository.GetUser(request.UserId);
 
-            plan.Assign(_userFactory.CreateAssignee(user));
+            plan.Assign(UserFactory.CreateAssignee(user));
             return plan;
 
         }

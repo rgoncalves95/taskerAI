@@ -8,7 +8,7 @@
     public class TaskRepository : Domain.ITaskRepository
     {
         private static readonly List<Domain.Task> Db = new List<Domain.Task>();
-        private readonly int lastId = (int)Db.Max(t => t.Id);
+        private readonly int lastId = Db.Max(t => t.Id) ?? 0;
 
         public async Task<IEnumerable<Domain.Task>> GetAsync()
         {
@@ -17,10 +17,7 @@
             return await Task.FromResult(Db.Where(filter).ToList());
         }
 
-        public async Task<Domain.Task> GetAsync(int id)
-        {
-            return await Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
-        }
+        public async Task<Domain.Task> GetAsync(int id) => await Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
 
         public async Task<Domain.Task> CreateAsync(Domain.Task domainEntity)
         {
@@ -33,11 +30,11 @@
                 domainEntity.DueDate,
                 domainEntity.DurationInSeconds,
                 domainEntity.Notes,
-                lastId + 1,
+                this.lastId + 1,
                 domainEntity.Status,
                 domainEntity.FinishDate
             );
-            
+
             Db.Add(@new);
 
             return await Task.FromResult(@new);
@@ -45,15 +42,12 @@
 
         public async Task<Domain.Task> UpdateAsync(Domain.Task domainEntity)
         {
-            var old = await GetAsync((int)domainEntity.Id);
+            Domain.Task old = await GetAsync((int)domainEntity.Id);
             Db.Remove(old);
 
-            return await this.CreateAsync(old);
+            return await CreateAsync(old);
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            Db.Remove(await GetAsync(id));
-        }
+        public async Task DeleteAsync(int id) => Db.Remove(await GetAsync(id));
     }
 }

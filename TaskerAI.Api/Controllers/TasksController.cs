@@ -1,9 +1,10 @@
 ﻿namespace TaskerAI.Controllers
 {
+    using MediatR;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using System.Linq;
     using System.Threading.Tasks;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
     using TaskerAI.Infrastructure;
@@ -22,26 +23,29 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get() => Ok(mapper.Map(await mediator.Send(new GetTasksQuery())));
+        public async Task<IActionResult> Get() => Ok(this.mapper.Map(await this.mediator.Send(new GetTasksQuery())));
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id) => Ok(mapper.Map(await mediator.Send(new GetTaskByIdQuery(id))));
+        [HttpGet("{id}", Name = "GetById")]
+        public async Task<IActionResult> Get(int id) => Ok(this.mapper.Map(await this.mediator.Send(new GetTaskByIdQuery(id))));
 
         [HttpPost]
-        public Task<IActionResult> Post(TaskModel[] models) => models.Length > 1 ? Create(models) : Create(models.First());
-
-        private async Task<IActionResult> Create(TaskModel model)
+        [ProducesResponseType(typeof(TaskModel), StatusCodes.Status201Created)]
+        public async Task<IActionResult> Post(TaskModel model)
         {
-            var result = mapper.Map(await mediator.Send(new CreateTaskCommand(model.Name, model.TypeId, model.Duration, model.DueDate, model.LocationId, model.Notes)));
+            TaskModel result = this.mapper.Map(
+                await this.mediator.Send(
+                    new CreateTaskCommand(model.Name, model.TypeId, model.LocationId, model.DurationInSeconds, model.Date, model.DueDate, model.Notes)));
 
-            return CreatedAtAction(nameof(TasksController.Post), new { result.Id }, result);
+            return CreatedAtRoute("GetById", new { id = result.Id }, result);
         }
 
-        private Task<IActionResult> Create(TaskModel[] models)
+        [HttpPost("Batch")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        public Task<IActionResult> Post(TaskModel[] models)
         {
-            var commands = models.Select(m => new CreateTaskCommand(m.Name, m.TypeId, m.Duration, m.DueDate, m.LocationId, m.Notes));
+            System.Collections.Generic.IEnumerable<CreateTaskCommand> commands = models.Select(m => new CreateTaskCommand(m.Name, m.TypeId, m.LocationId, m.DurationInSeconds, m.Date, m.DueDate, m.Notes));
 
-            Task.WhenAll(mediator.Send(commands));
+            Task.WhenAll(this.mediator.Send(commands));
 
             return Task.FromResult((IActionResult)Accepted());
         }

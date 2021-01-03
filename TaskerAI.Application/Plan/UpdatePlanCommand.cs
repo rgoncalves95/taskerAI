@@ -1,21 +1,21 @@
 ﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
 
     public class UpdatePlanCommand : IRequest
     {
         public UpdatePlanCommand(int id, List<int> taskIds, int maxNumberOfTasks, int maxTimeForPlan, int locationId, int supervisorId, int assigneeId)
         {
-            Id = id;
-            TaskIds = taskIds;
-            MaxNumberOfTasks = maxNumberOfTasks;
-            MaxTimeForPlan = maxTimeForPlan;
-            LocationId = locationId;
-            SupervisorId = supervisorId;
-            AssigneeId = assigneeId;
+            this.Id = id;
+            this.TaskIds = taskIds;
+            this.MaxNumberOfTasks = maxNumberOfTasks;
+            this.MaxTimeForPlan = maxTimeForPlan;
+            this.LocationId = locationId;
+            this.SupervisorId = supervisorId;
+            this.AssigneeId = assigneeId;
         }
 
         public int Id { get; }

@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Api.Mapper
+﻿namespace TaskerAI.Api.Models.Mappers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -6,14 +6,14 @@
     using TaskerAI.Domain;
     using TaskerAI.Infrastructure;
 
-    public class UserMapper : IMapper<Domain.User, UserModel>
+    public class UserMapper : IMapper<User, UserModel>
     {
-        public void Map(Domain.User from, UserModel to)
+        public void Map(User from, UserModel to)
         {
 
         }
 
-        public UserModel Map(Domain.User from)
+        public UserModel Map(User from)
         {
             var to = new UserModel();
 

@@ -13,13 +13,13 @@
 
         public Plan CreatePlan(PlanBuilderContext context)
         {
-            var taskRoutes = taskRouteRepository.GetRoutes(context.Tasks, context.Tasks);
+            List<TaskRoute> taskRoutes = this.taskRouteRepository.GetRoutes(context.Tasks, context.Tasks);
 
-            var planTotalTime = 0;
+            int planTotalTime = 0;
             var resultRoutes = new List<TaskRoute>();
             var inputTaskList = new List<Task>(context.Tasks);
 
-            var firstTask = inputTaskList.Where(t => t.Date == DateTimeOffset.Now.Date)
+            Task firstTask = inputTaskList.Where(t => t.Date == DateTimeOffset.Now.Date)
                                          .OrderBy(t => t.DueDate)
                                          .FirstOrDefault();
 
@@ -28,7 +28,7 @@
                 return null;
             }
 
-            var currentTask = firstTask;
+            Task currentTask = firstTask;
 
             while (inputTaskList.Count > 0 && resultRoutes.Count < context.MaxTaskNumber && (context.MaxTimeInSeconds == null || context.MaxTimeInSeconds > planTotalTime))
             {
@@ -42,13 +42,13 @@
 
                 if (resultRoutes.Count == 0)
                 {
-                    foreach (var route in nextTaskRoutes)
+                    foreach (TaskRoute route in nextTaskRoutes)
                     {
                         route.Estimate(context.PlanStartDate);
                     }
                 }
 
-                var taskRoute =
+                TaskRoute taskRoute =
                 (
                     from tr in nextTaskRoutes
                     let nextTaskEstimatedDueDate = tr.EstimatedEndDate.AddSeconds(tr.TimeInSeconds).AddSeconds(tr.From.DurationInSeconds)

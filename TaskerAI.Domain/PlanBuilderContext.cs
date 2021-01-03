@@ -7,12 +7,12 @@
     {
         public PlanBuilderContext(DateTimeOffset planStartDate, List<Task> tasks, int? maxTaskNumber = null, int? maxTimeInSeconds = null, Location location = null, int? radius = null)
         {
-            PlanStartDate = planStartDate;
-            Tasks = tasks;
-            MaxTaskNumber = maxTaskNumber ?? tasks.Count;
-            MaxTimeInSeconds = maxTimeInSeconds;
-            Location = location;
-            Radius = radius;
+            this.PlanStartDate = planStartDate;
+            this.Tasks = tasks;
+            this.MaxTaskNumber = maxTaskNumber ?? tasks.Count;
+            this.MaxTimeInSeconds = maxTimeInSeconds;
+            this.Location = location;
+            this.Radius = radius;
         }
 
         public List<Task> Tasks { get; }

@@ -6,7 +6,7 @@ namespace TaskerAI.Domain
 {
     public partial class Admin : Assignee
     {
-        internal Admin(int id, string firstName, string lastName, string email, List<Availability> listAvailability) 
+        internal Admin(int id, string firstName, string lastName, string email, List<Availability> listAvailability)
             : base(id, firstName, lastName, email, listAvailability)
         {
 

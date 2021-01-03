@@ -1,7 +1,5 @@
 ﻿namespace TaskerAI.Domain
 {
-    using System.Runtime.CompilerServices;
-
     public class User
     {
 
@@ -13,10 +11,10 @@
 
         internal User(int id, string firstName, string lastName, string email)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
+            this.Id = id;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Email = email;
 
         }
     }

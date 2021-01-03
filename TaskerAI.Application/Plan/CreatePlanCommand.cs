@@ -1,10 +1,9 @@
-﻿
-namespace TaskerAI.Application
+﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
     using TaskerAI.Domain;
 
     public class CreatePlanCommand : IRequest
@@ -15,10 +14,10 @@ namespace TaskerAI.Application
         public int MaxNumberOfTasks { get; set; }
         public CreatePlanCommand(List<int> taskIds, int locationId, int maxTimeForPlan, int maxNumberOfTasks)
         {
-            TaskIds = taskIds;
-            LocationId = locationId;
-            MaxTimeForPlan = maxTimeForPlan;
-            MaxNumberOfTasks = maxNumberOfTasks;
+            this.TaskIds = taskIds;
+            this.LocationId = locationId;
+            this.MaxTimeForPlan = maxTimeForPlan;
+            this.MaxNumberOfTasks = maxNumberOfTasks;
         }
     }
 
@@ -28,9 +27,6 @@ namespace TaskerAI.Application
 
         public CreatePlanCommandHandler(IPlanRepository repo) => this.repo = repo;
 
-        public async Task<Unit> Handle(CreatePlanCommand request, CancellationToken cancellationToken)
-        {
-            return Unit.Value;
-        }
+        public async Task<Unit> Handle(CreatePlanCommand request, CancellationToken cancellationToken) => Unit.Value;
     }
 }

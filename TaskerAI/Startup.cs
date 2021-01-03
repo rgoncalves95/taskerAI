@@ -1,5 +1,6 @@
 namespace TaskerAI
 {
+    using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -8,21 +9,26 @@ namespace TaskerAI
 
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public Startup(IConfiguration configuration) => this.Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson();
-            services.AddSwagger();
-            services.AddMediatr();
+            services.AddControllers()
+                    .AddNewtonsoftJson()
+                    .AddFluentValidation();
+            services.AddConfigurationOptions();
             services.AddExceptionPolicies();
-            services.AddPersistence().AddApi();
+            services.AddApplicationServices();
+            services.AddValidators();
+            services.AddMediatr();
+            services.AddSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionPolicies();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
@@ -30,8 +36,7 @@ namespace TaskerAI
             {
                 endpoints.MapControllers();
             });
-            app.UseSwaggerApp();
-            app.UseExceptionPolicies();
+            app.UseSwagger();
         }
     }
 }

@@ -4,18 +4,14 @@
 
     public class TaskRoute
     {
-        internal static TaskRoute Create(Task from, Task to, decimal distance, int timeInSeconds)
-        {
-            return new TaskRoute(from, to, distance, timeInSeconds);
-
-        }
+        internal static TaskRoute Create(Task from, Task to, decimal distance, int timeInSeconds) => new TaskRoute(from, to, distance, timeInSeconds);
 
         private TaskRoute(Task from, Task to, decimal distance, int timeInSeconds)
         {
-            From = from;
-            To = to;
-            Distance = distance;
-            TimeInSeconds = timeInSeconds;
+            this.From = from;
+            this.To = to;
+            this.Distance = distance;
+            this.TimeInSeconds = timeInSeconds;
         }
 
         public Task From { get; private set; }

@@ -16,10 +16,10 @@ namespace TaskerAI.Domain
 
         public Availability(int id, DateTimeOffset startDate, DateTimeOffset endDate, Assignee user)
         {
-            Id = id;
-            StartDate = startDate;
-            EndDate = endDate;
-            User = user;
+            this.Id = id;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+            this.User = user;
         }
 
 

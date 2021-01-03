@@ -1,13 +1,13 @@
 ﻿namespace TaskerAI.Application.Tests.Plan
 {
-    using NSubstitute;
-    using Xunit;
-    using Domain;
-    using System.Threading;
-    using FluentAssertions;
     using Common.Tests;
-    using System.Collections.Generic;
+    using Domain;
+    using FluentAssertions;
+    using NSubstitute;
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using Xunit;
 
     public class GetPlanByIdQueryHandlerTests
     {
@@ -21,7 +21,7 @@
             var sut = new GetPlanByIdQueryHandler(fixture.PlanRepository);
 
             //Act
-            var result = await sut.Handle(new GetPlansQuery(), CancellationToken.None);
+            Plan result = await sut.Handle(new GetPlansQuery(), CancellationToken.None);
 
             //Assert
             result.Should().NotBeNull();

@@ -1,15 +1,15 @@
 ﻿namespace TaskerAI.MockRepository
 {
+    using Bogus;
     using System;
     using System.Collections.Generic;
-    using Bogus;
     using TaskerAI.Domain;
 
     internal static class FakerFactory
     {
         public static Plan CreatePlan(int id)
         {
-            var planFaker = new Faker<Plan>()
+            Faker<Plan> planFaker = new Faker<Plan>()
                 .CustomInstantiator(f => Plan.Create(new[] { CreateTaskRoute(), CreateTaskRoute(), CreateTaskRoute(), CreateTaskRoute() }, DateTimeOffset.UtcNow));
 
             return CreatePlan(planFaker.Generate(), id);
@@ -17,7 +17,7 @@
 
         public static Plan CreatePlan(Plan plan, int? id = null)
         {
-            var planFaker = new Faker<Plan>()
+            Faker<Plan> planFaker = new Faker<Plan>()
                 .CustomInstantiator(f => Plan.Create(id ?? f.UniqueIndex, plan.TaskRoutes, plan.Date))
                 .RuleFor(o => o.Accountable, f => CreateAssignee())
                 .RuleFor(o => o.Date, f => DateTimeOffset.Now.AddDays(1))
@@ -29,7 +29,7 @@
 
         public static TaskRoute CreateTaskRoute()
         {
-            var taskFaker = new Faker<TaskRoute>()
+            Faker<TaskRoute> taskFaker = new Faker<TaskRoute>()
                 .CustomInstantiator(f => TaskRoute.Create(
                     CreateTask(),
                     CreateTask(),
@@ -41,38 +41,30 @@
 
         public static Task CreateTask()
         {
-            var taskFaker = new Faker<Task>()
+            Faker<Task> taskFaker = new Faker<Task>()
                 .CustomInstantiator(f => Task.Create(
                     f.Lorem.Sentence(2),
                     CreateTaskType(),
                     CreateLocation(),
                     DateTimeOffset.Now.AddDays(1),
-                    DateTimeOffset.Now.AddDays(1),
-                    DateTimeOffset.MinValue,
+                    DateTimeOffset.Now.AddDays(2),
                     f.Random.Int(60, 120),
-                    f.Random.Int(0, 10),
-                    f.Lorem.Sentences(2),
-                    f.Random.Int(0, 5),
-                    f.UniqueIndex));
-            
+                    f.Lorem.Sentence(20)));
+
             return taskFaker.Generate();
         }
 
         public static Task CreateTask(int id)
         {
-            var taskFaker = new Faker<Task>()
+            Faker<Task> taskFaker = new Faker<Task>()
                 .CustomInstantiator(f => Task.Create(
                     f.Lorem.Sentence(2),
                     CreateTaskType(),
                     CreateLocation(),
                     DateTimeOffset.Now.AddDays(1),
-                    DateTimeOffset.Now.AddDays(1),
-
-                    DateTimeOffset.MinValue,
+                    DateTimeOffset.Now.AddDays(2),
                     f.Random.Int(60, 120),
-                    f.Random.Int(0, 10),
-                    f.Lorem.Sentences(2),
-                    f.Random.Int(0, 5),
+                    f.Lorem.Sentence(20),
                     id));
 
             return taskFaker.Generate();
@@ -80,21 +72,21 @@
 
         public static TaskType CreateTaskType()
         {
-            var taskTypeFaker = new Faker<TaskType>()
+            Faker<TaskType> taskTypeFaker = new Faker<TaskType>()
                 .CustomInstantiator(f => new TaskType(
                     f.UniqueIndex,
-                     f.Lorem.Sentence(2),
-                     f.Random.Double(60, 120),
-                     CreateLocation(),
-                     f.Random.Int(1200, 3600),
-                     null));
-                
+                    f.Lorem.Sentence(2),
+                    f.Random.Double(60, 120),
+                    CreateLocation(),
+                    f.Random.Int(1200, 3600),
+                    null));
+
             return taskTypeFaker.Generate();
         }
 
         public static Location CreateLocation()
         {
-            var locationFaker = new Faker<Location>()
+            Faker<Location> locationFaker = new Faker<Location>()
                 .CustomInstantiator(f => new Location(
                     f.Address.StreetName(),
                     f.Address.BuildingNumber(),
@@ -112,7 +104,7 @@
 
         public static Assignee CreateAssignee()
         {
-            var assigneeFaker = new Faker<Assignee>()
+            Faker<Assignee> assigneeFaker = new Faker<Assignee>()
                 .CustomInstantiator(f => new Assignee(
                     f.UniqueIndex,
                     f.Person.FirstName,
@@ -125,7 +117,7 @@
 
         public static Admin CreateAdmin()
         {
-            var adminFaker = new Faker<Admin>()
+            Faker<Admin> adminFaker = new Faker<Admin>()
                 .CustomInstantiator(f => new Admin(
                  f.UniqueIndex,
                     f.Person.FirstName,
@@ -139,15 +131,15 @@
         public static Availability CreateAvailability()
         {
             var faker = new Faker();
-            var date1 = faker.Date.BetweenOffset(DateTimeOffset.Now.AddDays(1), DateTimeOffset.Now.AddDays(2));
-            var date2 = faker.Date.BetweenOffset(DateTimeOffset.Now.AddDays(1), DateTimeOffset.Now.AddDays(2));
-            var availabilityFaker = new Faker<Availability>()
+            DateTimeOffset date1 = faker.Date.BetweenOffset(DateTimeOffset.Now.AddDays(1), DateTimeOffset.Now.AddDays(2));
+            DateTimeOffset date2 = faker.Date.BetweenOffset(DateTimeOffset.Now.AddDays(1), DateTimeOffset.Now.AddDays(2));
+            Faker<Availability> availabilityFaker = new Faker<Availability>()
                 .CustomInstantiator(f => new Availability(
                     f.UniqueIndex,
                     date1 > date2 ? date2 : date1,
                     date1 > date2 ? date1 : date2,
                     null));
-               
+
             return availabilityFaker.Generate();
         }
     }

@@ -30,13 +30,13 @@ namespace TaskerAI.Domain
 
         internal Location(string street, string number, string floor, string zipCode, string city, string country, User user)
         {
-            Street = street;
-            Number = number;
-            Floor = floor;
-            ZipCode = zipCode;
-            City = city;
-            Country = country;
-            User = user;
+            this.Street = street;
+            this.Number = number;
+            this.Floor = floor;
+            this.ZipCode = zipCode;
+            this.City = city;
+            this.Country = country;
+            this.User = user;
 
 
         }
@@ -44,8 +44,8 @@ namespace TaskerAI.Domain
         internal Location(string street, string number, string floor, string zipCode, string city, string country, User user, double lat, double lon) : this(street, number, floor, zipCode, city, country, user)
         {
 
-            Lat = lat;
-            Lon = lon;
+            this.Lat = lat;
+            this.Lon = lon;
 
         }
 
