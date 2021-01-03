@@ -11,15 +11,9 @@ namespace TaskerAI.Domain
     {
         private List<TaskRoute> taskRoutes;
 
-        internal static Plan Create(IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date)
-        {
-            return new Plan(taskRoutes, date);
-        }
+        internal static Plan Create(IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date) => new Plan(taskRoutes, date);
 
-        internal static Plan Create(int id, IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date)
-        {
-            return new Plan(id, taskRoutes, date);
-        }
+        internal static Plan Create(int id, IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date) => new Plan(id, taskRoutes, date);
 
         private Plan(IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date)
         {
@@ -28,10 +22,7 @@ namespace TaskerAI.Domain
             this.taskRoutes = new List<TaskRoute>(taskRoutes);
         }
 
-        private Plan(int id, IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date) : this(taskRoutes, date)
-        {
-            this.Id = id;
-        }
+        private Plan(int id, IEnumerable<TaskRoute> taskRoutes, DateTimeOffset date) : this(taskRoutes, date) => this.Id = id;
 
         public int Id { get; private set; }
         public string Name { get; private set; }
@@ -39,13 +30,10 @@ namespace TaskerAI.Domain
         public Admin Responsible { get; private set; }
         public DateTimeOffset Date { get; private set; }
         public PlanWorkflowState Status { get; private set; }
-        public decimal EstimatedExecutionTime => TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
+        public decimal EstimatedExecutionTime => this.TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
         public IReadOnlyCollection<TaskRoute> TaskRoutes => this.taskRoutes.AsReadOnly();
 
-        internal void ReorderTasks(IEnumerable<TaskRoute> taskRoutes)
-        {
-            this.taskRoutes = new List<TaskRoute>(taskRoutes);
-        }
+        internal void ReorderTasks(IEnumerable<TaskRoute> taskRoutes) => this.taskRoutes = new List<TaskRoute>(taskRoutes);
 
         internal void Recalc()
         {
@@ -64,8 +52,8 @@ namespace TaskerAI.Domain
 
         internal void Assign(Assignee user)
         {
-            Accountable = user;
-            Status = PlanWorkflowState.Approved;
+            this.Accountable = user;
+            this.Status = PlanWorkflowState.Approved;
         }
 
         internal List<Assignee> GetAvailableAssignees()

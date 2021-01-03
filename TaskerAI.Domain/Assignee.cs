@@ -9,10 +9,10 @@ namespace TaskerAI.Domain
 
         public List<Availability> ListAvailability { get; private set; }
 
-        internal Assignee(int id, string firstName, string lastName, string email, List<Availability> listAvailability) 
-            : base(id, firstName, lastName, email) => ListAvailability = listAvailability;
+        internal Assignee(int id, string firstName, string lastName, string email, List<Availability> listAvailability)
+            : base(id, firstName, lastName, email) => this.ListAvailability = listAvailability;
 
-        internal void AddAvailability(Availability availability) => ListAvailability.Add(availability);
+        internal void AddAvailability(Availability availability) => this.ListAvailability.Add(availability);
 
         internal void NotifyPlanAssigned()
         {

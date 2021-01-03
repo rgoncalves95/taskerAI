@@ -1,9 +1,5 @@
 ﻿namespace TaskerAI.Api.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class TaskMetadataModel
     {
         public string Name { get; set; }

@@ -1,14 +1,14 @@
-﻿namespace TaskerAI.Application.User
+﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
     using TaskerAI.Domain;
 
     public class GetUserByIdQuery : IRequest<User>
     {
-        public GetUserByIdQuery(int id) => Id = id;
+        public GetUserByIdQuery(int id) => this.Id = id;
 
         public int Id { get; }
     }

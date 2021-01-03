@@ -1,31 +1,31 @@
 ﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
     using TaskerAI.Domain;
 
     public class CreateTaskCommand : IRequest<Domain.Task>
     {
-        public CreateTaskCommand(string name, string notes, int locationId, int duration, int typeId, DateTimeOffset dueDate)
+        public CreateTaskCommand(string name, int typeId, int locationId, int duration, DateTimeOffset date, DateTimeOffset dueDate, string notes)
         {
-            Name = name;
-            Notes = notes;
-            LocationId = locationId;
-            Duration = duration;
-            TypeId = typeId;
-            DueDate = dueDate;
+            this.Name = name;
+            this.TypeId = typeId;
+            this.LocationId = locationId;
+            this.DurationInSeconds = duration;
+            this.Date = date;
+            this.DueDate = dueDate;
+            this.Notes = notes;
         }
 
         public string Name { get; }
-        public string Notes { get; }
-        public int LocationId { get; }
-        public int Duration { get; }
         public int TypeId { get; }
+        public int LocationId { get; }
+        public int DurationInSeconds { get; }
+        public DateTimeOffset Date { get; }
         public DateTimeOffset DueDate { get; }
-
-
+        public string Notes { get; }
     }
 
     public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Task>
@@ -35,11 +35,6 @@
         public CreateTaskCommandHandler(ITaskRepository repo) => this.repo = repo;
 
         public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
-        {
-            //var task = new Domain.Task();
-            //insert task in the DB
-
-            return null;
-        }
+            => await this.repo.CreateAsync(Domain.Task.Create(request.Name, null, null, request.Date, request.DueDate, request.DurationInSeconds, request.Notes));
     }
 }

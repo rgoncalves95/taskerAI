@@ -1,18 +1,18 @@
-﻿namespace TaskerAI.Application.User
+﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
 
     public class CreateUserCommand : IRequest<Domain.User>
     {
         public CreateUserCommand(string email, string lastName, string firstName, string phone)
         {
-            Email = email;
-            LastName = lastName;
-            FirstName = firstName;
-            Phone = phone;
+            this.Email = email;
+            this.LastName = lastName;
+            this.FirstName = firstName;
+            this.Phone = phone;
         }
 
         public string Email { get; }

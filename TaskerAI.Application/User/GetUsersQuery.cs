@@ -1,10 +1,10 @@
-﻿namespace TaskerAI.Application.User
+﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
     using TaskerAI.Domain;
 
     public class GetUsersQuery : IRequest<IEnumerable<Domain.User>>
@@ -17,11 +17,11 @@
 
         public GetUsersQuery(DateTimeOffset? availabilityStartDate, DateTimeOffset? availabilityEndDate, string latitude, string longitude, string name)
         {
-            AvailabilityStartDate = availabilityStartDate;
-            AvailabilityEndDate = availabilityEndDate;
-            Latitude = latitude;
-            Longitude = longitude;
-            Name = name;
+            this.AvailabilityStartDate = availabilityStartDate;
+            this.AvailabilityEndDate = availabilityEndDate;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Name = name;
         }
     }
 

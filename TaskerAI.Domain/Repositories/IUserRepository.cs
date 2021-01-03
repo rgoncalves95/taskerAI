@@ -1,7 +1,5 @@
 ﻿namespace TaskerAI.Domain
 {
-    using TaskerAI.Domain;
-
     public interface IUserRepository
     {
         User GetUser(int id);

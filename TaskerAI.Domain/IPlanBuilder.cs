@@ -1,9 +1,6 @@
 ﻿namespace TaskerAI.Domain
 {
-    using System;
-    using System.Collections.Generic;
-
-    interface IPlanBuilder
+    internal interface IPlanBuilder
     {
         Plan CreatePlan(PlanBuilderContext context);
     }

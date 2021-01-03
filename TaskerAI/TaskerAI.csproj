@@ -8,14 +8,14 @@
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TaskerAI.Api\TaskerAI.Api.csproj" />
     <ProjectReference Include="..\TaskerAI.Application\TaskerAI.Application.csproj" />
-    <ProjectReference Include="..\TaskerAI.Dapper\TaskerAI.Dapper.csproj" />
     <ProjectReference Include="..\TaskerAI.MockRepository\TaskerAI.MockRepository.csproj" />
   </ItemGroup>
 

@@ -1,9 +1,9 @@
 ﻿namespace TaskerAI.Controllers
 {
-    using System.Threading.Tasks;
     using MediatR;
     using Microsoft.AspNetCore.JsonPatch;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
     using TaskerAI.Domain;
@@ -23,10 +23,10 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get() => Ok(mapper.Map(await mediator.Send(new GetPlansQuery())));
+        public async Task<IActionResult> Get() => Ok(this.mapper.Map(await this.mediator.Send(new GetPlansQuery())));
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id) => Ok(mapper.Map(await mediator.Send(new GetPlanByIdQuery(id))));
+        public async Task<IActionResult> Get(int id) => Ok(this.mapper.Map(await this.mediator.Send(new GetPlanByIdQuery(id))));
 
         [HttpPost]
         public async Task<IActionResult> Post(PlanModel model)
@@ -34,7 +34,7 @@
             return CreatedAtAction
             (
                 nameof(PlansController.Post),
-                await mediator.Send
+                await this.mediator.Send
                 (
                     new CreatePlanCommand
                     (
@@ -53,7 +53,7 @@
             return CreatedAtAction
             (
                 nameof(PlansController.Post),
-                await mediator.Send
+                await this.mediator.Send
                 (
                     new AssignPlanCommand
                     (
@@ -65,13 +65,13 @@
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<PlanModel> model)
+        public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument<PlanModel> model)
         {
-            var result = mapper.Map(await mediator.Send(new GetPlanByIdQuery(id)));
+            PlanModel result = this.mapper.Map(await this.mediator.Send(new GetPlanByIdQuery(id)));
 
             model.ApplyTo(result);
 
-            await mediator.Send(new UpdatePlanCommand
+            await this.mediator.Send(new UpdatePlanCommand
             (
                 result.Id,
                 result.TaskIds,

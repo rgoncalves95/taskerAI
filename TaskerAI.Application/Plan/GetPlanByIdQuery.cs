@@ -1,15 +1,15 @@
 ﻿namespace TaskerAI.Application
 {
+    using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
-    using MediatR;
     using TaskerAI.Domain;
 
     public class GetPlanByIdQuery : IRequest<Plan>
     {
         public int Id { get; }
 
-        public GetPlanByIdQuery(int id) => Id = id;
+        public GetPlanByIdQuery(int id) => this.Id = id;
     }
 
     public class GetPlanByIdQueryHandler : IRequestHandler<GetPlansQuery, Plan>
@@ -20,7 +20,7 @@
 
         public async Task<Plan> Handle(GetPlansQuery request, CancellationToken cancellationToken)
         {
-            var plan = repo.GetPlan(0);
+            Plan plan = this.repo.GetPlan(0);
 
             return plan;
         }
