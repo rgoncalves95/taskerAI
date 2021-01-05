@@ -31,6 +31,8 @@ namespace TaskerAI.Domain
         public DateTimeOffset Date { get; private set; }
         public PlanWorkflowState Status { get; private set; }
         public decimal EstimatedExecutionTime => this.TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
+
+        public decimal EstimatedExecutionDistance => this.TaskRoutes.Sum(t => t.Distance);
         public IReadOnlyCollection<TaskRoute> TaskRoutes => this.taskRoutes.AsReadOnly();
 
         internal void ReorderTasks(IEnumerable<TaskRoute> taskRoutes) => this.taskRoutes = new List<TaskRoute>(taskRoutes);
@@ -62,6 +64,19 @@ namespace TaskerAI.Domain
 
             return result;
 
+        }
+
+        internal Plan AddRoute(TaskRoute route)
+        {
+
+            this.taskRoutes.Add(route);
+
+            return this;
+        }
+
+        internal Plan Clone()
+        {
+            return (Plan)this.MemberwiseClone();
         }
     }
 }
