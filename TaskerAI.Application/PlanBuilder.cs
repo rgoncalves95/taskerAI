@@ -159,7 +159,9 @@
 
                 var prevPlan = plan.Clone();
 
-                foreach(TaskRoute route in routes)
+                var routesAvailable = prevPlan.TaskRoutes.Count > 0 ? routes.Where(r => r.From == prevPlan.TaskRoutes.Last().To).ToList() : routes;
+
+                foreach (TaskRoute route in routes)
                 {
                     Plan newPlan = null;
                     List<TaskRoute> newRoutes = null;
@@ -180,7 +182,7 @@
                     newPlan.AddRoute(route);
 
                     newRoutes = new List<TaskRoute>(routes);
-                    newRoutes.Remove(route);
+                    newRoutes.RemoveAll(r => r.From == route.From);
 
 
                     CreatePlans(newPlan, newRoutes, plans, context);
