@@ -5,11 +5,11 @@
     using System.Linq;
     using TaskerAI.Domain;
 
-    internal class PlanBuilder : IPlanBuilder
+    internal class PlanBuilderLegacy : IPlanBuilder
     {
         private readonly ITaskRouteRepository taskRouteRepository;
 
-        public PlanBuilder(ITaskRouteRepository taskRouteRepository) => this.taskRouteRepository = taskRouteRepository;
+        public PlanBuilderLegacy(ITaskRouteRepository taskRouteRepository) => this.taskRouteRepository = taskRouteRepository;
 
         public Plan CreatePlan(PlanBuilderContext context)
         {
