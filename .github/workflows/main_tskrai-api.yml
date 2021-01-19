@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - taskeraiapi
+name: Build and deploy ASP.Net Core app to Azure Web App - tskrai-api
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@master
@@ -19,8 +19,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.102'
-    - name: Clean
-      run: dotnet clean ./TaskerAI.sln --configuration Release && dotnet nuget locals all --clear
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
@@ -31,7 +29,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'taskeraiapi'
+        app-name: 'tskrai-api'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_678e99c7db2f41acb1616d5131b28d24 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3245fb7fac92481294e164acffc49d1d }}
         package: ${{env.DOTNET_ROOT}}/myapp 

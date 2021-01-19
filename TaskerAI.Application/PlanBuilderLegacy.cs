@@ -5,11 +5,11 @@
     using System.Linq;
     using TaskerAI.Domain;
 
-    internal class PlanBuilder : IPlanBuilder
+    internal class PlanBuilderLegacy : IPlanBuilder
     {
         private readonly ITaskRouteRepository taskRouteRepository;
 
-        public PlanBuilder(ITaskRouteRepository taskRouteRepository) => this.taskRouteRepository = taskRouteRepository;
+        public PlanBuilderLegacy(ITaskRouteRepository taskRouteRepository) => this.taskRouteRepository = taskRouteRepository;
 
         public Plan CreatePlan(PlanBuilderContext context)
         {
@@ -82,6 +82,67 @@
             }
 
             return Plan.Create(resultRoutes, context.PlanStartDate);
+        }
+
+
+        public List<Plan> GeneratePlans(PlanBuilderContext context)
+        {
+            List<TaskRoute> taskRoutes = this.taskRouteRepository.GetRoutes(context.Tasks, context.Tasks);
+
+            List<Plan> resultList = new List<Plan>();
+
+          
+
+            resultList = CreatePlans(Plan.Create(taskRoutes, context.PlanStartDate) , taskRoutes, resultList, context);
+
+            return resultList;
+        }
+
+
+        private List<Plan> CreatePlans(Plan plan, List<TaskRoute> routes, List<Plan> plans, PlanBuilderContext context)
+        {
+
+            if (routes.Count > 0)
+            {
+
+                var prevPlan = plan.Clone();
+
+                var routesAvailable = prevPlan.TaskRoutes.Count > 0 ? routes.Where(r => r.From == prevPlan.TaskRoutes.Last().To).ToList() : routes;
+
+                foreach (TaskRoute route in routes)
+                {
+                    Plan newPlan = null;
+                    List<TaskRoute> newRoutes = null;
+
+                    if (routes.First() == route)
+                    {
+                        newPlan = prevPlan;
+                  
+
+                    } else
+                    {
+
+                        newPlan = prevPlan.Clone();
+                        plans.Add(newPlan);
+ 
+                    }
+
+                    newPlan.AddRoute(route);
+
+                    newRoutes = new List<TaskRoute>(routes);
+                    newRoutes.RemoveAll(r => r.From == route.From);
+
+
+                    CreatePlans(newPlan, newRoutes, plans, context);
+                }
+
+                return plans;
+
+            } else
+            {
+                return plans;
+            }
+
         }
     }
 }
