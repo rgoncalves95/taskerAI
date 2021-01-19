@@ -13,6 +13,7 @@ namespace TaskerAI.Domain
         private const string LocationValidationMessage = "A task must have a predefined location.";
         private const string DateValidationMessage = "A task execution date must be specified.";
         private const string DueDateValidationMessage = "A task due date must be specified.";
+        private const string DatesMismatchValidationMessage = "Due date and execution date mismatch. Due date should be after execution date.";
         private const string DurationValidationMessage = "A task duration must be specified.";
 
         internal static Task Create
@@ -69,7 +70,7 @@ namespace TaskerAI.Domain
 
         public void EndTask() => this.FinishDate = DateTimeOffset.UtcNow;
 
-        private void IntegrityCheck()
+        protected override void IntegrityCheck()
         {
             var integrityIssues = new List<string>();
 
@@ -78,17 +79,15 @@ namespace TaskerAI.Domain
                 integrityIssues.Add(NameValidationMessage);
             }
 
-            //TODO uncomment this after acessing type and location
+            if (this.Type is null)
+            {
+                integrityIssues.Add(TypeValidationMessage);
+            }
 
-            //if (this.Type is null)
-            //{
-            //    integrityIssues.Add(TypeValidationMessage);
-            //}
-
-            //if (this.Location is null)
-            //{
-            //    integrityIssues.Add(LocationValidationMessage);
-            //}
+            if (this.Location is null)
+            {
+                integrityIssues.Add(LocationValidationMessage);
+            }
 
             if (this.Date == default)
             {
@@ -98,6 +97,11 @@ namespace TaskerAI.Domain
             if (this.DueDate == default)
             {
                 integrityIssues.Add(DueDateValidationMessage);
+            }
+
+            if (this.DueDate <= this.Date)
+            {
+                integrityIssues.Add(DatesMismatchValidationMessage);
             }
 
             if (this.DurationInSeconds == default)

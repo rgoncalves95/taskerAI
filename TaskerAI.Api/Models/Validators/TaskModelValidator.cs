@@ -1,4 +1,6 @@
-﻿namespace TaskerAI.Api.Models.Validators
+﻿using FluentValidation;
+
+namespace TaskerAI.Api.Models.Validators
 {
     public class TaskModelValidator : BaseValidator<TaskModel>
     {
@@ -9,6 +11,7 @@
             Required(p => p.LocationId);
             Required(p => p.Date);
             Required(p => p.DueDate);
+            RuleFor(p => p.DueDate).GreaterThan(p => p.Date);
             Required(p => p.DurationInSeconds);
         }
     }

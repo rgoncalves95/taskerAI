@@ -19,9 +19,11 @@
             var resultRoutes = new List<TaskRoute>();
             var inputTaskList = new List<Task>(context.Tasks);
 
-            Task firstTask = inputTaskList.Where(t => t.Date == DateTimeOffset.Now.Date)
-                                         .OrderBy(t => t.DueDate)
-                                         .FirstOrDefault();
+            var todaysTasks = inputTaskList.Where(t => t.Date == DateTimeOffset.Now.Date)
+                                           .OrderBy(t => t.DueDate)
+                                           .ToList();
+
+            Task firstTask = todaysTasks.FirstOrDefault();
 
             if (firstTask != null)
             {
@@ -56,6 +58,8 @@
                     orderby tr.TimeInSeconds
                     select tr
                 ).FirstOrDefault();
+
+                //ter em atencao se vai estragar as proximas
 
                 if (taskRoute == null)
                 {

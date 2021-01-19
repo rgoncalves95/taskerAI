@@ -17,8 +17,8 @@
 
         private static IServiceCollection AddPersistence(this IServiceCollection services)
         {
-            services.AddTransient<IPlanRepository, PlanRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPlanRepository>(p => null);
+            services.AddTransient<IUserRepository>(p => null);
             services.AddTransient<ITaskRepository, TaskRepository>();
 
             return services;

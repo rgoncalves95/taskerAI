@@ -73,8 +73,7 @@
         public static TaskType CreateTaskType()
         {
             Faker<TaskType> taskTypeFaker = new Faker<TaskType>()
-                .CustomInstantiator(f => new TaskType(
-                    f.UniqueIndex,
+                .CustomInstantiator(f => TaskType.Create(
                     f.Lorem.Sentence(2),
                     f.Random.Double(60, 120),
                     CreateLocation(),

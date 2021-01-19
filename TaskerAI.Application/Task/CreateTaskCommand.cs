@@ -35,6 +35,20 @@
         public CreateTaskCommandHandler(ITaskRepository repo) => this.repo = repo;
 
         public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
-            => await this.repo.CreateAsync(Domain.Task.Create(request.Name, null, null, request.Date, request.DueDate, request.DurationInSeconds, request.Notes));
+        {
+            return await this.repo.CreateAsync
+            (
+                Domain.Task.Create
+                (
+                    request.Name,
+                    TaskType.Create(request.TypeId), 
+                    Location.Create(request.LocationId), 
+                    request.Date, 
+                    request.DueDate, 
+                    request.DurationInSeconds, 
+                    request.Notes
+                )
+            );
+        }
     }
 }

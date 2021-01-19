@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Application", "Tas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Api", "TaskerAI.Api\TaskerAI.Api.csproj", "{AF4F8AAA-B92E-47AA-9C30-1AE81DB6DE60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Dapper", "TaskerAI.Dapper\TaskerAI.Dapper.csproj", "{641F48A0-C425-4C8E-976B-5B3729066BF8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Infrastructure", "TaskerAI.Infrastructure\TaskerAI.Infrastructure.csproj", "{438186C0-EF43-4B79-A0A2-286C2F7FF36D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskerAI.Api.Tests", "TaskerAI.Api.Tests\TaskerAI.Api.Tests.csproj", "{74D72D37-62AD-47B7-9E81-0929F930B0F2}"
@@ -47,10 +45,6 @@ Global
 		{AF4F8AAA-B92E-47AA-9C30-1AE81DB6DE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF4F8AAA-B92E-47AA-9C30-1AE81DB6DE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF4F8AAA-B92E-47AA-9C30-1AE81DB6DE60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{641F48A0-C425-4C8E-976B-5B3729066BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{641F48A0-C425-4C8E-976B-5B3729066BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{641F48A0-C425-4C8E-976B-5B3729066BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{641F48A0-C425-4C8E-976B-5B3729066BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{438186C0-EF43-4B79-A0A2-286C2F7FF36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{438186C0-EF43-4B79-A0A2-286C2F7FF36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438186C0-EF43-4B79-A0A2-286C2F7FF36D}.Release|Any CPU.ActiveCfg = Release|Any CPU

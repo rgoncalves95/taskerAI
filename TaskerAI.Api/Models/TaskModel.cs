@@ -4,7 +4,7 @@
 
     public class TaskModel
     {
-        internal int Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int TypeId { get; set; }
         public int LocationId { get; set; }

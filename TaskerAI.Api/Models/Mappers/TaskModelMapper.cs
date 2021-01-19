@@ -9,9 +9,10 @@
     {
         public void Map(Domain.Task from, TaskModel to)
         {
+            to.Id = from.Id ?? 0;
             to.Name = from.Name;
-            to.TypeId = from.Type?.Id ?? -1; //TODO remove this after acessing type
-            to.LocationId = from.Location?.Id ?? -1; //TODO remove this after acessing location
+            to.TypeId = from.Type?.Id ?? 0;
+            to.LocationId = from.Location?.Id ?? 0;
             to.Date = from.Date;
             to.DueDate = from.DueDate;
             to.DurationInSeconds = from.DurationInSeconds;
@@ -23,6 +24,7 @@
             Map(from, to);
             return to;
         }
+
         public void Map(IEnumerable<Domain.Task> from, IEnumerable<TaskModel> to) => to = from.Select(f => Map(f)).ToArray();
 
         public IEnumerable<TaskModel> Map(IEnumerable<Domain.Task> from) => from.Select(f => Map(f)).ToArray();
