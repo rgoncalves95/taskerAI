@@ -10,11 +10,36 @@
         private static readonly List<Domain.Task> Db = new List<Domain.Task>();
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;
 
-        public async Task<IEnumerable<Domain.Task>> GetAsync()
+        public async Task<IEnumerable<Domain.Task>> GetAsync(string name, int? type, DateTimeOffset? intervalStart, DateTimeOffset? intervalEnd, int? status)
         {
-            Func<Domain.Task, bool> filter = null;
+            var query = Db.AsQueryable();
 
-            return await Task.FromResult(Db.Where(filter).ToList());
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                query.Where(t => t.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (type.HasValue)
+            {
+                query.Where(t => t.Type.Id == type.Value);
+            }
+
+            if (intervalStart.HasValue)
+            {
+                query.Where(t => t.Date.Date >= intervalStart.Value.Date);
+            }
+
+            if (intervalEnd.HasValue)
+            {
+                query.Where(t => t.Date.Date <= intervalEnd.Value.Date);
+            }
+
+            if (status.HasValue)
+            {
+                query.Where(t => (int)t.Status.Value == status.Value);
+            }
+
+            return await Task.FromResult(query.ToList());
         }
 
         public async Task<Domain.Task> GetAsync(int id) => await Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
