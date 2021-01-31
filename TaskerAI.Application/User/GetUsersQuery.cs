@@ -27,6 +27,9 @@
 
     public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, IEnumerable<Domain.User>>
     {
-        Task<IEnumerable<User>> IRequestHandler<GetUsersQuery, IEnumerable<User>>.Handle(GetUsersQuery request, CancellationToken cancellationToken) => throw new NotImplementedException();
+        private readonly IUserRepository _userRepository;
+
+        public GetUsersQueryHandler(IUserRepository userRepository) => _userRepository = userRepository;
+        Task<IEnumerable<User>> IRequestHandler<GetUsersQuery, IEnumerable<User>>.Handle(GetUsersQuery request, CancellationToken cancellationToken) => _userRepository.GetAsync();
     }
 }

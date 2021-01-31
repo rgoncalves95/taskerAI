@@ -1,15 +1,21 @@
 ﻿namespace TaskerAI.Application
 {
     using MediatR;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using TaskerAI.Domain;
 
-    public class GetTasksQuery : IRequest<Domain.Task>
+    public class GetTasksQuery : IRequest<IEnumerable<Domain.Task>>
     {
     }
 
-    public class GetTasksQueryHandler : IRequestHandler<GetTasksQuery, Domain.Task>
+    public class GetTasksQueryHandler : IRequestHandler<GetTasksQuery, IEnumerable<Domain.Task>>
     {
-        public Task<Domain.Task> Handle(GetTasksQuery request, CancellationToken cancellationToken) => throw new System.NotImplementedException();
+        private readonly ITaskRepository _taskRepository;
+
+        public GetTasksQueryHandler(ITaskRepository taskRepository) => _taskRepository = taskRepository;
+    
+        public Task<IEnumerable<Domain.Task>> Handle(GetTasksQuery request, CancellationToken cancellationToken) => _taskRepository.GetAsync();
     }
 }

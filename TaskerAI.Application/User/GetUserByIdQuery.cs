@@ -15,6 +15,10 @@
 
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, Domain.User>
     {
-        public Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken) => throw new NotImplementedException();
+        private readonly IUserRepository _userRepository;
+
+        public GetUserByIdQueryHandler(IUserRepository userRepository) => _userRepository = userRepository;
+
+        public Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken) => _userRepository.GetAsync(request.Id);
     }
 }

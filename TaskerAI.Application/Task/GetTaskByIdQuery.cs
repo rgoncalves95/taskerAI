@@ -12,17 +12,12 @@
         public GetTaskByIdQuery(int id) => this.Id = id;
     }
 
-    public class GetTaskByIdQueryHandler : IRequestHandler<GetPlansQuery, Plan>
+    public class GetTaskByIdQueryHandler : IRequestHandler<GetTaskByIdQuery, Domain.Task>
     {
-        private readonly IPlanRepository repo;
+        private readonly ITaskRepository _taskRepository;
 
-        public GetTaskByIdQueryHandler(IPlanRepository repo) => this.repo = repo;
+        public GetTaskByIdQueryHandler(ITaskRepository taskRepository) => _taskRepository = taskRepository;
 
-        public async Task<Plan> Handle(GetPlansQuery request, CancellationToken cancellationToken)
-        {
-            Plan plan = this.repo.GetPlan(0);
-
-            return plan;
-        }
+        public Task<Domain.Task> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken) => _taskRepository.GetAsync(request.Id); 
     }
 }
