@@ -14,10 +14,10 @@
 
     public class GetTaskByIdQueryHandler : IRequestHandler<GetTaskByIdQuery, Domain.Task>
     {
-        private readonly ITaskRepository _taskRepository;
+        private readonly ITaskRepository repo;
 
-        public GetTaskByIdQueryHandler(ITaskRepository taskRepository) => _taskRepository = taskRepository;
+        public GetTaskByIdQueryHandler(ITaskRepository repo) => this.repo = repo;
 
-        public Task<Domain.Task> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken) => _taskRepository.GetAsync(request.Id); 
+        public async Task<Domain.Task> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken) => await this.repo.GetAsync(request.Id);
     }
 }

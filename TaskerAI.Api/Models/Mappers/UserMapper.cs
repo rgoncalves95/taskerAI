@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using TaskerAI.Api.Models;
+    using TaskerAI.Common;
     using TaskerAI.Domain;
-    using TaskerAI.Infrastructure;
 
     public class UserMapper : IMapper<User, UserModel>
     {

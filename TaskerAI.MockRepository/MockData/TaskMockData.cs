@@ -2,58 +2,56 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
+    using TaskerAI.Domain;
 
     internal class TaskMockData
     {
-        public static List<Domain.Task> CreateDummyTasks()
+        public static List<Task> CreateDummyTasks()
         {
-            var result = new List<Domain.Task>();
+            var result = new List<Task>();
 
-            var task = Domain.Task.Create(
-                "Clean Office",
-                new Domain.TaskType(1, "cleaning", 10.0, 3600, null),
-                null,
-                DateTimeOffset.Now,
-                DateTimeOffset.Now,
-                3600,
-                "some notes that we take",
-                1,
-                Domain.TaskStatus.Done,
-                DateTimeOffset.Now
-            );
+            int id = 1;
+            for (int i = 0; i < 100; i++)
+            {
+                DateTimeOffset date = DateTimeOffset.Now.AddHours(i + 1);
 
-            result.Add(task);
+                result.Add(Task.Create
+                (
+                    "Clean Office",
+                    TaskType.Create("cleaning", 10.0, 3600, 1),
+                    Location.Create(id),
+                    date,
+                    date,
+                    3600,
+                    "some notes that we take",
+                    id++,
+                    TaskStatus.Draft
+                ));
 
-            task = Domain.Task.Create(
-                "Delivery goods",
-                new Domain.TaskType(2, "delivery", 20.0, 1800, null),
-                null,
-                DateTimeOffset.Now,
-                DateTimeOffset.Now,
-                1800,
-                "do'n't forget to take the trash",
-                2,
-                Domain.TaskStatus.Done,
-                DateTimeOffset.Now
-            );
+                result.Add(Task.Create(
+                    "Delivery goods",
+                    TaskType.Create("delivery", 20.0, 1800, 2),
+                    Location.Create(id),
+                    date,
+                    date,
+                    1800,
+                    "do'n't forget to take the trash",
+                    id++,
+                    TaskStatus.Draft
+                ));
 
-            result.Add(task);
-
-            task = Domain.Task.Create(
-                "Check in beer",
-                new Domain.TaskType(3, "check in", 10.0, 3600, null),
-                null,
-                DateTimeOffset.Now,
-                DateTimeOffset.Now,
-                3600,
-                "get some peanuts with it",
-                3,
-                Domain.TaskStatus.Done,
-                DateTimeOffset.Now
-            );
-
-            result.Add(task);
+                result.Add(Task.Create(
+                    "Check in beer",
+                    TaskType.Create("check in", 10.0, 3600, 3),
+                    Location.Create(id),
+                    date,
+                    date,
+                    3600,
+                    "get some peanuts with it",
+                    id++,
+                    TaskStatus.Draft
+                ));
+            }
 
             return result;
         }

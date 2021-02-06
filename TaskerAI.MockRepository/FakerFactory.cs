@@ -73,8 +73,7 @@
         public static TaskType CreateTaskType()
         {
             Faker<TaskType> taskTypeFaker = new Faker<TaskType>()
-                .CustomInstantiator(f => new TaskType(
-                    f.UniqueIndex,
+                .CustomInstantiator(f => TaskType.Create(
                     f.Lorem.Sentence(2),
                     f.Random.Double(60, 120),
                     f.Random.Int(1200, 3600),
@@ -83,23 +82,22 @@
             return taskTypeFaker.Generate();
         }
 
-        public static Location CreateLocation()
-        {
-            Faker<Location> locationFaker = new Faker<Location>()
-                .CustomInstantiator(f => new Location(
-                    f.Address.StreetName(),
-                    f.Address.BuildingNumber(),
-                    f.Lorem.Word(),
-                    f.Address.ZipCode(),
-                    f.Address.City(),
-                    f.Address.Country()
-                    ))
-                .RuleFor(o => o.Id, f => f.UniqueIndex)
-                .RuleFor(o => o.Lat, f => f.Address.Latitude())
-                .RuleFor(o => o.Lon, f => f.Address.Longitude());
+        public static Location CreateLocation() =>
+            //Faker<Location> locationFaker = new Faker<Location>()
+            //    .CustomInstantiator(f => new Location(
+            //        f.Address.StreetName(),
+            //        f.Address.BuildingNumber(),
+            //        f.Lorem.Word(),
+            //        f.Address.ZipCode(),
+            //        f.Address.City(),
+            //        f.Address.Country()
+            //        ))
+            //    .RuleFor(o => o.Id, f => f.UniqueIndex)
+            //    .RuleFor(o => o.Lat, f => f.Address.Latitude())
+            //    .RuleFor(o => o.Lon, f => f.Address.Longitude());
 
-            return locationFaker.Generate();
-        }
+            //return locationFaker.Generate();
+            null;
 
         public static Assignee CreateAssignee()
         {

@@ -1,14 +1,25 @@
 ﻿namespace TaskerAI.Domain
 {
-    using System.Collections.Generic;
-    using Threading = System.Threading.Tasks;
+    using System;
+    using System.Threading.Tasks;
+    using TaskerAI.Common;
 
     public interface ITaskRepository
     {
-        Threading.Task<IEnumerable<Task>> GetAsync();
-        Threading.Task<Task> GetAsync(int id);
-        Threading.Task<Task> CreateAsync(Task domainEntity);
-        Threading.Task<Task> UpdateAsync(Task domainEntity);
-        Threading.Task DeleteAsync(int id);
+        Task<Paged<Task>> GetAsync(
+            string name,
+            int? type,
+            DateTimeOffset? intervalStart,
+            DateTimeOffset? intervalEnd,
+            int? status,
+            int? pageSize,
+            int? pageIndex,
+            string sortBy,
+            string sortAs
+        );
+        Task<Task> GetAsync(int id);
+        Task<Task> CreateAsync(Task domainEntity);
+        Task<Task> UpdateAsync(Task domainEntity);
+        System.Threading.Tasks.Task DeleteAsync(int id);
     }
 }

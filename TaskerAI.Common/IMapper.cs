@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Infrastructure
+﻿namespace TaskerAI.Common
 {
     using System.Collections.Generic;
 

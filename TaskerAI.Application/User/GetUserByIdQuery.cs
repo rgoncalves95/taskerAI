@@ -1,7 +1,6 @@
 ﻿namespace TaskerAI.Application
 {
     using MediatR;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TaskerAI.Domain;
@@ -17,8 +16,8 @@
     {
         private readonly IUserRepository _userRepository;
 
-        public GetUserByIdQueryHandler(IUserRepository userRepository) => _userRepository = userRepository;
+        public GetUserByIdQueryHandler(IUserRepository userRepository) => this._userRepository = userRepository;
 
-        public Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken) => _userRepository.GetAsync(request.Id);
+        public Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken) => this._userRepository.GetAsync(request.Id);
     }
 }

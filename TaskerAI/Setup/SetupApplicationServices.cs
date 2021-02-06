@@ -5,8 +5,8 @@
     using TaskerAI.Api.Mapper;
     using TaskerAI.Api.Models;
     using TaskerAI.Api.Models.Mappers;
+    using TaskerAI.Common;
     using TaskerAI.Domain;
-    using TaskerAI.Infrastructure;
     using TaskerAI.MockRepository;
 
     public static class SetupApplicationServices
@@ -17,8 +17,8 @@
 
         private static IServiceCollection AddPersistence(this IServiceCollection services)
         {
-            services.AddTransient<IPlanRepository, PlanRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPlanRepository>(p => null);
+            services.AddTransient<IUserRepository>(p => null);
             services.AddTransient<ITaskRepository, TaskRepository>();
 
             return services;

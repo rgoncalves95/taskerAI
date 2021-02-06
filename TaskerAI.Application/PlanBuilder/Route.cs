@@ -2,7 +2,7 @@
 {
     using System;
 
-    class Route
+    internal class Route
     {
         public Guid From { get; set; }
         public Guid To { get; set; }

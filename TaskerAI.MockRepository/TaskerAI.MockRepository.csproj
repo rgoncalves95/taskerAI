@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskerAI.Domain\TaskerAI.Domain.csproj" />
+    <ProjectReference Include="..\TaskerAI.Infrastructure\TaskerAI.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

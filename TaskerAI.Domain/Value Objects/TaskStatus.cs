@@ -2,6 +2,7 @@
 {
     public enum TaskStatus
     {
-        Done
+        Done = 0,
+        Draft = 1,
     }
 }

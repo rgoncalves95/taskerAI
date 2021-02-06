@@ -1,13 +1,13 @@
 ﻿namespace TaskerAI.Application
 {
     using MediatR;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Domain = TaskerAI.Domain;
     using Builder = PlanBuilder;
-    using System;
-    using System.Linq;
+    using Domain = TaskerAI.Domain;
 
     public class CreatePlanCommand : IRequest<List<PlanResult>>
     {
@@ -30,22 +30,22 @@
 
         public CreatePlanCommandHandler(Domain.IPlanRepository repo) => this.repo = repo;
 
-        public async Task<List<PlanResult>> Handle(CreatePlanCommand request, CancellationToken cancellationToken) 
+        public async Task<List<PlanResult>> Handle(CreatePlanCommand request, CancellationToken cancellationToken)
         {
             var demoData = new Builder.DemoData();
             List<Builder.Task> tasks = demoData.GetTasks();
             Dictionary<(Guid, Guid), Builder.Route> routes = demoData.GetRoutes(tasks);
 
             var builder = new Builder.Builder();
-            var routeResults = builder.Build(tasks, routes);
+            List<Builder.RouteResult> routeResults = builder.Build(tasks, routes);
 
             var result = new List<PlanResult>();
 
 
-            foreach (var routeResult in routeResults)
+            foreach (Builder.RouteResult routeResult in routeResults)
             {
                 var tasksPlanned = new List<TaskPlanned>();
-                var task = tasks.First(p => p.Id == routeResult.StartTask);
+                Builder.Task task = tasks.First(p => p.Id == routeResult.StartTask);
 
                 var startTask = new TaskPlanned(task.Display, 0, task.DueDate, task.DueDate, task.Latitude, task.Longitude);
                 tasksPlanned.Add(startTask);
@@ -61,7 +61,7 @@
             }
 
             return result;
-        } 
+        }
 
     }
 
@@ -69,8 +69,8 @@
     {
         public PlanResult(List<TaskPlanned> tasks, int distance)
         {
-            Tasks = tasks;
-            TotalDistance = distance;
+            this.Tasks = tasks;
+            this.TotalDistance = distance;
         }
 
         public List<TaskPlanned> Tasks { get; } = new List<TaskPlanned>();
@@ -82,12 +82,12 @@
     {
         public TaskPlanned(string displayName, int order, DateTime dueDate, DateTime arrivalDate, double latitude, double longitude)
         {
-            DisplayName = displayName;
-            Order = order;
-            DueDate = dueDate;
-            ArrivalDate = arrivalDate;
-            Latitude = latitude;
-            Longitude = longitude;
+            this.DisplayName = displayName;
+            this.Order = order;
+            this.DueDate = dueDate;
+            this.ArrivalDate = arrivalDate;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
         }
 
         public string DisplayName { get; }

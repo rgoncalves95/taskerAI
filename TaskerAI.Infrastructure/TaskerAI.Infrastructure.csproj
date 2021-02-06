@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskerAI.Common\TaskerAI.Common.csproj" />
     <ProjectReference Include="..\TaskerAI.Domain\TaskerAI.Domain.csproj" />
   </ItemGroup>
 

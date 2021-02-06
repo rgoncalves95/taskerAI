@@ -19,9 +19,11 @@
             var resultRoutes = new List<TaskRoute>();
             var inputTaskList = new List<Task>(context.Tasks);
 
-            Task firstTask = inputTaskList.Where(t => t.Date == DateTimeOffset.Now.Date)
-                                         .OrderBy(t => t.DueDate)
-                                         .FirstOrDefault();
+            var todaysTasks = inputTaskList.Where(t => t.Date == DateTimeOffset.Now.Date)
+                                           .OrderBy(t => t.DueDate)
+                                           .ToList();
+
+            Task firstTask = todaysTasks.FirstOrDefault();
 
             if (firstTask != null)
             {
@@ -57,6 +59,8 @@
                     select tr
                 ).FirstOrDefault();
 
+                //ter em atencao se vai estragar as proximas
+
                 if (taskRoute == null)
                 {
                     taskRoute = nextTaskRoutes.OrderBy(t => t.TimeInSeconds).FirstOrDefault();
@@ -85,11 +89,11 @@
         {
             List<TaskRoute> taskRoutes = this.taskRouteRepository.GetRoutes(context.Tasks, context.Tasks);
 
-            List<Plan> resultList = new List<Plan>();
+            var resultList = new List<Plan>();
 
-          
 
-            resultList = CreatePlans(Plan.Create(taskRoutes, context.PlanStartDate) , taskRoutes, resultList, context);
+
+            resultList = CreatePlans(Plan.Create(taskRoutes, context.PlanStartDate), taskRoutes, resultList, context);
 
             return resultList;
         }
@@ -101,9 +105,9 @@
             if (routes.Count > 0)
             {
 
-                var prevPlan = plan.Clone();
+                Plan prevPlan = plan.Clone();
 
-                var routesAvailable = prevPlan.TaskRoutes.Count > 0 ? routes.Where(r => r.From == prevPlan.TaskRoutes.Last().To).ToList() : routes;
+                List<TaskRoute> routesAvailable = prevPlan.TaskRoutes.Count > 0 ? routes.Where(r => r.From == prevPlan.TaskRoutes.Last().To).ToList() : routes;
 
                 foreach (TaskRoute route in routes)
                 {
@@ -113,14 +117,15 @@
                     if (routes.First() == route)
                     {
                         newPlan = prevPlan;
-                  
 
-                    } else
+
+                    }
+                    else
                     {
 
                         newPlan = prevPlan.Clone();
                         plans.Add(newPlan);
- 
+
                     }
 
                     newPlan.AddRoute(route);
@@ -134,7 +139,8 @@
 
                 return plans;
 
-            } else
+            }
+            else
             {
                 return plans;
             }

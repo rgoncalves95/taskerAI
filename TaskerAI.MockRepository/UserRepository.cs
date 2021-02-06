@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using Threading = System.Threading.Tasks;
-    using TaskerAI.Domain;
     using System.Linq;
+    using TaskerAI.Domain;
     using TaskerAI.MockRepository.MockData;
+    using Threading = System.Threading.Tasks;
 
     public class UserRepository : IUserRepository
     {
@@ -14,6 +14,6 @@
         public Threading.Task<User> AcceptPlanAsync() => throw new NotImplementedException();
         public async Threading.Task<IEnumerable<User>> GetAsync() => await Threading.Task.FromResult(UserMockData.GetUserList());
 
-        
+
     }
 }

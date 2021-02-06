@@ -29,7 +29,7 @@
     {
         private readonly IUserRepository _userRepository;
 
-        public GetUsersQueryHandler(IUserRepository userRepository) => _userRepository = userRepository;
-        Task<IEnumerable<User>> IRequestHandler<GetUsersQuery, IEnumerable<User>>.Handle(GetUsersQuery request, CancellationToken cancellationToken) => _userRepository.GetAsync();
+        public GetUsersQueryHandler(IUserRepository userRepository) => this._userRepository = userRepository;
+        Task<IEnumerable<User>> IRequestHandler<GetUsersQuery, IEnumerable<User>>.Handle(GetUsersQuery request, CancellationToken cancellationToken) => this._userRepository.GetAsync();
     }
 }

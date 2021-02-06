@@ -1,10 +1,8 @@
 ﻿namespace TaskerAI.Domain.PlanBuilder
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
-    class Task
+    internal class Task
     {
         public Guid Id { get; set; }
 

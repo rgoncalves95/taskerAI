@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.Application.Tests.Plan
 {
-    using Common.Tests;
     using Domain;
     using FluentAssertions;
+    using global::Tests.Common;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
