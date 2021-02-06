@@ -37,8 +37,24 @@
             [FromQuery] string sortAs = null
         )
         {
-            Paged<TaskType> response = await this.mediator.Send(new GetTaskTypesQuery(name, cost, duration, pageSize, pageIndex, sortBy, sortAs));
-            return Ok(response.Adapt(this.mapper));
+            Paged<TaskType> result = await this.mediator.Send(new GetTaskTypesQuery(name, cost, duration, pageSize, pageIndex, sortBy, sortAs));
+
+            return Ok(result.Adapt(this.mapper));
+        }
+
+        [HttpGet("{id}", Name = RouteNames.TaskTypeResource.GetById)]
+        [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int id)
+        {
+            TaskType result = await this.mediator.Send(new GetTaskTypeByIdQuery(id));
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.mapper.Map(result));
         }
 
         [HttpPost]
@@ -49,7 +65,7 @@
                 await this.mediator.Send(
                     new CreateTaskTypeCommand(model.Name, model.Cost, model.Duration)));
 
-            return CreatedAtRoute("GetById", new { id = result.Id }, result);
+            return CreatedAtRoute(RouteNames.TaskTypeResource.GetById, new { id = result.Id }, result);
         }
     }
 }
