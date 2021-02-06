@@ -40,7 +40,7 @@
             return await Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
         }
 
-        public Task<TaskType> GetAsync(int id) => throw new NotImplementedException();
+        public async Task<TaskType> GetAsync(int id) => await Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
 
         public async Task<TaskType> CreateAsync(TaskType domainEntity)
         {

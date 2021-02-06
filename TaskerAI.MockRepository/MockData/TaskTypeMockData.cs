@@ -11,7 +11,7 @@
             {
                 TaskType.Create("cleaning", 10.0, 3600, 1),
                 TaskType.Create("delivery", 20.0, 1800, 2),
-                TaskType.Create("check in", 3600, 3),
+                TaskType.Create("check in", 3600, null, 3),
                 TaskType.Create("wtv only with cost", 175.50, 4)
             };
         }

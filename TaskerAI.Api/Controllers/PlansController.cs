@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Controllers
+﻿namespace TaskerAI.Api.Controllers
 {
     using MediatR;
     using Microsoft.AspNetCore.JsonPatch;

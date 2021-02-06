@@ -12,9 +12,9 @@ namespace TaskerAI.Domain
 
         internal static TaskType Create(string name, double? cost, int? duration, int? id = null) => new TaskType(name, cost, duration, id);
 
-        internal static TaskType Create(string name, double? cost, int? id = null) => new TaskType(name, cost, null, id);
+        internal static TaskType Create(string name, double? cost) => new TaskType(name, cost, null);
 
-        internal static TaskType Create(string name, int? duration, int? id = null) => new TaskType(name, null, duration, id);
+        internal static TaskType Create(string name, int? duration) => new TaskType(name, null, duration);
 
         internal static TaskType Create(int id) => new TaskType(id);
 
@@ -24,6 +24,8 @@ namespace TaskerAI.Domain
             this.Cost = cost;
             this.Duration = duration;
             this.Id = id;
+
+            IntegrityCheck();
         }
 
         private TaskType(int id) => base.Id = id;
