@@ -36,7 +36,7 @@
         {
 
             Plan plan = this._planRepository.GetPlan(request.PlanId);
-            User user = this._userRepository.GetUser(request.UserId);
+            User user = await this._userRepository.GetAsync(request.UserId);
 
             plan.Assign(UserFactory.CreateAssignee(user));
             return plan;

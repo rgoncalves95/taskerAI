@@ -2,5 +2,6 @@
 {
     public enum TaskStatus
     {
+        Done
     }
 }

@@ -1,11 +1,16 @@
-﻿namespace TaskerAI.Domain
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace TaskerAI.Domain
 {
     public interface IUserRepository
     {
-        User GetUser(int id);
+        Task<IEnumerable<User>> GetAsync();
 
-        User CreateUser(User user);
+        Task<User> GetAsync(int id);
 
-        User AcceptPlan();
+        Task<User> CreateAsync(User user);
+
+        Task<User> AcceptPlanAsync();
     }
 }
