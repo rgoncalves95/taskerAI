@@ -24,11 +24,8 @@ namespace TaskerAI.Domain
 
         public double Lon { get; private set; }
 
-        public User User { get; private set; }
 
-
-
-        internal Location(string street, string number, string floor, string zipCode, string city, string country, User user)
+        internal Location(string street, string number, string floor, string zipCode, string city, string country)
         {
             this.Street = street;
             this.Number = number;
@@ -36,12 +33,9 @@ namespace TaskerAI.Domain
             this.ZipCode = zipCode;
             this.City = city;
             this.Country = country;
-            this.User = user;
-
-
         }
 
-        internal Location(string street, string number, string floor, string zipCode, string city, string country, User user, double lat, double lon) : this(street, number, floor, zipCode, city, country, user)
+        internal Location(string street, string number, string floor, string zipCode, string city, string country, double lat, double lon) : this(street, number, floor, zipCode, city, country)
         {
 
             this.Lat = lat;

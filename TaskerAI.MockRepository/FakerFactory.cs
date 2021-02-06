@@ -77,7 +77,6 @@
                     f.UniqueIndex,
                     f.Lorem.Sentence(2),
                     f.Random.Double(60, 120),
-                    CreateLocation(),
                     f.Random.Int(1200, 3600),
                     null));
 
@@ -93,8 +92,8 @@
                     f.Lorem.Word(),
                     f.Address.ZipCode(),
                     f.Address.City(),
-                    f.Address.Country(),
-                    CreateAssignee()))
+                    f.Address.Country()
+                    ))
                 .RuleFor(o => o.Id, f => f.UniqueIndex)
                 .RuleFor(o => o.Lat, f => f.Address.Latitude())
                 .RuleFor(o => o.Lon, f => f.Address.Longitude());

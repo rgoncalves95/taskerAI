@@ -12,7 +12,7 @@
 
             var task = Domain.Task.Create(
                 "Clean Office",
-                new Domain.TaskType(1, "cleaning", 10.0, null, 3600, null),
+                new Domain.TaskType(1, "cleaning", 10.0, 3600, null),
                 null,
                 DateTimeOffset.Now,
                 DateTimeOffset.Now,
@@ -27,7 +27,7 @@
 
             task = Domain.Task.Create(
                 "Delivery goods",
-                new Domain.TaskType(2, "delivery", 20.0, null, 1800, null),
+                new Domain.TaskType(2, "delivery", 20.0, 1800, null),
                 null,
                 DateTimeOffset.Now,
                 DateTimeOffset.Now,
@@ -42,7 +42,7 @@
 
             task = Domain.Task.Create(
                 "Check in beer",
-                new Domain.TaskType(3, "check in", 10.0, null, 3600, null),
+                new Domain.TaskType(3, "check in", 10.0, 3600, null),
                 null,
                 DateTimeOffset.Now,
                 DateTimeOffset.Now,
