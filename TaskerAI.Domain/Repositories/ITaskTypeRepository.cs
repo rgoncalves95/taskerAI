@@ -5,10 +5,11 @@
 
     public interface ITaskTypeRepository
     {
-        Task<Paged<TaskType>> GetAsync(
+        Task<Paged<TaskType>> GetAsync
+        (
             string name,
-            double cost,
-            double duration,
+            double? cost,
+            int? duration,
             int? pageSize,
             int? pageIndex,
             string sortBy,
