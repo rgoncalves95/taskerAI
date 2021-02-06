@@ -1,7 +1,7 @@
-﻿using FluentValidation;
-
-namespace TaskerAI.Api.Models.Validators
+﻿namespace TaskerAI.Api.Models.Validators
 {
+    using FluentValidation;
+
     public class TaskModelValidator : BaseValidator<TaskModel>
     {
         public TaskModelValidator()

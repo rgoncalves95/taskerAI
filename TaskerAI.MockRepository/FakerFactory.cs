@@ -33,7 +33,7 @@
                 .CustomInstantiator(f => TaskRoute.Create(
                     CreateTask(),
                     CreateTask(),
-                    f.Random.Decimal(100, 100000),
+                    f.Random.Double(100, 100000),
                     f.Random.Int(1800, 7200)));
 
             return taskFaker.Generate();

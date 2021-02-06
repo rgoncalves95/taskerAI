@@ -10,6 +10,7 @@
         public static IServiceCollection AddValidators(this IServiceCollection services)
         {
             services.AddTransient<IValidator<TaskModel>, TaskModelValidator>();
+            services.AddTransient<IValidator<TaskTypeModel>, TaskTypeModelValidator>();
 
             return services;
         }

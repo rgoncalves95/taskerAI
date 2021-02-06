@@ -22,4 +22,18 @@
             };
         }
     }
+
+    [ExcludeFromCodeCoverage]
+    public class TaskTypeModelExample : IExamplesProvider<TaskTypeModel>
+    {
+        public TaskTypeModel GetExamples()
+        {
+            return new TaskTypeModel
+            {
+                Name = $"Task Type A",
+                Cost = 50,
+                Duration = 3600
+            };
+        }
+    }
 }
