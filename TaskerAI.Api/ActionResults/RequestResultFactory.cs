@@ -15,7 +15,7 @@
                 (
                     m => new
                     {
-                        Key = m.Key,
+                        m.Key,
                         Messages = m.Value.Errors.Select(e => e.ErrorMessage)
                     }
                 )

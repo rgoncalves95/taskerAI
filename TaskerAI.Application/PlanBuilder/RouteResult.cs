@@ -11,7 +11,7 @@
 
         public int TaskFailed => this.TaskResults.Where(p => p.SecondsLost.HasValue).Count();
 
-        public int TotalLostTime => this.TaskResults.Sum(p => p.SecondsLost.HasValue ? p.SecondsLost.Value : 0);
+        public int TotalLostTime => this.TaskResults.Sum(p => p.SecondsLost ?? 0);
 
 
         public List<TaskResult> TaskResults { get; } = new List<TaskResult>();

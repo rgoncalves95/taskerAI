@@ -30,9 +30,9 @@ namespace TaskerAI.Domain
         public Admin Responsible { get; private set; }
         public DateTimeOffset Date { get; private set; }
         public PlanWorkflowState Status { get; private set; }
-        public decimal EstimatedExecutionTime => this.TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
+        public double EstimatedExecutionTime => this.TaskRoutes.Sum(t => t.RouteExecutionTimeInSeconds);
 
-        public decimal EstimatedExecutionDistance => this.TaskRoutes.Sum(t => t.Distance);
+        public double EstimatedExecutionDistance => this.TaskRoutes.Sum(t => t.Distance);
         public IReadOnlyCollection<TaskRoute> TaskRoutes => this.taskRoutes.AsReadOnly();
 
         internal void ReorderTasks(IEnumerable<TaskRoute> taskRoutes) => this.taskRoutes = new List<TaskRoute>(taskRoutes);

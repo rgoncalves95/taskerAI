@@ -5,15 +5,15 @@ namespace TaskerAI.Domain
 {
     public class TaskType : BaseEntity
     {
-        internal static TaskType Create(string name, double cost, int durationInSeconds, int? id = null) => new TaskType(name, cost, durationInSeconds, id);
+        internal static TaskType Create(string name, double cost, int duration, int? id = null) => new TaskType(name, cost, duration, id);
 
         internal static TaskType Create(int id) => new TaskType(id);
 
-        private TaskType(string name, double cost, int durationInSeconds, int? id = null)
+        private TaskType(string name, double cost, int duration, int? id = null)
         {
             this.Name = name;
             this.Cost = cost;
-            this.DurationInSeconds = durationInSeconds;
+            this.Duration = duration;
             this.Id = id;
         }
 
@@ -21,7 +21,7 @@ namespace TaskerAI.Domain
 
         public string Name { get; private set; }
         public double Cost { get; private set; }
-        public int DurationInSeconds { get; private set; }
+        public int Duration { get; private set; }
         //public IDictionary<string, string> Properties { get; set; }
 
         protected override void IntegrityCheck() => throw new System.NotImplementedException();

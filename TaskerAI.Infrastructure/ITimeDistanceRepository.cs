@@ -2,7 +2,7 @@
 {
     //public interface ITimeDistanceRepository
     //{
-    //    decimal GetTime((string lat, string lon) A, (string lat, string lon) B);
+    //    double GetTime((string lat, string lon) A, (string lat, string lon) B);
     //}
 
     //public interface IGMapsClient
@@ -16,7 +16,7 @@
 
     //    public GMapsTimeDistance(IGMapsClient gmapsClient) => this.gmapsClient = gmapsClient;
 
-    //    public decimal GetTime((string lat, string lon) A, (string lat, string lon) B) => throw new System.NotImplementedException();
+    //    public double GetTime((string lat, string lon) A, (string lat, string lon) B) => throw new System.NotImplementedException();
     //}
 
     //public class DbTimeDistance : ITimeDistanceRepository
@@ -25,6 +25,6 @@
 
     //    public DbTimeDistance(Persistence.ITimeDistanceRepository repo) => this.repo = repo;
 
-    //    public decimal GetTime((string lat, string lon) A, (string lat, string lon) B) => throw new System.NotImplementedException();
+    //    public double GetTime((string lat, string lon) A, (string lat, string lon) B) => throw new System.NotImplementedException();
     //}
 }

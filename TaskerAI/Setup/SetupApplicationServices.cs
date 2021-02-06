@@ -20,6 +20,7 @@
             services.AddTransient<IPlanRepository>(p => null);
             services.AddTransient<IUserRepository>(p => null);
             services.AddTransient<ITaskRepository, TaskRepository>();
+            services.AddTransient<ITaskTypeRepository, TaskTypeRepository>();
 
             return services;
         }
@@ -27,8 +28,10 @@
         private static IServiceCollection AddApi(this IServiceCollection services)
         {
             services.AddSingleton<IMapper<Plan, PlanModel>, PlanMapper>();
-            services.AddSingleton<IMapper<Task, TaskModel>, TaskModelMapper>();
             services.AddSingleton<IMapper<User, UserModel>, UserMapper>();
+            services.AddSingleton<IMapper<Task, TaskModel>, TaskModelMapper>();
+            services.AddSingleton<IMapper<TaskType, TaskTypeModel>, TaskTypeModelMapper>();
+
             services.AddSingleton<IRequestResultFactory, RequestResultFactory>();
 
             return services;

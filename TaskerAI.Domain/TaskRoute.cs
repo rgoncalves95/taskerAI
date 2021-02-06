@@ -4,9 +4,9 @@
 
     public class TaskRoute
     {
-        internal static TaskRoute Create(Task from, Task to, decimal distance, int timeInSeconds) => new TaskRoute(from, to, distance, timeInSeconds);
+        internal static TaskRoute Create(Task from, Task to, double distance, int timeInSeconds) => new TaskRoute(from, to, distance, timeInSeconds);
 
-        private TaskRoute(Task from, Task to, decimal distance, int timeInSeconds)
+        private TaskRoute(Task from, Task to, double distance, int timeInSeconds)
         {
             this.From = from;
             this.To = to;
@@ -16,7 +16,7 @@
 
         public Task From { get; private set; }
         public Task To { get; private set; }
-        public decimal Distance { get; private set; }
+        public double Distance { get; private set; }
         public int TimeInSeconds { get; private set; }
         public DateTimeOffset EstimatedStartDate { get; private set; }
         public DateTimeOffset EstimatedEndDate { get; private set; }
