@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    class DemoData
+    internal class DemoData
     {
         public List<Task> GetTasks()
         {
@@ -26,14 +26,14 @@
 
         public Dictionary<(Guid, Guid), Route> GetRoutes(List<Task> tasks)
         {
-            var spot1 = tasks[0];
-            var spot2 = tasks[1];
-            var spot3 = tasks[2];
-            var spot4 = tasks[3];
-            var spot5 = tasks[4];
-            var spot6 = tasks[5];
+            Task spot1 = tasks[0];
+            Task spot2 = tasks[1];
+            Task spot3 = tasks[2];
+            Task spot4 = tasks[3];
+            Task spot5 = tasks[4];
+            Task spot6 = tasks[5];
 
-            Dictionary<(Guid, Guid), Route> routes = new Dictionary<(Guid, Guid), Route>();
+            var routes = new Dictionary<(Guid, Guid), Route>();
             var route = new Route { From = spot1.Id, To = spot2.Id, Distance = 1000, TimeInSeconds = 120 };
             routes.Add((route.From, route.To), route);
             route = new Route { From = spot2.Id, To = spot1.Id, Distance = 1700, TimeInSeconds = 300 };

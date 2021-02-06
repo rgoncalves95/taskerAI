@@ -8,7 +8,6 @@ namespace TaskerAI.Domain
         internal static TaskType Create(string name, double cost, int durationInSeconds, int? id = null) => new TaskType(name, cost, durationInSeconds, id);
 
         internal static TaskType Create(int id) => new TaskType(id);
-        protected override void IntegrityCheck() => throw new System.NotImplementedException();
 
         private TaskType(string name, double cost, int durationInSeconds, int? id = null)
         {
@@ -18,11 +17,13 @@ namespace TaskerAI.Domain
             this.Id = id;
         }
 
-        private TaskType(int id) => this.Id = id;
+        private TaskType(int id) => base.Id = id;
 
-        public string Name { get; set; }
-        public double Cost { get; set; }
-        public int DurationInSeconds { get; set; }
+        public string Name { get; private set; }
+        public double Cost { get; private set; }
+        public int DurationInSeconds { get; private set; }
         //public IDictionary<string, string> Properties { get; set; }
+
+        protected override void IntegrityCheck() => throw new System.NotImplementedException();
     }
 }

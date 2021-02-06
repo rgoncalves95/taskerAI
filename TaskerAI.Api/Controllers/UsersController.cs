@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
+    using TaskerAI.Common;
     using TaskerAI.Domain;
-    using TaskerAI.Infrastructure;
 
     [ApiController]
     [Route("[controller]")]

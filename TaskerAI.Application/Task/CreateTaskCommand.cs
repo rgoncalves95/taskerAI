@@ -41,11 +41,11 @@
                 Domain.Task.Create
                 (
                     request.Name,
-                    TaskType.Create(request.TypeId), 
-                    Location.Create(request.LocationId), 
-                    request.Date, 
-                    request.DueDate, 
-                    request.DurationInSeconds, 
+                    TaskType.Create(request.TypeId),
+                    Location.Create(request.LocationId),
+                    request.Date,
+                    request.DueDate,
+                    request.DurationInSeconds,
                     request.Notes
                 )
             );

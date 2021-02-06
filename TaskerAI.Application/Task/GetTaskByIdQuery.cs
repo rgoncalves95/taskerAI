@@ -18,9 +18,6 @@
 
         public GetTaskByIdQueryHandler(ITaskRepository repo) => this.repo = repo;
 
-        public async Task<Domain.Task> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken)
-        {
-            return await this.repo.GetAsync(request.Id);
-        }
+        public async Task<Domain.Task> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken) => await this.repo.GetAsync(request.Id);
     }
 }

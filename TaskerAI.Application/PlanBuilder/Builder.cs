@@ -4,25 +4,25 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    class Builder
+    internal class Builder
     {
-        private List<RouteResult> _routeResults = new List<RouteResult>();
-        private int MaxCount = 6;
+        private readonly List<RouteResult> _routeResults = new List<RouteResult>();
+        private readonly int MaxCount = 6;
         private int _count;
         private Task[] _path;
-        Dictionary<(Guid, Guid), Route> _routes;
+        private Dictionary<(Guid, Guid), Route> _routes;
 
         public List<RouteResult> Build(List<Task> tasks, Dictionary<(Guid, Guid), Route> routes)
         {
 
             Console.WriteLine(DateTime.Now);
-            _routes = routes;
-            _count = tasks.Count > MaxCount ? MaxCount : tasks.Count;
-            _path = new Task[tasks.Count];
+            this._routes = routes;
+            this._count = tasks.Count > this.MaxCount ? this.MaxCount : tasks.Count;
+            this._path = new Task[tasks.Count];
             for (int i = 0; i < tasks.Count; i++)
             {
-                _path[i] = tasks[i];
-                Recursive(_path[i], tasks, new List<Task> { _path[i] });
+                this._path[i] = tasks[i];
+                Recursive(this._path[i], tasks, new List<Task> { this._path[i] });
             }
 
 
@@ -31,11 +31,11 @@
             var result = new List<RouteResult>();
 
             //Como exemplo retorna um que so tenha falhado uma tarefa, podia por tb p.TaskFailed == 1)  e que tenha a menor distancia percorrida
-            var route = _routeResults.Where(p => p.TaskFailed < 2).OrderBy(p => p.TotalDistance).First();
+            RouteResult route = this._routeResults.Where(p => p.TaskFailed < 2).OrderBy(p => p.TotalDistance).First();
             result.Add(route);
 
             //2 melhores resultados com tarefas a tempo
-            result.AddRange(_routeResults.Where(p => p.TaskFailed == 0).OrderBy(p => p.TotalDistance).Take(2));
+            result.AddRange(this._routeResults.Where(p => p.TaskFailed == 0).OrderBy(p => p.TotalDistance).Take(2));
 
             /*
             Console.WriteLine("Total routes : " + _routeResults.Count);
@@ -64,13 +64,13 @@
 
         private void Recursive(Task task, List<Task> tasks, List<Task> chainedTasks)
         {
-            if (chainedTasks.Count == _count)
+            if (chainedTasks.Count == this._count)
             {
                 DoLogic(chainedTasks);
                 return;
             }
 
-            var filteredTasks = tasks.Except(chainedTasks);
+            IEnumerable<Task> filteredTasks = tasks.Except(chainedTasks);
             foreach (Task nextTask in filteredTasks)
             {
                 Recursive(nextTask, tasks, new List<Task>(chainedTasks) { nextTask });
@@ -84,25 +84,27 @@
 
             //maneira de definir a hora de comeco
             var startTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 30, 0);
-            var distance = 0;
+            int distance = 0;
             for (int i = 0; i < chainedTasks.Count - 1; i++)
             {
-                var start = chainedTasks[i];
-                var end = chainedTasks[i + 1];
+                Task start = chainedTasks[i];
+                Task end = chainedTasks[i + 1];
                 if (i == 0)
                 {
                     routeResult.StartTask = start.Id;
                 }
 
-                distance += _routes[(start.Id, end.Id)].Distance;
+                distance += this._routes[(start.Id, end.Id)].Distance;
                 //exacto
-                startTime = startTime.AddSeconds(start.Duration).AddSeconds(_routes[(start.Id, end.Id)].TimeInSeconds);
+                startTime = startTime.AddSeconds(start.Duration).AddSeconds(this._routes[(start.Id, end.Id)].TimeInSeconds);
 
 
                 //duedate
                 //var time = start.DueDate.AddSeconds(_routes[(start.Id, end.Id)].TimeInSeconds).AddSeconds(end.Duration);
-                var taskResult = new TaskResult();
-                taskResult.Id = end.Id;
+                var taskResult = new TaskResult
+                {
+                    Id = end.Id
+                };
                 if (end.DueDate < startTime)
                 {
                     taskResult.SecondsLost = (startTime - end.DueDate).Seconds;
@@ -114,7 +116,7 @@
             }
 
             routeResult.TotalDistance = distance;
-            _routeResults.Add(routeResult);
+            this._routeResults.Add(routeResult);
         }
 
 

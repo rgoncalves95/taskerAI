@@ -74,9 +74,6 @@ namespace TaskerAI.Domain
             return this;
         }
 
-        internal Plan Clone()
-        {
-            return (Plan)this.MemberwiseClone();
-        }
+        internal Plan Clone() => (Plan)MemberwiseClone();
     }
 }

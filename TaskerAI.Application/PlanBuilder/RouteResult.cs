@@ -4,20 +4,20 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    class RouteResult
+    internal class RouteResult
     {
         public Guid StartTask { get; set; }
         public int TotalDistance { get; set; }
 
-        public int TaskFailed => TaskResults.Where(p => p.SecondsLost.HasValue).Count();
+        public int TaskFailed => this.TaskResults.Where(p => p.SecondsLost.HasValue).Count();
 
-        public int TotalLostTime => TaskResults.Sum(p => p.SecondsLost.HasValue ? p.SecondsLost.Value : 0);
+        public int TotalLostTime => this.TaskResults.Sum(p => p.SecondsLost.HasValue ? p.SecondsLost.Value : 0);
 
 
         public List<TaskResult> TaskResults { get; } = new List<TaskResult>();
     }
 
-    class TaskResult
+    internal class TaskResult
     {
         public Guid Id { get; set; }
 

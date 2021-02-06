@@ -2,7 +2,7 @@
 {
     using System;
 
-    class Task
+    internal class Task
     {
         public string Display { get; set; }
 

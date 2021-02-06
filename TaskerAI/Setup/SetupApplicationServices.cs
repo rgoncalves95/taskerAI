@@ -5,8 +5,8 @@
     using TaskerAI.Api.Mapper;
     using TaskerAI.Api.Models;
     using TaskerAI.Api.Models.Mappers;
+    using TaskerAI.Common;
     using TaskerAI.Domain;
-    using TaskerAI.Infrastructure;
     using TaskerAI.MockRepository;
 
     public static class SetupApplicationServices

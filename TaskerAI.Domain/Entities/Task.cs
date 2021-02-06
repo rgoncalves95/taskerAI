@@ -74,7 +74,7 @@ namespace TaskerAI.Domain
         {
             var integrityIssues = new List<string>();
 
-            if (this.Name is null)
+            if (string.IsNullOrWhiteSpace(this.Name))
             {
                 integrityIssues.Add(NameValidationMessage);
             }
@@ -99,7 +99,7 @@ namespace TaskerAI.Domain
                 integrityIssues.Add(DueDateValidationMessage);
             }
 
-            if (this.DueDate <= this.Date)
+            if (this.DueDate.Date < this.Date.Date)
             {
                 integrityIssues.Add(DatesMismatchValidationMessage);
             }

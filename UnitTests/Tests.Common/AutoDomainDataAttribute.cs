@@ -1,4 +1,4 @@
-﻿namespace Common.Tests
+﻿namespace Tests.Common
 {
     using AutoFixture;
     using AutoFixture.AutoNSubstitute;
