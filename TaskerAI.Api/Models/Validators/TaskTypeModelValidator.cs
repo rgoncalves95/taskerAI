@@ -2,9 +2,6 @@
 {
     public class TaskTypeModelValidator : BaseValidator<TaskTypeModel>
     {
-        public TaskTypeModelValidator()
-        {
-            Required(p => p.Name);
-        }
+        public TaskTypeModelValidator() => Required(p => p.Name);
     }
 }

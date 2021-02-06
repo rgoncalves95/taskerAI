@@ -46,13 +46,13 @@
 
     public class GetTasksQueryHandler : IRequestHandler<GetTasksQuery, Paged<Domain.Task>>
     {
-        private readonly ITaskRepository repo;
+        private readonly ITaskRepository repository;
 
-        public GetTasksQueryHandler(ITaskRepository repo) => this.repo = repo;
+        public GetTasksQueryHandler(ITaskRepository respository) => this.repository = respository;
 
         public async Task<Paged<Domain.Task>> Handle(GetTasksQuery request, CancellationToken cancellationToken)
         {
-            return await this.repo.GetAsync
+            return await this.repository.GetAsync
             (
                 request.Name,
                 request.Type,

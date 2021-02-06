@@ -7,7 +7,7 @@
 
     public class CreateTaskTypeCommand : IRequest<TaskType>
     {
-        public CreateTaskTypeCommand(string name, double cost, int duration)
+        public CreateTaskTypeCommand(string name, double? cost, int? duration)
         {
             this.Name = name;
             this.Cost = cost;
@@ -15,22 +15,16 @@
         }
 
         public string Name { get; }
-        public double Cost { get; }
-        public int Duration { get; }
+        public double? Cost { get; }
+        public int? Duration { get; }
     }
 
     public class CreateTaskTypeCommandHandler : IRequestHandler<CreateTaskTypeCommand, TaskType>
     {
         private readonly ITaskTypeRepository repository;
 
-        public CreateTaskTypeCommandHandler(ITaskTypeRepository repository)
-        {
-            this.repository = repository;
-        }
+        public CreateTaskTypeCommandHandler(ITaskTypeRepository repository) => this.repository = repository;
 
-        public async Task<TaskType> Handle(CreateTaskTypeCommand request, CancellationToken cancellationToken)
-        {
-            return await this.repository.CreateAsync(TaskType.Create(request.Name, request.Cost, request.Duration));
-        }
+        public async Task<TaskType> Handle(CreateTaskTypeCommand request, CancellationToken cancellationToken) => await this.repository.CreateAsync(TaskType.Create(request.Name, request.Cost, request.Duration));
     }
 }

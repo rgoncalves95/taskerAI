@@ -30,13 +30,13 @@
 
     public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Task>
     {
-        private readonly ITaskRepository repo;
+        private readonly ITaskRepository repository;
 
-        public CreateTaskCommandHandler(ITaskRepository repo) => this.repo = repo;
+        public CreateTaskCommandHandler(ITaskRepository repository) => this.repository = repository;
 
         public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            return await this.repo.CreateAsync
+            return await this.repository.CreateAsync
             (
                 Domain.Task.Create
                 (

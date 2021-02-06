@@ -6,7 +6,7 @@
 
     internal class TaskMockData
     {
-        public static List<Task> CreateDummyTasks()
+        public static IEnumerable<Task> DatabaseSeed()
         {
             var result = new List<Task>();
 

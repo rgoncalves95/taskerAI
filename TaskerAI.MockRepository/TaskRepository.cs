@@ -11,7 +11,7 @@
 
     public class TaskRepository : PagedRespository, Domain.ITaskRepository
     {
-        private static readonly List<Domain.Task> Db = TaskMockData.CreateDummyTasks();
+        private static readonly List<Domain.Task> Db = TaskMockData.DatabaseSeed().ToList();
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;
 
         public async Task<Paged<Domain.Task>> GetAsync
