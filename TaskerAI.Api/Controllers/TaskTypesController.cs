@@ -61,11 +61,40 @@
         [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status201Created)]
         public async Task<IActionResult> Post(TaskTypeModel model)
         {
-            TaskTypeModel result = this.mapper.Map(
+            model = this.mapper.Map(
                 await this.mediator.Send(
                     new CreateTaskTypeCommand(model.Name, model.Cost, model.Duration)));
 
-            return CreatedAtRoute(RouteNames.TaskTypeResource.GetById, new { id = result.Id }, result);
+            return CreatedAtRoute(RouteNames.TaskTypeResource.GetById, new { id = model.Id }, model);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Put(int id, TaskTypeModel model)
+        {
+            TaskType result = await this.mediator.Send(new UpdateTaskTypeCommand(id, model.Name, model.Cost, model.Duration));
+
+            if (result == null)
+            {
+                result = await this.mediator.Send(new CreateTaskTypeCommand(model.Name, model.Cost, model.Duration));
+                model = this.mapper.Map(result);
+
+                return CreatedAtRoute(RouteNames.TaskTypeResource.GetById, new { id = model.Id }, model);
+            }
+
+            model = this.mapper.Map(result);
+
+            return Ok(model);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.mediator.Send(new DeleteTaskTypeCommand(id));
+
+            return NoContent();
         }
     }
 }
