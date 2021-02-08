@@ -18,6 +18,6 @@
 
         public GetTaskTypeByIdQueryHandler(ITaskTypeRepository repository) => this.repository = repository;
 
-        public async Task<TaskType> Handle(GetTaskTypeByIdQuery request, CancellationToken cancellationToken) => await this.repository.GetAsync(request.Id);
+        public Task<TaskType> Handle(GetTaskTypeByIdQuery request, CancellationToken cancellationToken) => this.repository.GetAsync(request.Id);
     }
 }

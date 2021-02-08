@@ -16,7 +16,7 @@
         private static readonly List<TaskType> Db = TaskTypeMockData.DatabaseSeed().ToList();
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;
 
-        public async Task<Paged<TaskType>> GetAsync(string name, double? cost, int? duration, int? pageSize, int? pageIndex, string sortBy, string sortAs)
+        public Task<Paged<TaskType>> GetAsync(string name, double? cost, int? duration, int? pageSize, int? pageIndex, string sortBy, string sortAs)
         {
             IQueryable<TaskType> query = Db.AsQueryable();
 
@@ -37,21 +37,34 @@
                 filter.Add(t => t.Duration == duration.Value);
             }
 
-            return await Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
+            return Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
         }
 
-        public async Task<TaskType> GetAsync(int id) => await Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
+        public Task<TaskType> GetAsync(int id) => Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
 
-        public async Task<TaskType> CreateAsync(TaskType domainEntity)
+        public Task<TaskType> CreateAsync(TaskType domainEntity)
         {
             var @new = TaskType.Create(domainEntity.Name, domainEntity.Cost, domainEntity.Duration, this.lastId + 1);
             Db.Add(@new);
 
-            return await Task.FromResult(@new);
+            return Task.FromResult(@new);
         }
 
-        public Task<TaskType> UpdateAsync(TaskType domainEntity) => throw new NotImplementedException();
+        public Task<TaskType> UpdateAsync(TaskType domainEntity)
+        {
+            TaskType item = Db.FirstOrDefault(e => e.Id == domainEntity.Id);
 
-        public TaskType DeleteAsync(int id) => throw new NotImplementedException();
+            if (item == null)
+            {
+                return Task.FromResult<TaskType>(null);
+            }
+
+            Db.Remove(item);
+            Db.Add(domainEntity);
+
+            return Task.FromResult(domainEntity);
+        }
+
+        public Task<bool> DeleteAsync(int id) => Task.FromResult(Db.RemoveAll(e => e.Id == id) == 1);
     }
 }
