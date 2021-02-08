@@ -12,10 +12,6 @@ namespace TaskerAI.Domain
 
         internal static TaskType Create(string name, double? cost, int? duration, int? id = null) => new TaskType(name, cost, duration, id);
 
-        internal static TaskType Create(string name, double? cost) => new TaskType(name, cost, null);
-
-        internal static TaskType Create(string name, int? duration) => new TaskType(name, null, duration);
-
         internal static TaskType Create(int id) => new TaskType(id);
 
         private TaskType(string name, double? cost, int? duration, int? id = null)
