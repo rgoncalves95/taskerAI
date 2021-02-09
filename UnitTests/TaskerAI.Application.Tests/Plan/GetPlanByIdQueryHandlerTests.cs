@@ -1,12 +1,12 @@
 ﻿namespace TaskerAI.Application.Tests.Plan
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
     using Domain;
     using FluentAssertions;
     using global::Tests.Common;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
     using Xunit;
 
     public class GetPlanByIdQueryHandlerTests

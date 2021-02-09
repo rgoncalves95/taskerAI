@@ -1,9 +1,9 @@
 ﻿namespace TaskerAI.Api.Controllers
 {
+    using System.Threading.Tasks;
     using MediatR;
     using Microsoft.AspNetCore.JsonPatch;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
     using TaskerAI.Common;

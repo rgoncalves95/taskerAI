@@ -14,7 +14,7 @@
         private static readonly List<Domain.Task> Db = TaskMockData.DatabaseSeed().ToList();
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;
 
-        public async Task<Paged<Domain.Task>> GetAsync
+        public Task<Paged<Domain.Task>> GetAsync
         (
             string name,
             int? type,
@@ -56,12 +56,12 @@
                 filter.Add(t => (int)t.Status.Value == status.Value);
             }
 
-            return await Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
+            return Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
         }
 
-        public async Task<Domain.Task> GetAsync(int id) => await Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
+        public Task<Domain.Task> GetAsync(int id) => Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
 
-        public async Task<Domain.Task> CreateAsync(Domain.Task domainEntity)
+        public Task<Domain.Task> CreateAsync(Domain.Task domainEntity)
         {
             var @new = Domain.Task.Create
             (
@@ -72,24 +72,31 @@
                 domainEntity.DueDate,
                 domainEntity.DurationInSeconds,
                 domainEntity.Notes,
-                this.lastId + 1,
                 domainEntity.Status,
                 domainEntity.FinishDate
-            );
+,
+                this.lastId + 1);
 
             Db.Add(@new);
 
-            return await Task.FromResult(@new);
+            return Task.FromResult(@new);
         }
 
-        public async Task<Domain.Task> UpdateAsync(Domain.Task domainEntity)
+        public Task<Domain.Task> UpdateAsync(Domain.Task domainEntity)
         {
-            Domain.Task old = await GetAsync((int)domainEntity.Id);
-            Db.Remove(old);
+            Domain.Task item = Db.FirstOrDefault(e => e.Id == domainEntity.Id);
 
-            return await CreateAsync(old);
+            if (item == null)
+            {
+                return Task.FromResult<Domain.Task>(null);
+            }
+
+            Db.Remove(item);
+            Db.Add(domainEntity);
+
+            return Task.FromResult(domainEntity);
         }
 
-        public async Task DeleteAsync(int id) => Db.Remove(await GetAsync(id));
+        public Task<bool> DeleteAsync(int id) => Task.FromResult(Db.RemoveAll(e => e.Id == id) == 1);
     }
 }

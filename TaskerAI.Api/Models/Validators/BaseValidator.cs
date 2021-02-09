@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.Api.Models.Validators
 {
-    using FluentValidation;
     using System;
     using System.Linq.Expressions;
+    using FluentValidation;
 
     public class BaseValidator<T> : AbstractValidator<T>
     {

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TaskerAI.Domain.Exceptions;
-
-[assembly: InternalsVisibleTo("TaskerAI.Application")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
 {
+    using System.Collections.Generic;
+    using TaskerAI.Domain.Exceptions;
+
     public class TaskType : BaseEntity
     {
         private const string NameValidationMessage = "A task type name must be defined.";
@@ -47,7 +46,7 @@ namespace TaskerAI.Domain
 
             if (integrityIssues.Count > 0)
             {
-                throw new EntityIntegrityException(nameof(Task), integrityIssues);
+                throw new EntityIntegrityException(nameof(TaskType), integrityIssues);
             }
         }
     }
