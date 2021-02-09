@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.Application
 {
-    using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
+    using MediatR;
     using TaskerAI.Common;
     using TaskerAI.Domain;
 

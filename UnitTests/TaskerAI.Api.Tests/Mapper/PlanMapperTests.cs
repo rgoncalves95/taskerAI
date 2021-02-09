@@ -1,8 +1,8 @@
 namespace TaskerAI.Api.Tests.Mapper
 {
-    using FluentAssertions;
     using System;
     using System.Collections.Generic;
+    using FluentAssertions;
     using TaskerAI.Api.Mapper;
     using TaskerAI.Domain;
     using Xunit;

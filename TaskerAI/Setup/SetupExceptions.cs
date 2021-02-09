@@ -1,12 +1,12 @@
 ﻿namespace TaskerAI.Setup
 {
+    using System;
     using Community.AspNetCore.ExceptionHandling;
     using Community.AspNetCore.ExceptionHandling.Mvc;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using System;
     using TaskerAI.Domain.Exceptions;
 
     public static class SetupExceptions

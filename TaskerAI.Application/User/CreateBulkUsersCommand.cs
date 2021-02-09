@@ -1,10 +1,10 @@
 ﻿namespace TaskerAI.Application
 {
-    using MediatR;
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using MediatR;
 
     public class CreateBulkUsersCommand : IRequest<IEnumerable<Domain.User>>
     {

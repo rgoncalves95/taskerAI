@@ -1,9 +1,9 @@
 ﻿namespace TaskerAI.Application
 {
-    using MediatR;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using MediatR;
 
     public class CreateUserCommand : IRequest<Domain.User>
     {

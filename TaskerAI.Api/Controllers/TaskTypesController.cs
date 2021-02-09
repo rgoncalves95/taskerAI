@@ -1,10 +1,10 @@
 ﻿namespace TaskerAI.Api.Controllers
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Threading.Tasks;
     using MediatR;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using System.ComponentModel.DataAnnotations;
-    using System.Threading.Tasks;
     using TaskerAI.Api.Attributes;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
@@ -89,7 +89,7 @@
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
             await this.mediator.Send(new DeleteTaskTypeCommand(id));

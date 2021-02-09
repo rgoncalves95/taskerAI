@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.Application
 {
-    using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
+    using MediatR;
     using TaskerAI.Domain;
 
     public class UpdateTaskTypeCommand : IRequest<TaskType>
@@ -25,14 +25,8 @@
     {
         private readonly ITaskTypeRepository repository;
 
-        public UpdateTaskTypeCommandHandler(ITaskTypeRepository repository)
-        {
-            this.repository = repository;
-        }
+        public UpdateTaskTypeCommandHandler(ITaskTypeRepository repository) => this.repository = repository;
 
-        public Task<TaskType> Handle(UpdateTaskTypeCommand request, CancellationToken cancellationToken)
-        {
-            return this.repository.UpdateAsync(TaskType.Create(request.Name, request.Cost, request.Duration, request.Id));
-        }
+        public Task<TaskType> Handle(UpdateTaskTypeCommand request, CancellationToken cancellationToken) => this.repository.UpdateAsync(TaskType.Create(request.Name, request.Cost, request.Duration, request.Id));
     }
 }

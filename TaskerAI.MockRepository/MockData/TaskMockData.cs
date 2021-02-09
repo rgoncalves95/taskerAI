@@ -24,9 +24,9 @@
                     date,
                     3600,
                     "some notes that we take",
-                    id++,
                     TaskStatus.Draft
-                ));
+,
+                    id: id++));
 
                 result.Add(Task.Create(
                     "Delivery goods",
@@ -36,9 +36,9 @@
                     date,
                     1800,
                     "do'n't forget to take the trash",
-                    id++,
                     TaskStatus.Draft
-                ));
+,
+                    id: id++));
 
                 result.Add(Task.Create(
                     "Check in beer",
@@ -48,9 +48,9 @@
                     date,
                     3600,
                     "get some peanuts with it",
-                    id++,
                     TaskStatus.Draft
-                ));
+,
+                    id: id++));
             }
 
             return result;
