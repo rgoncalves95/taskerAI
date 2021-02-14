@@ -1,6 +1,7 @@
 ﻿namespace TaskerAI.Domain
 {
     using System;
+    using TaskerAI.Domain.Entities;
 
     public class TaskRoute
     {

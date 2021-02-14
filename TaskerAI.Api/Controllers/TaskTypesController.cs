@@ -9,7 +9,7 @@
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
     using TaskerAI.Common;
-    using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     [ApiController]
     [Route("[controller]")]

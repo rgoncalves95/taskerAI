@@ -1,6 +1,7 @@
 ﻿namespace TaskerAI.Domain
 {
     using System.Collections.Generic;
+    using TaskerAI.Domain.Entities;
 
     public interface ITaskRouteRepository
     {

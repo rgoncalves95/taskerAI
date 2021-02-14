@@ -5,6 +5,7 @@
     using MediatR;
     using TaskerAI.Common;
     using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     public class GetTaskTypesQuery : IRequest<Paged<TaskType>>
     {

@@ -7,7 +7,7 @@
     using TaskerAI.Common;
     using TaskerAI.Domain;
 
-    public class GetTasksQuery : IRequest<Paged<Domain.Task>>
+    public class GetTasksQuery : IRequest<Paged<Domain.Entities.Task>>
     {
         public GetTasksQuery
         (
@@ -44,13 +44,13 @@
         public string SortAs { get; }
     }
 
-    public class GetTasksQueryHandler : IRequestHandler<GetTasksQuery, Paged<Domain.Task>>
+    public class GetTasksQueryHandler : IRequestHandler<GetTasksQuery, Paged<Domain.Entities.Task>>
     {
         private readonly ITaskRepository repository;
 
         public GetTasksQueryHandler(ITaskRepository respository) => this.repository = respository;
 
-        public async Task<Paged<Domain.Task>> Handle(GetTasksQuery request, CancellationToken cancellationToken)
+        public async Task<Paged<Domain.Entities.Task>> Handle(GetTasksQuery request, CancellationToken cancellationToken)
         {
             return await this.repository.GetAsync
             (

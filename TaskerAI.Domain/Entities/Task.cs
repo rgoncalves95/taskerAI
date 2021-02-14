@@ -1,8 +1,9 @@
 ﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Application")]
-namespace TaskerAI.Domain
+namespace TaskerAI.Domain.Entities
 {
     using System;
     using System.Collections.Generic;
+    using TaskerAI.Domain;
     using TaskerAI.Domain.Exceptions;
 
     public class Task : BaseEntity

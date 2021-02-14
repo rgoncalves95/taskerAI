@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using MediatR;
     using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     public class GetTaskTypeByIdQuery : IRequest<TaskType>
     {

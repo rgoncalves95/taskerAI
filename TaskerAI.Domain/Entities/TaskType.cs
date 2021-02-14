@@ -1,5 +1,5 @@
 ﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Application")]
-namespace TaskerAI.Domain
+namespace TaskerAI.Domain.Entities
 {
     using System.Collections.Generic;
     using TaskerAI.Domain.Exceptions;
@@ -23,7 +23,7 @@ namespace TaskerAI.Domain
             IntegrityCheck();
         }
 
-        private TaskType(int id) => base.Id = id;
+        private TaskType(int id) => this.Id = id;
 
         public string Name { get; private set; }
         public double? Cost { get; private set; }
