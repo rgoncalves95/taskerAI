@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.Application
 {
-    using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
+    using MediatR;
     using TaskerAI.Common;
     using TaskerAI.Domain;
 
@@ -34,9 +34,9 @@
 
         public GetTaskTypesQueryHandler(ITaskTypeRepository repository) => this.repository = repository;
 
-        public async Task<Paged<TaskType>> Handle(GetTaskTypesQuery request, CancellationToken cancellationToken)
+        public Task<Paged<TaskType>> Handle(GetTaskTypesQuery request, CancellationToken cancellationToken)
         {
-            return await this.repository.GetAsync
+            return this.repository.GetAsync
             (
                 request.Name,
                 request.Cost,

@@ -24,6 +24,7 @@ namespace TaskerAI
             services.AddValidators();
             services.AddMediatr();
             services.AddSwagger();
+            services.AddMemoryCache();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

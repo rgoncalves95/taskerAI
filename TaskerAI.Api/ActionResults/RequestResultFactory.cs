@@ -1,7 +1,7 @@
 ﻿namespace TaskerAI.Api.ActionResults
 {
-    using Microsoft.AspNetCore.Mvc;
     using System.Linq;
+    using Microsoft.AspNetCore.Mvc;
 
     public class RequestResultFactory : IRequestResultFactory
     {

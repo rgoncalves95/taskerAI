@@ -18,6 +18,6 @@
         Task<TaskType> GetAsync(int id);
         Task<TaskType> CreateAsync(TaskType domainEntity);
         Task<TaskType> UpdateAsync(TaskType domainEntity);
-        TaskType DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

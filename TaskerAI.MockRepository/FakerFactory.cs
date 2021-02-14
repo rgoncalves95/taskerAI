@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.MockRepository
 {
-    using Bogus;
     using System;
     using System.Collections.Generic;
+    using Bogus;
     using TaskerAI.Domain;
 
     internal static class FakerFactory
@@ -65,7 +65,7 @@
                     DateTimeOffset.Now.AddDays(2),
                     f.Random.Int(60, 120),
                     f.Lorem.Sentence(20),
-                    id));
+                    id: id));
 
             return taskFaker.Generate();
         }

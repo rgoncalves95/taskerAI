@@ -1,20 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TaskerAI.Domain.Exceptions;
-
-[assembly: InternalsVisibleTo("TaskerAI.Application")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
 {
+    using System.Collections.Generic;
+    using TaskerAI.Domain.Exceptions;
+
     public class TaskType : BaseEntity
     {
         private const string NameValidationMessage = "A task type name must be defined.";
         private const string CostDurationValidationMessage = "A cost or duration must be defined for a task type";
 
         internal static TaskType Create(string name, double? cost, int? duration, int? id = null) => new TaskType(name, cost, duration, id);
-
-        internal static TaskType Create(string name, double? cost, int? id = null) => new TaskType(name, cost, null, id);
-
-        internal static TaskType Create(string name, int? duration, int? id = null) => new TaskType(name, null, duration, id);
 
         internal static TaskType Create(int id) => new TaskType(id);
 
@@ -24,6 +19,8 @@ namespace TaskerAI.Domain
             this.Cost = cost;
             this.Duration = duration;
             this.Id = id;
+
+            IntegrityCheck();
         }
 
         private TaskType(int id) => base.Id = id;
@@ -49,7 +46,7 @@ namespace TaskerAI.Domain
 
             if (integrityIssues.Count > 0)
             {
-                throw new EntityIntegrityException(nameof(Task), integrityIssues);
+                throw new EntityIntegrityException(nameof(TaskType), integrityIssues);
             }
         }
     }

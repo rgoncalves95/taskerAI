@@ -6,19 +6,21 @@
     using MediatR;
     using TaskerAI.Domain;
 
-    public class CreateTaskCommand : IRequest<Domain.Task>
+    public class UpdateTaskCommand : IRequest<Domain.Task>
     {
-        public CreateTaskCommand(string name, int typeId, int locationId, int duration, DateTimeOffset date, DateTimeOffset dueDate, string notes)
+        public UpdateTaskCommand(int id, string name, int typeId, int locationId, int durationInSeconds, DateTimeOffset date, DateTimeOffset dueDate, string notes)
         {
+            this.Id = id;
             this.Name = name;
             this.TypeId = typeId;
             this.LocationId = locationId;
-            this.DurationInSeconds = duration;
+            this.DurationInSeconds = durationInSeconds;
             this.Date = date;
             this.DueDate = dueDate;
             this.Notes = notes;
         }
 
+        public int Id { get; }
         public string Name { get; }
         public int TypeId { get; }
         public int LocationId { get; }
@@ -28,15 +30,15 @@
         public string Notes { get; }
     }
 
-    public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Task>
+    public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, Domain.Task>
     {
         private readonly ITaskRepository repository;
 
-        public CreateTaskCommandHandler(ITaskRepository repository) => this.repository = repository;
+        public UpdateTaskCommandHandler(ITaskRepository repository) => this.repository = repository;
 
-        public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
+        public Task<Domain.Task> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
         {
-            return await this.repository.CreateAsync
+            return this.repository.UpdateAsync
             (
                 Domain.Task.Create
                 (
@@ -46,7 +48,8 @@
                     request.Date,
                     request.DueDate,
                     request.DurationInSeconds,
-                    request.Notes
+                    request.Notes,
+                    request.Id
                 )
             );
         }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TaskerAI.Domain.Exceptions;
-
-[assembly: InternalsVisibleTo("TaskerAI.Application")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Application")]
 namespace TaskerAI.Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using TaskerAI.Domain.Exceptions;
+
     public class Task : BaseEntity
     {
         private const string NameValidationMessage = "A task name must be defined.";
@@ -16,33 +15,47 @@ namespace TaskerAI.Domain
         private const string DatesMismatchValidationMessage = "Due date and execution date mismatch. Due date should be after execution date.";
         private const string DurationValidationMessage = "A task duration must be specified.";
 
-        internal static Task Create
-        (
-            string name,
-            TaskType type,
-            Location location,
-            DateTimeOffset date,
-            DateTimeOffset dueDate,
-            int durationInSeconds,
-            string notes,
-            int? id = null,
-            TaskStatus? status = null,
-            DateTimeOffset? finishDate = null
-        ) => new Task(name, type, location, date, dueDate, durationInSeconds, notes, id, status, finishDate);
+        internal static Task Create(string name,
+                                    TaskType type,
+                                    Location location,
+                                    DateTimeOffset date,
+                                    DateTimeOffset dueDate,
+                                    int durationInSeconds,
+                                    string notes,
+                                    TaskStatus? status = null,
+                                    DateTimeOffset? finishDate = null,
+                                    int? id = null)
+            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, status, finishDate, id);
 
-        private Task
-        (
-            string name,
-            TaskType type,
-            Location location,
-            DateTimeOffset date,
-            DateTimeOffset dueDate,
-            int durationInSeconds,
-            string notes,
-            int? id,
-            TaskStatus? status,
-            DateTimeOffset? finishDate
-        )
+        internal static Task Create(string name,
+                                    TaskType type,
+                                    Location location,
+                                    DateTimeOffset date,
+                                    DateTimeOffset dueDate,
+                                    int durationInSeconds,
+                                    string notes,
+                                    int? id = null)
+            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, null, null, id);
+
+        internal static Task Create(string name,
+                                    TaskType type,
+                                    Location location,
+                                    DateTimeOffset date,
+                                    DateTimeOffset dueDate,
+                                    int durationInSeconds,
+                                    string notes)
+            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, null, null, null);
+
+        private Task(string name,
+                     TaskType type,
+                     Location location,
+                     DateTimeOffset date,
+                     DateTimeOffset dueDate,
+                     int durationInSeconds,
+                     string notes,
+                     TaskStatus? status,
+                     DateTimeOffset? finishDate,
+                     int? id)
         {
             this.Id = id;
             this.Name = name;

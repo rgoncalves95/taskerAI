@@ -1,8 +1,8 @@
 ﻿namespace TaskerAI.Swagger
 {
-    using Swashbuckle.AspNetCore.Filters;
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Swashbuckle.AspNetCore.Filters;
     using TaskerAI.Api.Models;
 
     [ExcludeFromCodeCoverage]

@@ -20,6 +20,6 @@
         Task<Task> GetAsync(int id);
         Task<Task> CreateAsync(Task domainEntity);
         Task<Task> UpdateAsync(Task domainEntity);
-        System.Threading.Tasks.Task DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

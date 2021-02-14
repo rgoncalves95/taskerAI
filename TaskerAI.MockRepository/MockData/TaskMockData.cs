@@ -13,7 +13,6 @@
             int id = 1;
 
 
-
             result.Add(Task.Create
             (
                 "Clean Apt 1",
@@ -23,8 +22,9 @@
                 DateTimeOffset.Now.AddHours(1),
                 3600,
                 "some notes that we take",
-                id++,
-                TaskStatus.Draft
+                TaskStatus.Draft,
+                null,
+                id++
             ));
 
             result.Add(Task.Create
@@ -36,8 +36,9 @@
                 DateTimeOffset.Now.AddHours(5),
                 4800,
                 "some notes that we take",
-                id++,
-                TaskStatus.Draft
+                TaskStatus.Draft,
+                null,
+                id++
             ));
 
             result.Add(Task.Create
@@ -49,8 +50,9 @@
                 DateTimeOffset.Now.AddHours(3),
                 3600,
                 "some notes that we take",
-                id++,
-                TaskStatus.Draft
+                TaskStatus.Draft,
+                null,
+                id++
             ));
 
             result.Add(Task.Create
@@ -62,8 +64,9 @@
              DateTimeOffset.Now.AddHours(3),
              3600,
              "some notes that we take",
-             id++,
-             TaskStatus.Draft
+             TaskStatus.Draft,
+                null,
+                id++
          ));
 
             result.Add(Task.Create
@@ -75,8 +78,9 @@
                 DateTimeOffset.Now.AddHours(8),
                 4800,
                 "some notes that we take",
-                id++,
-                TaskStatus.Draft
+               TaskStatus.Draft,
+                null,
+                id++
             ));
 
             result.Add(Task.Create
@@ -88,8 +92,9 @@
                DateTimeOffset.Now.AddHours(4),
                6000,
                "some notes that we take",
-               id++,
-               TaskStatus.Draft
+               TaskStatus.Draft,
+                null,
+                id++
            ));
 
             result.Add(Task.Create
@@ -101,8 +106,9 @@
            DateTimeOffset.Now.AddHours(9),
            3600,
            "some notes that we take",
-           id++,
-           TaskStatus.Draft
+           TaskStatus.Draft,
+                null,
+                id++
        ));
 
             result.Add(Task.Create
@@ -114,8 +120,9 @@
                 DateTimeOffset.Now.AddHours(2),
                 4800,
                 "some notes that we take",
-                id++,
-                TaskStatus.Draft
+                TaskStatus.Draft,
+                null,
+                id++
             ));
 
             result.Add(Task.Create
@@ -127,8 +134,9 @@
               DateTimeOffset.Now.AddHours(2),
               6000,
               "some notes that we take",
-              id++,
-              TaskStatus.Draft
+              TaskStatus.Draft,
+                null,
+                id++
           ));
 
             result.Add(Task.Create
@@ -140,8 +148,9 @@
           DateTimeOffset.Now.AddHours(6),
           3600,
           "some notes that we take",
-          id++,
-          TaskStatus.Draft
+          TaskStatus.Draft,
+                null,
+                id++
       ));
 
             result.Add(Task.Create
@@ -153,8 +162,9 @@
         DateTimeOffset.Now.AddHours(4),
         3600,
         "some notes that we take",
-        id++,
-        TaskStatus.Draft
+        TaskStatus.Draft,
+                null,
+                id++
     ));
 
 
@@ -167,8 +177,9 @@
         DateTimeOffset.Now.AddHours(4),
         3600,
         "some notes that we take",
-        id++,
-        TaskStatus.Draft
+        TaskStatus.Draft,
+                null,
+                id++
     ));
 
             result.Add(Task.Create
@@ -180,8 +191,9 @@
              DateTimeOffset.Now.AddHours(6),
              6000,
              "some notes that we take",
-             id++,
-             TaskStatus.Draft
+             TaskStatus.Draft,
+                null,
+                id++
          ));
 
             result.Add(Task.Create
@@ -193,8 +205,9 @@
            DateTimeOffset.Now.AddHours(7),
            4800,
            "some notes that we take",
-           id++,
-           TaskStatus.Draft
+           TaskStatus.Draft,
+                null,
+                id++
        ));
 
 
@@ -207,8 +220,9 @@
            DateTimeOffset.Now.AddHours(2),
            4800,
            "some notes that we take",
-           id++,
-           TaskStatus.Draft
+           TaskStatus.Draft,
+                null,
+                id++
        ));
 
 
@@ -223,8 +237,9 @@
            DateTimeOffset.Now.AddHours(2),
            1200,
            "some notes that we take",
-           id++,
-           TaskStatus.Draft
+           TaskStatus.Draft,
+                null,
+                id++
        ));
 
             result.Add(Task.Create
@@ -236,8 +251,9 @@
               DateTimeOffset.Now.AddHours(2),
               1200,
               "some notes that we take",
-              id++,
-              TaskStatus.Draft
+              TaskStatus.Draft,
+                null,
+                id++
           ));
 
             result.Add(Task.Create
@@ -249,8 +265,9 @@
           DateTimeOffset.Now.AddHours(6),
           1200,
           "some notes that we take",
-          id++,
-          TaskStatus.Draft
+          TaskStatus.Draft,
+                null,
+                id++
       ));
 
             result.Add(Task.Create
@@ -262,8 +279,9 @@
         DateTimeOffset.Now.AddHours(4),
         1200,
         "some notes that we take",
-        id++,
-        TaskStatus.Draft
+        TaskStatus.Draft,
+                null,
+                id++
     ));
 
 
@@ -278,9 +296,11 @@
                 DateTimeOffset.Now.AddHours(3),
                 3600,
                 "some notes that we take",
-                id++,
-                TaskStatus.Draft
+                TaskStatus.Draft,
+                null,
+                id++
             ));
+
 
             return result;
         }
