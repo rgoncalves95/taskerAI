@@ -11,10 +11,10 @@
 
     public class TaskRepository : PagedRespository, Domain.ITaskRepository
     {
-        private static readonly List<Domain.Task> Db = TaskMockData.DatabaseSeed().ToList();
+        private static readonly List<Domain.Entities.Task> Db = TaskMockData.DatabaseSeed().ToList();
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;
 
-        public Task<Paged<Domain.Task>> GetAsync
+        public Task<Paged<Domain.Entities.Task>> GetAsync
         (
             string name,
             int? type,
@@ -27,9 +27,9 @@
             string sortAs
         )
         {
-            IQueryable<Domain.Task> query = Db.AsQueryable();
+            IQueryable<Domain.Entities.Task> query = Db.AsQueryable();
 
-            var filter = new List<Expression<Func<Domain.Task, bool>>>();
+            var filter = new List<Expression<Func<Domain.Entities.Task, bool>>>();
 
             if (!string.IsNullOrWhiteSpace(name))
             {
@@ -59,11 +59,11 @@
             return Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
         }
 
-        public Task<Domain.Task> GetAsync(int id) => Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
+        public Task<Domain.Entities.Task> GetAsync(int id) => Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
 
-        public Task<Domain.Task> CreateAsync(Domain.Task domainEntity)
+        public Task<Domain.Entities.Task> CreateAsync(Domain.Entities.Task domainEntity)
         {
-            var @new = Domain.Task.Create
+            var @new = Domain.Entities.Task.Create
             (
                 domainEntity.Name,
                 domainEntity.Type,
@@ -82,13 +82,13 @@
             return Task.FromResult(@new);
         }
 
-        public Task<Domain.Task> UpdateAsync(Domain.Task domainEntity)
+        public Task<Domain.Entities.Task> UpdateAsync(Domain.Entities.Task domainEntity)
         {
-            Domain.Task item = Db.FirstOrDefault(e => e.Id == domainEntity.Id);
+            Domain.Entities.Task item = Db.FirstOrDefault(e => e.Id == domainEntity.Id);
 
             if (item == null)
             {
-                return Task.FromResult<Domain.Task>(null);
+                return Task.FromResult<Domain.Entities.Task>(null);
             }
 
             Db.Remove(item);

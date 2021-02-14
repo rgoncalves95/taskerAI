@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using TaskerAI.Common;
     using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
     using TaskerAI.Infrastructure.Repositories;
     using TaskerAI.MockRepository.MockData;
     using Task = System.Threading.Tasks.Task;

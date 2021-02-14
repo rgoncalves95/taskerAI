@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Bogus;
     using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     internal static class FakerFactory
     {

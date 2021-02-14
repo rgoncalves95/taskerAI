@@ -5,8 +5,9 @@
     using System.Threading.Tasks;
     using MediatR;
     using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
-    public class CreateTaskCommand : IRequest<Domain.Task>
+    public class CreateTaskCommand : IRequest<Domain.Entities.Task>
     {
         public CreateTaskCommand(string name, int typeId, int locationId, int duration, DateTimeOffset date, DateTimeOffset dueDate, string notes)
         {
@@ -28,17 +29,17 @@
         public string Notes { get; }
     }
 
-    public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Task>
+    public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Domain.Entities.Task>
     {
         private readonly ITaskRepository repository;
 
         public CreateTaskCommandHandler(ITaskRepository repository) => this.repository = repository;
 
-        public async Task<Domain.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.Task> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
             return await this.repository.CreateAsync
             (
-                Domain.Task.Create
+                Domain.Entities.Task.Create
                 (
                     request.Name,
                     TaskType.Create(request.TypeId),

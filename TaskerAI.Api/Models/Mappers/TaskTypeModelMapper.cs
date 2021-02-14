@@ -4,7 +4,7 @@
     using System.Linq;
     using TaskerAI.Api.Models;
     using TaskerAI.Common;
-    using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     public class TaskTypeModelMapper : IMapper<TaskType, TaskTypeModel>
     {

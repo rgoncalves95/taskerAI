@@ -1,7 +1,7 @@
 ﻿namespace TaskerAI.MockRepository.MockData
 {
     using System.Collections.Generic;
-    using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     public class TaskTypeMockData
     {

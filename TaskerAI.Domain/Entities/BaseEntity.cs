@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Domain
+﻿namespace TaskerAI.Domain.Entities
 {
     public abstract class BaseEntity
     {
