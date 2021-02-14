@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using TaskerAI.Domain;
+    using TaskerAI.Domain.Entities;
 
     internal class PlanBuilderLegacy : IPlanBuilder
     {

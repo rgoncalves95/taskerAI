@@ -6,7 +6,7 @@
 
     public interface ITaskRepository
     {
-        Task<Paged<Task>> GetAsync(
+        Task<Paged<Entities.Task>> GetAsync(
             string name,
             int? type,
             DateTimeOffset? intervalStart,
@@ -17,9 +17,9 @@
             string sortBy,
             string sortAs
         );
-        Task<Task> GetAsync(int id);
-        Task<Task> CreateAsync(Task domainEntity);
-        Task<Task> UpdateAsync(Task domainEntity);
+        Task<Entities.Task> GetAsync(int id);
+        Task<Entities.Task> CreateAsync(Entities.Task domainEntity);
+        Task<Entities.Task> UpdateAsync(Entities.Task domainEntity);
         Task<bool> DeleteAsync(int id);
     }
 }

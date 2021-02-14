@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using TaskerAI.Common;
+    using TaskerAI.Domain.Entities;
 
     public interface ITaskTypeRepository
     {

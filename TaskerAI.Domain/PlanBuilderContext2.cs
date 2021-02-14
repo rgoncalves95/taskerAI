@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using TaskerAI.Domain.Entities;
 
     public class PlanBuilderContext2
     {

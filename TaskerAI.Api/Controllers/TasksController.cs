@@ -16,9 +16,9 @@
     public class TasksController : ControllerBase
     {
         private readonly IMediator mediator;
-        private readonly IMapper<Domain.Task, TaskModel> mapper;
+        private readonly IMapper<Domain.Entities.Task, TaskModel> mapper;
 
-        public TasksController(IMediator mediator, IMapper<Domain.Task, TaskModel> mapper)
+        public TasksController(IMediator mediator, IMapper<Domain.Entities.Task, TaskModel> mapper)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -39,7 +39,7 @@
             [FromQuery] string sortAs = null
         )
         {
-            Paged<Domain.Task> result = await this.mediator.Send(new GetTasksQuery(name, type, intervalStart, intervalEnd, status, pageSize, pageIndex, sortBy, sortAs));
+            Paged<Domain.Entities.Task> result = await this.mediator.Send(new GetTasksQuery(name, type, intervalStart, intervalEnd, status, pageSize, pageIndex, sortBy, sortAs));
 
             return Ok(result.Adapt(this.mapper));
         }
@@ -49,7 +49,7 @@
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(int id)
         {
-            Domain.Task result = await this.mediator.Send(new GetTaskByIdQuery(id));
+            Domain.Entities.Task result = await this.mediator.Send(new GetTaskByIdQuery(id));
 
             if (result == null)
             {
@@ -75,7 +75,7 @@
         [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> Put(int id, TaskModel model)
         {
-            Domain.Task result = await this.mediator.Send(new UpdateTaskCommand(id, model.Name, model.TypeId, model.LocationId, model.DurationInSeconds, model.Date, model.DueDate, model.Notes));
+            Domain.Entities.Task result = await this.mediator.Send(new UpdateTaskCommand(id, model.Name, model.TypeId, model.LocationId, model.DurationInSeconds, model.Date, model.DueDate, model.Notes));
 
             if (result == null)
             {

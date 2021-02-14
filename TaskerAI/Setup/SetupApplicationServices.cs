@@ -2,11 +2,8 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using TaskerAI.Api.ActionResults;
-    using TaskerAI.Api.Mapper;
-    using TaskerAI.Api.Models;
     using TaskerAI.Api.Models.Mappers;
     using TaskerAI.Common;
-    using TaskerAI.Domain;
     using TaskerAI.MockRepository;
 
     public static class SetupApplicationServices
@@ -17,20 +14,22 @@
 
         private static IServiceCollection AddPersistence(this IServiceCollection services)
         {
-            services.AddTransient<IPlanRepository>(p => null);
-            services.AddTransient<IUserRepository>(p => null);
-            services.AddTransient<ITaskRepository, TaskRepository>();
-            services.AddTransient<ITaskTypeRepository, TaskTypeRepository>();
+            services.Scan(s
+                => s.FromAssemblyOf<TaskRepository>()
+                    .AddClasses(c => c.Where(type => type.Name.EndsWith("Repository")))
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime());
 
             return services;
         }
 
         private static IServiceCollection AddApi(this IServiceCollection services)
         {
-            services.AddSingleton<IMapper<Plan, PlanModel>, PlanMapper>();
-            services.AddSingleton<IMapper<User, UserModel>, UserMapper>();
-            services.AddSingleton<IMapper<Task, TaskModel>, TaskModelMapper>();
-            services.AddSingleton<IMapper<TaskType, TaskTypeModel>, TaskTypeModelMapper>();
+            services.Scan(s
+                => s.FromAssemblyOf<TaskModelMapper>()
+                    .AddClasses(c => c.AssignableTo(typeof(IMapper<,>)))
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime());
 
             services.AddSingleton<IRequestResultFactory, RequestResultFactory>();
 
