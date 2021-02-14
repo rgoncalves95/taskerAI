@@ -8,11 +8,11 @@
 
     public class CreateTaskCommand : IRequest<Domain.Task>
     {
-        public CreateTaskCommand(string name, int typeId, int locationId, int duration, DateTimeOffset date, DateTimeOffset dueDate, string notes)
+        public CreateTaskCommand(string name, int typeId, Location location, int duration, DateTimeOffset date, DateTimeOffset dueDate, string notes)
         {
             this.Name = name;
             this.TypeId = typeId;
-            this.LocationId = locationId;
+            this.Location = location;
             this.DurationInSeconds = duration;
             this.Date = date;
             this.DueDate = dueDate;
@@ -21,7 +21,7 @@
 
         public string Name { get; }
         public int TypeId { get; }
-        public int LocationId { get; }
+        public int Location { get; }
         public int DurationInSeconds { get; }
         public DateTimeOffset Date { get; }
         public DateTimeOffset DueDate { get; }
@@ -42,7 +42,7 @@
                 (
                     request.Name,
                     TaskType.Create(request.TypeId),
-                    Location.Create(request.LocationId),
+                    Location.Create(request.Location),
                     request.Date,
                     request.DueDate,
                     request.DurationInSeconds,
