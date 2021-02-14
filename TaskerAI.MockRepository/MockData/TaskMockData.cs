@@ -230,7 +230,7 @@
 
             result.Add(Task.Create
        (
-           "Clean Apt 8",
+           "Check in Apt 8",
            TaskType.Create("Check in", 10.0, 1200, 7),
            Location.Create(41.1480466, -8.6008612),
            DateTimeOffset.Now,
