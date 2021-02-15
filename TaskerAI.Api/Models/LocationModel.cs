@@ -1,7 +1,6 @@
 ﻿namespace TaskerAI.Api.Models
 {
     using System;
-    using System.Collections.Generic;
 
     public class LocationModel
     {
@@ -13,8 +12,10 @@
         public string Street { get; set; }
         public string Door { get; set; }
         public string Floor { get; set; }
-        public string Zip { get; set; }
+        public string ZipCode { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
         public string Alias { get; set; }
-        public IEnumerable<string> Tags { get; set; }
+        public string[] Tags { get; set; }
     }
 }

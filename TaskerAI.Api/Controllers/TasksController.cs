@@ -65,7 +65,22 @@
         {
             TaskModel result = this.mapper.Map(
                 await this.mediator.Send(
-                    new CreateTaskCommand(model.Name, model.TypeId, model.LocationId, model.DurationInSeconds, model.Date, model.DueDate, model.Notes)));
+                    new CreateTaskCommand(model.Name,
+                                          model.TypeId,
+                                          model.Duration,
+                                          model.Date,
+                                          model.DueDate,
+                                          model.Location.Street,
+                                          model.Location.Door,
+                                          model.Location.Floor,
+                                          model.Location.ZipCode,
+                                          model.Location.City,
+                                          model.Location.Country,
+                                          model.Location.Latitude,
+                                          model.Location.Longitude,
+                                          model.Location.Alias,
+                                          model.Location.Tags,
+                                          model.Notes)));
 
             return CreatedAtRoute(RouteNames.TaskResource.GetById, new { id = result.Id }, result);
         }
@@ -75,11 +90,28 @@
         [ProducesResponseType(typeof(TaskTypeModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> Put(int id, TaskModel model)
         {
-            Domain.Entities.Task result = await this.mediator.Send(new UpdateTaskCommand(id, model.Name, model.TypeId, model.LocationId, model.DurationInSeconds, model.Date, model.DueDate, model.Notes));
+            Domain.Entities.Task result = await this.mediator.Send(new UpdateTaskCommand(id, model.Name, model.TypeId, model.Location.Id ?? 0, model.Duration, model.Date, model.DueDate, model.Notes));
 
             if (result == null)
             {
-                result = await this.mediator.Send(new CreateTaskCommand(model.Name, model.TypeId, model.LocationId, model.DurationInSeconds, model.Date, model.DueDate, model.Notes));
+                result = await this.mediator.Send(
+                    new CreateTaskCommand(model.Name,
+                                          model.TypeId,
+                                          model.Duration,
+                                          model.Date,
+                                          model.DueDate,
+                                          model.Location.Street,
+                                          model.Location.Door,
+                                          model.Location.Floor,
+                                          model.Location.ZipCode,
+                                          model.Location.City,
+                                          model.Location.Country,
+                                          model.Location.Latitude,
+                                          model.Location.Longitude,
+                                          model.Location.Alias,
+                                          model.Location.Tags,
+                                          model.Notes));
+
                 model = this.mapper.Map(result);
 
                 return CreatedAtRoute(RouteNames.TaskResource.GetById, new { id = model.Id }, model);

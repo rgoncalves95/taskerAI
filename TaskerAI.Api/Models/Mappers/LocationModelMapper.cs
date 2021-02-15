@@ -10,17 +10,17 @@
     {
         public void Map(Location from, LocationModel to)
         {
-            to.Id = from.Id ?? 0;
+            to.Id = from.Id;
             to.Street = from.Street;
             to.Door = from.Door;
             to.Floor = from.Floor;
-            to.Zip = from.ZipCode;
-            //to.City = from.City;
-            //to.Country = from.Country;
+            to.ZipCode = from.ZipCode;
+            to.City = from.City;
+            to.Country = from.Country;
             to.Latitude = from.Latitude;
             to.Longitude = from.Longitude;
-            to.Alias = from.Alias;
-            to.Tags = from.Tags;
+            to.Alias = from.Aliases.FirstOrDefault();
+            to.Tags = from.Tags.ToArray();
         }
 
         public LocationModel Map(Location from)

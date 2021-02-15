@@ -8,11 +8,11 @@
         {
             Required(p => p.Name);
             Required(p => p.TypeId);
-            Required(p => p.LocationId);
+            Required(p => p.Location);
             Required(p => p.Date);
             Required(p => p.DueDate);
             RuleFor(p => p.DueDate).GreaterThan(p => p.Date);
-            Required(p => p.DurationInSeconds);
+            Required(p => p.Duration);
         }
     }
 }

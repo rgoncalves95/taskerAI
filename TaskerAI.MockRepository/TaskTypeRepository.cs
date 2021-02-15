@@ -14,8 +14,10 @@
 
     public class TaskTypeRepository : PagedRespository, ITaskTypeRepository
     {
-        private static readonly List<TaskType> Db = TaskTypeMockData.DatabaseSeed().ToList();
+        private static readonly List<TaskType> Db;
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;
+
+        static TaskTypeRepository() => Db = TaskTypeMockData.DatabaseSeed().ToList();
 
         public Task<Paged<TaskType>> GetAsync(string name, double? cost, int? duration, int? pageSize, int? pageIndex, string sortBy, string sortAs)
         {

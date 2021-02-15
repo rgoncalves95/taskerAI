@@ -9,8 +9,15 @@
     {
         public static IServiceCollection AddValidators(this IServiceCollection services)
         {
+            //services.Scan(s
+            //    => s.FromAssemblyOf<TaskModelValidator>()
+            //        .AddClasses(c => c.AssignableTo(typeof(IValidator<>)))
+            //        .AsImplementedInterfaces()
+            //        .WithSingletonLifetime());
+
             services.AddTransient<IValidator<TaskModel>, TaskModelValidator>();
             services.AddTransient<IValidator<TaskTypeModel>, TaskTypeModelValidator>();
+            services.AddTransient<IValidator<LocationModel>, LocationModelValidator>();
 
             return services;
         }
