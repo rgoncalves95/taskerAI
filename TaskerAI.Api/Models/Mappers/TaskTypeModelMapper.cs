@@ -10,7 +10,7 @@
     {
         public void Map(TaskType from, TaskTypeModel to)
         {
-            to.Id = from.Id ?? 0;
+            to.Id = from.Id;
             to.Name = from.Name;
             to.Cost = from.Cost;
             to.Duration = from.Duration;

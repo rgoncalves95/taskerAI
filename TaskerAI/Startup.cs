@@ -17,7 +17,7 @@ namespace TaskerAI
         {
             services.AddControllers()
                     .AddNewtonsoftJson()
-                    .AddFluentValidation();
+                    .AddFluentValidation(c => c.ImplicitlyValidateChildProperties = true);
             services.AddConfigurationOptions();
             services.AddExceptionPolicies();
             services.AddApplicationServices();

@@ -11,7 +11,7 @@
         public DateTimeOffset Date { get; set; }
         public DateTimeOffset DueDate { get; set; }
         //public DateTimeOffset FinishDate { get; set; }
-        public int DurationInSeconds { get; set; }
+        public int Duration { get; set; }
         public string Notes { get; set; }
 
         //public List<TaskMetadataModel> Metadata { get; set; }

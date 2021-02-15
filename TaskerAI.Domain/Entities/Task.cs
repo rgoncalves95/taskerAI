@@ -23,7 +23,7 @@ namespace TaskerAI.Domain.Entities
                                     DateTimeOffset dueDate,
                                     int durationInSeconds,
                                     string notes,
-                                    TaskStatus? status = null,
+                                    TaskStatus status,
                                     DateTimeOffset? finishDate = null,
                                     int? id = null)
             => new Task(name, type, location, date, dueDate, durationInSeconds, notes, status, finishDate, id);
@@ -36,7 +36,7 @@ namespace TaskerAI.Domain.Entities
                                     int durationInSeconds,
                                     string notes,
                                     int? id = null)
-            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, null, null, id);
+            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, TaskStatus.Draft, null, id);
 
         internal static Task Create(string name,
                                     TaskType type,
@@ -45,7 +45,7 @@ namespace TaskerAI.Domain.Entities
                                     DateTimeOffset dueDate,
                                     int durationInSeconds,
                                     string notes)
-            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, null, null, null);
+            => new Task(name, type, location, date, dueDate, durationInSeconds, notes, TaskStatus.Draft, null, null);
 
         private Task(string name,
                      TaskType type,
@@ -54,7 +54,7 @@ namespace TaskerAI.Domain.Entities
                      DateTimeOffset dueDate,
                      int durationInSeconds,
                      string notes,
-                     TaskStatus? status,
+                     TaskStatus status,
                      DateTimeOffset? finishDate,
                      int? id)
         {
@@ -73,7 +73,7 @@ namespace TaskerAI.Domain.Entities
         }
 
         public string Name { get; set; }
-        public TaskStatus? Status { get; private set; }
+        public TaskStatus Status { get; private set; }
         public TaskType Type { get; private set; }
         public Location Location { get; private set; }
         public DateTimeOffset Date { get; private set; }
@@ -81,8 +81,6 @@ namespace TaskerAI.Domain.Entities
         public DateTimeOffset? FinishDate { get; private set; }
         public int DurationInSeconds { get; private set; }
         public string Notes { get; private set; }
-
-        public void EndTask() => this.FinishDate = DateTimeOffset.UtcNow;
 
         protected override void IntegrityCheck()
         {
@@ -127,6 +125,18 @@ namespace TaskerAI.Domain.Entities
             {
                 throw new EntityIntegrityException(nameof(Task), integrityIssues);
             }
+        }
+
+        internal void EndTask() => this.FinishDate = DateTimeOffset.UtcNow;
+
+        internal void ChangeLocation(Location location)
+        {
+            if (this.Status != TaskStatus.Draft)
+            {
+                throw new InvalidTaskStatusForLocationChange(this.Status);
+            }
+
+            this.Location = location;
         }
     }
 }
