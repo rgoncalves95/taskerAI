@@ -24,7 +24,7 @@ namespace TaskerAI
             services.AddValidators();
             services.AddMediatr();
             services.AddSwagger();
-            services.AddMemoryCache();
+            services.AddHangfire();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,6 +38,7 @@ namespace TaskerAI
                 endpoints.MapControllers();
             });
             app.UseSwagger();
+            app.UseHangfire();
         }
     }
 }
