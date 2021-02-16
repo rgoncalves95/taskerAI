@@ -18,6 +18,7 @@
             services.AddTransient<IValidator<TaskModel>, TaskModelValidator>();
             services.AddTransient<IValidator<TaskTypeModel>, TaskTypeModelValidator>();
             services.AddTransient<IValidator<LocationModel>, LocationModelValidator>();
+            services.AddTransient<IValidator<BatchModel>, BatchModelValidator>();
 
             return services;
         }

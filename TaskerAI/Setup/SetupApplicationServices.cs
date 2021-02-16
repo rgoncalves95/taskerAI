@@ -4,11 +4,12 @@
     using TaskerAI.Api.ActionResults;
     using TaskerAI.Api.Models.Mappers;
     using TaskerAI.Common;
+    using TaskerAI.Infrastructure.Workers;
     using TaskerAI.MockRepository;
 
     public static class SetupApplicationServices
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services) => services.AddDomain().AddPersistence().AddApi();
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services) => services.AddDomain().AddInfrastructure().AddPersistence().AddApi();
 
         private static IServiceCollection AddDomain(this IServiceCollection services) => services;
 
@@ -20,6 +21,19 @@
                     .AsImplementedInterfaces()
                     .WithSingletonLifetime());
 
+            return services;
+        }
+
+        private static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        {
+            services.Scan(s
+                => s.FromAssemblyOf<IWorker>()
+                    .AddClasses(c => c.AssignableTo<IWorker>())
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime());
+
+            services.AddSingleton<IWorkerManager, WorkerManager>();
+            
             return services;
         }
 

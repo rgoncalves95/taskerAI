@@ -8,7 +8,6 @@
             Required(p => p.Longitude);
             Required(p => p.Street);
             Required(p => p.Door);
-            Required(p => p.Floor);
             Required(p => p.ZipCode);
             Required(p => p.City);
             Required(p => p.Country);

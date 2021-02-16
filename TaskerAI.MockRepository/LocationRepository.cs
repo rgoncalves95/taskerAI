@@ -32,7 +32,7 @@
 
             if (tags.SafeAny())
             {
-                filter.Add(t => tags.Intersect(t.Tags, StringComparer.FromComparison(StringComparison.OrdinalIgnoreCase)).Any());
+                filter.Add(t => tags.Intersect(t.Tags, StringComparer.OrdinalIgnoreCase).Any());
             }
 
             return Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));

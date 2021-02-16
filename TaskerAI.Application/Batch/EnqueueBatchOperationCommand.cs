@@ -3,8 +3,8 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using TaskerAI.Infrastructure.Jobs;
     using TaskerAI.Infrastructure.Repositories;
+    using TaskerAI.Infrastructure.Workers;
 
     public class EnqueueBatchOperationCommand : IRequest<string>
     {

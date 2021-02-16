@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Infrastructure.Jobs
+﻿namespace TaskerAI.Infrastructure.Workers
 {
     public class WorkerOperation
     {

@@ -90,7 +90,7 @@ namespace TaskerAI.Domain.Entities
 
         public void AddAliases(params string[] alias)
         {
-            string[] @new = alias.Except(this.aliases, StringComparer.FromComparison(StringComparison.OrdinalIgnoreCase)).ToArray();
+            string[] @new = alias.Except(this.aliases, StringComparer.OrdinalIgnoreCase).ToArray();
             if (@new.Any())
             {
                 this.aliases.AddRange(@new);
@@ -99,7 +99,7 @@ namespace TaskerAI.Domain.Entities
 
         public void AddTags(params string[] tags)
         {
-            string[] @new = tags.Except(this.tags, StringComparer.FromComparison(StringComparison.OrdinalIgnoreCase)).ToArray();
+            string[] @new = tags.Except(this.tags, StringComparer.OrdinalIgnoreCase).ToArray();
             if (@new.Any())
             {
                 this.tags.AddRange(@new);

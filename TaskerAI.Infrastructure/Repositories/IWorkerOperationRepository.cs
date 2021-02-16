@@ -1,7 +1,7 @@
 ﻿namespace TaskerAI.Infrastructure.Repositories
 {
     using System.Threading.Tasks;
-    using TaskerAI.Infrastructure.Jobs;
+    using TaskerAI.Infrastructure.Workers;
 
     public interface IWorkerOperationRepository
     {

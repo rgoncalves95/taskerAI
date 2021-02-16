@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using TaskerAI.Infrastructure.Jobs;
     using TaskerAI.Infrastructure.Repositories;
+    using TaskerAI.Infrastructure.Workers;
 
     public class WorkerOperationRepository : IWorkerOperationRepository
     {
