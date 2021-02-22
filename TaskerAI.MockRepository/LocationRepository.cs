@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using TaskerAI.Common;
+    using TaskerAI.Common.Extensions;
     using TaskerAI.Domain;
     using TaskerAI.Domain.Entities;
     using TaskerAI.Infrastructure.Repositories;
