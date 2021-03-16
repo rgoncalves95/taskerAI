@@ -25,7 +25,7 @@
 
             public IEnumerable<T> Parse(byte[] content)
             {
-                var locations = new List<T>();
+                var parsedObjects = new List<T>();
 
                 using (var spreadsheetDocument = SpreadsheetDocument.Open(new MemoryStream(content), false))
                 {
@@ -51,7 +51,7 @@
                             obj.Add(GetColumn(cell.CellReference.Value), value);
                         }
 
-                        locations.Add(mapper.Map(obj));
+                        parsedObjects.Add(mapper.Map(obj));
                     }
 
                     //Location location = null;
@@ -86,7 +86,7 @@
                     //}
                 }
 
-                return locations;
+                return parsedObjects;
             }
 
             private static string GetColumn(string cellName)
