@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Application
+﻿namespace TaskerAI.Infrastructure.Repositories
 {
     //public interface ITimeDistanceRepository
     //{

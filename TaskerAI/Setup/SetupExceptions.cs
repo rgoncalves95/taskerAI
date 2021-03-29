@@ -8,11 +8,13 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using TaskerAI.Domain.Exceptions;
+    using TaskerAI.Infrastructure.Workers;
 
     public static class SetupExceptions
     {
         public static IServiceCollection AddExceptionPolicies(this IServiceCollection services)
         {
+            //TODO log internal error message and display user facing messages
             services.AddExceptionHandlingPolicies(options =>
             {
                 options.For<DomainException>()
@@ -27,6 +29,12 @@
                        .Response(e => StatusCodes.Status400BadRequest, ResponseAlreadyStartedBehaviour.GoToNextHandler)
                        .ClearCacheHeaders()
                        .WithObjectResult((r, e) => new { e.Message, e.IntegrityFaults })
+                       .Handled();
+
+                options.For<WorkerNotFoundException>()
+                       .Response(e => StatusCodes.Status404NotFound, ResponseAlreadyStartedBehaviour.GoToNextHandler)
+                       .ClearCacheHeaders()
+                       .WithObjectResult((r, e) => new { e.Message })
                        .Handled();
 
                 options.For<Exception>()

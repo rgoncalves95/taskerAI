@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("TaskerAI.Application")]
-[assembly: InternalsVisibleTo("TaskerAI.Api.Tests")]
-namespace TaskerAI.Domain
+﻿namespace TaskerAI.Domain
 {
-    public class Plan
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using TaskerAI.Domain.Entities;
+
+    public class Plan : BaseEntity
     {
         private List<TaskRoute> taskRoutes;
 
@@ -75,5 +73,6 @@ namespace TaskerAI.Domain
         }
 
         internal Plan Clone() => (Plan)MemberwiseClone();
+        protected override void IntegrityCheck() => throw new NotImplementedException();
     }
 }
