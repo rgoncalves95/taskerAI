@@ -3,8 +3,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Hangfire;
     using TaskerAI.Infrastructure.Repositories;
 
+    [AutomaticRetry(Attempts = 0)]
     public class BatchOperationWorker : IWorker
     {
         private readonly IWorkerOperationRepository repository;
@@ -16,7 +18,7 @@
             this.handlers = handlers;
         }
 
-        public string Id => "F9D7AEFF-7D14-4528-A007-023C04B857E9";
+        public string Id => "f9d7aeff-7d14-4528-a007-023c04b857e9";
 
         public async Task RunAsync(params string[] operationIds)
         {
@@ -26,10 +28,7 @@
 
                 var operationHandlers = this.handlers.Where(h => h.OperationEntity == operation.Entity).ToList();
 
-                foreach (var handler in operationHandlers)
-                {
-                    handler.Handle(operation);
-                }
+                await Task.WhenAll(operationHandlers.Select(handler => handler.HandleAsync(operation)));
             }
         }
     }

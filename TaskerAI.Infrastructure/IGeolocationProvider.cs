@@ -1,9 +1,10 @@
 ﻿namespace TaskerAI.Infrastructure
 {
+    using System.Threading.Tasks;
     using TaskerAI.Infrastructure.Dto;
 
     public interface IGeolocationProvider
     {
-        GeolocationDto GetGeolocation(string searchTerm);
+        Task<GeolocationDto> GetGeolocationAsync(string searchTerm);
     }
 }

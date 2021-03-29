@@ -1,7 +1,8 @@
 ﻿namespace TaskerAI.Infrastructure
 {
+    using System.Threading.Tasks;
     public interface IEnricher<T>
     {
-        void Enrich(T dto);
+        Task EnrichAsync(T dto);
     }
 }

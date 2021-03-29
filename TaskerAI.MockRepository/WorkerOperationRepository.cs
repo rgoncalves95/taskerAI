@@ -13,10 +13,7 @@
 
         static WorkerOperationRepository() => Db = new List<WorkerOperation>();
 
-        public Task<WorkerOperation> GetAsync(string id)
-        {
-            return Task.FromResult(Db.FirstOrDefault(o => o.Id == id));
-        }
+        public Task<WorkerOperation> GetAsync(string id) => Task.FromResult(Db.FirstOrDefault(o => o.Id == id));
 
         public Task<string> CreateAsync(string jobId, string entityType, string contentType, byte[] content)
         {

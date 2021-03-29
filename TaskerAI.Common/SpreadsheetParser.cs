@@ -12,16 +12,13 @@
 
         public class SpreadsheetParser<T> : IContentParser<IEnumerable<T>>
         {
-            private static Regex regex = new Regex("[A-Za-z]+", RegexOptions.Compiled);
+            private static readonly Regex regex = new Regex("[A-Za-z]+", RegexOptions.Compiled);
 
             private readonly IMapper<Dictionary<string, string>, T> mapper;
 
             public string ContentType => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
-            public SpreadsheetParser(IMapper<Dictionary<string, string>, T> mapper)
-            {
-                this.mapper = mapper;
-            }
+            public SpreadsheetParser(IMapper<Dictionary<string, string>, T> mapper) => this.mapper = mapper;
 
             public IEnumerable<T> Parse(byte[] content)
             {
@@ -36,13 +33,13 @@
                     foreach (Row row in worksheetPart.Worksheet.Descendants<Row>().Where(r => r.HasChildren).Skip(1))
                     {
                         var obj = new Dictionary<string, string>();
-                        
+
                         foreach (Cell cell in row.Descendants<Cell>())
                         {
                             string value = cell.InnerText;
-                            var index = int.Parse(value);
-                            
-                            if (cell.DataType == CellValues.SharedString)
+                            int index = int.Parse(value);
+
+                            if (cell.DataType != null && cell.DataType == CellValues.SharedString)
                             {
                                 value = stringTable.SharedStringTable.ElementAt(index).InnerText;
                             }
@@ -51,7 +48,7 @@
                             obj.Add(GetColumn(cell.CellReference.Value), value);
                         }
 
-                        parsedObjects.Add(mapper.Map(obj));
+                        parsedObjects.Add(this.mapper.Map(obj));
                     }
 
                     //Location location = null;
@@ -89,10 +86,7 @@
                 return parsedObjects;
             }
 
-            private static string GetColumn(string cellName)
-            {
-                return regex.Match(cellName).Value;
-            }
+            private static string GetColumn(string cellName) => regex.Match(cellName).Value;
         }
     }
 

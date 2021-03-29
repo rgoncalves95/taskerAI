@@ -1,10 +1,13 @@
 ﻿namespace TaskerAI.Infrastructure.Workers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
+    using FluentValidation.Results;
+    using Microsoft.Extensions.Logging;
     using TaskerAI.Common;
     using TaskerAI.Domain;
-    using TaskerAI.Domain.Entities;
     using TaskerAI.Infrastructure;
     using TaskerAI.Infrastructure.Dto;
 
@@ -13,19 +16,22 @@
         private readonly IEnumerable<IContentParser<IEnumerable<LocationDto>>> contentParser;
         private readonly IEnumerable<IEnricher<LocationDto>> enrichers;
         private readonly ILocationRepository repository;
+        private readonly ILogger<BatchCreateLocationOperationHandler> logger;
 
         public BatchCreateLocationOperationHandler(IEnumerable<IContentParser<IEnumerable<LocationDto>>> contentParser,
-                                    IEnumerable<IEnricher<LocationDto>> enrichers,
-                                    ILocationRepository repository)
+                                                   IEnumerable<IEnricher<LocationDto>> enrichers,
+                                                   ILocationRepository repository,
+                                                   ILogger<BatchCreateLocationOperationHandler> logger)
         {
             this.contentParser = contentParser;
             this.enrichers = enrichers;
             this.repository = repository;
+            this.logger = logger;
         }
 
-        public string OperationEntity => nameof(Location);
+        public string OperationEntity => nameof(Domain.Entities.Location);
 
-        public void Handle(WorkerOperation operation)
+        public async Task HandleAsync(WorkerOperation operation)
         {
             IContentParser<IEnumerable<LocationDto>> parser = this.contentParser.FirstOrDefault(p => p.ContentType == operation.ContentType);
 
@@ -34,26 +40,61 @@
                 //TODO handler null parser
             }
 
-            IEnumerable<LocationDto> dtos = parser.Parse(operation.Content);
+            LocationDto[] dtos = parser.Parse(operation.Content).ToArray();
 
-            foreach (LocationDto dto in dtos)
+            var failureReasons = new List<string>();
+
+            for (int i = 0; i < dtos.Length; i++)
             {
-                foreach (IEnricher<LocationDto> enricher in this.enrichers)
+                LocationDto dto = dtos[i];
+
+                if (!IsValid(dto, out string reason))
                 {
-                    enricher.Enrich(dto);
+                    failureReasons.Add($"Validation error processing row {i + 1}. {reason}");
+                    continue;
                 }
 
-                this.repository.CreateAsync(Location.Create(dto.Street,
-                                                            dto.Door,
-                                                            dto.Floor,
-                                                            dto.ZipCode,
-                                                            dto.City,
-                                                            dto.Country,
-                                                            dto.Latitude,
-                                                            dto.Longitude,
-                                                            dto.Alias,
-                                                            dto.Tags));
+                try
+                {
+                    var enrichers = new List<Task>();
+
+                    foreach (IEnricher<LocationDto> enricher in this.enrichers)
+                    {
+                        enrichers.Add(enricher.EnrichAsync(dto));
+                    }
+
+                    await Task.WhenAll(enrichers);
+
+                    await this.repository.CreateAsync(
+                        Domain.Entities.Location.Create(dto.Street,
+                                                        dto.Door,
+                                                        dto.Floor,
+                                                        dto.ZipCode,
+                                                        dto.City,
+                                                        dto.Country,
+                                                        dto.Latitude,
+                                                        dto.Longitude,
+                                                        dto.Alias,
+                                                        dto.Tags));
+
+                }
+                catch (Exception)
+                {
+                    //logger.LogInformation();
+                    failureReasons.Add("");
+                }
             }
+
+            //TODO save failed WorkerOperation
+        }
+
+        private bool IsValid(LocationDto dto, out string reason)
+        {
+            ValidationResult result = new CreateLocationDtoValidator().Validate(dto);
+
+            reason = result.ToString(" ");
+
+            return result.IsValid;
         }
     }
 }

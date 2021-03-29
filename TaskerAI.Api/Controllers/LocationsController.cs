@@ -54,8 +54,8 @@
         {
             Stream stream = this.host.ContentRootFileProvider.GetFileInfo(Path.Combine("Resources", "locations.xlsx")).CreateReadStream();
 
-            return new FileStreamResult(stream, new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) 
-            { 
+            return new FileStreamResult(stream, new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+            {
                 FileDownloadName = "locations"
             };
         }

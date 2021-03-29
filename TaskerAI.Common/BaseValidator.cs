@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Api.Models.Validators
+﻿namespace TaskerAI.Common
 {
     using System;
     using System.Linq.Expressions;
@@ -12,5 +12,8 @@
         private static string Format<TProperty>(Expression<Func<T, TProperty>> expression)
             => string.Format(ValidationMessages.Required, ((MemberExpression)expression.Body).Member.Name);
     }
-
+    public struct ValidationMessages
+    {
+        public const string Required = "{0} is required.";
+    }
 }

@@ -8,7 +8,7 @@
     using TaskerAI.Common.TaskerAI.Common;
     using TaskerAI.Infrastructure;
     using TaskerAI.Infrastructure.Dto;
-    using TaskerAI.Infrastructure.Google;
+    using TaskerAI.Infrastructure.MapBox;
     using TaskerAI.Infrastructure.Workers;
     using TaskerAI.MockRepository;
 
@@ -42,7 +42,7 @@
             services.AddSingleton<IWorkerManager, WorkerManager>();
             services.AddSingleton<IWorkerOperationHandler, BatchCreateLocationOperationHandler>();
 
-            services.AddSingleton<IGeolocationProvider, GooglePlacesClient>();
+            services.AddSingleton<IGeolocationProvider, SearchClient>();
 
             return services;
         }

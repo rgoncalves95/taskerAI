@@ -18,13 +18,14 @@ namespace TaskerAI
             services.AddControllers()
                     .AddNewtonsoftJson()
                     .AddFluentValidation(c => c.ImplicitlyValidateChildProperties = true);
-            services.AddConfigurationOptions();
+            services.AddConfigurationOptions(this.Configuration);
             services.AddExceptionPolicies();
             services.AddApplicationServices();
             services.AddValidators();
             services.AddMediatr();
             services.AddSwagger();
             services.AddHangfire();
+            services.AddHttpClient(this.Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,8 +1,10 @@
 ﻿namespace TaskerAI.Infrastructure.Workers
 {
+    using System.Threading.Tasks;
+
     public interface IWorkerOperationHandler
     {
         string OperationEntity { get; }
-        void Handle(WorkerOperation operation);
+        Task HandleAsync(WorkerOperation operation);
     }
 }

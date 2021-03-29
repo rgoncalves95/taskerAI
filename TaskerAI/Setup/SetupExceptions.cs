@@ -36,7 +36,7 @@
                        .ClearCacheHeaders()
                        .WithObjectResult((r, e) => new { e.Message })
                        .Handled();
-                
+
                 options.For<Exception>()
                        .Log(lo =>
                        {

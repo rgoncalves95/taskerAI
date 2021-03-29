@@ -20,7 +20,7 @@
         [ProducesResponseType(typeof(BatchModel), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
-        public async Task<IActionResult> Post([FromRoute]string jobId, [FromForm] BatchModel model)
+        public async Task<IActionResult> Post([FromRoute] string jobId, [FromForm] BatchModel model)
         {
             using (var stream = new MemoryStream())
             {
