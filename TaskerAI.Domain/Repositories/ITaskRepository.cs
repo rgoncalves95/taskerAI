@@ -19,7 +19,7 @@
         );
         Task<Entities.Task> GetAsync(int id);
         Task<Entities.Task> CreateAsync(Entities.Task domainEntity);
-        Task<bool> UpdateAsync(Entities.Task domainEntity);
+        Task<Entities.Task> UpdateAsync(Entities.Task domainEntity);
         Task<bool> DeleteAsync(int id);
     }
 }

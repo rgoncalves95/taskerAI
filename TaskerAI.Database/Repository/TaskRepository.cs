@@ -92,7 +92,11 @@
             return domainEntity;
         }
 
-        public Task<bool> UpdateAsync(Domain.Entities.Task domainEntity) => this.db.UpdateAsync(this.mapper.Map(domainEntity));
+        public async Task<Domain.Entities.Task> UpdateAsync(Domain.Entities.Task domainEntity)
+        {
+            await this.db.UpdateAsync(this.mapper.Map(domainEntity));
+            return domainEntity;
+        }
 
         public Task<bool> DeleteAsync(int id) => this.db.DeleteAsync(new Entities.Task() { Id = id });
     }

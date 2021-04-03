@@ -69,5 +69,10 @@
         }
 
         public Task<bool> DeleteAsync(int id) => Task.FromResult(Db.RemoveAll(e => e.Id == id) == 1);
+        public Paged<TaskType> Get(string name, double? cost, int? duration, int? pageSize, int? pageIndex, string sortBy, string sortAs) => throw new NotImplementedException();
+        public TaskType Get(int id) => throw new NotImplementedException();
+        public TaskType Create(TaskType domainEntity) => throw new NotImplementedException();
+        public TaskType Update(TaskType domainEntity) => throw new NotImplementedException();
+        public bool Delete(int id) => throw new NotImplementedException();
     }
 }

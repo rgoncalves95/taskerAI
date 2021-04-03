@@ -83,5 +83,11 @@
 
             return Task.FromResult(domainEntity);
         }
+
+        public Paged<Location> Get(string alias, string[] tags, int? pageSize, int? pageIndex, string sortBy, string sortAs) => throw new NotImplementedException();
+        public Location Get(int id) => throw new NotImplementedException();
+        public Location Get(string latitude, string longitude, string door, string floor) => throw new NotImplementedException();
+        public Location Create(Location domainEntity) => throw new NotImplementedException();
+        public Location Update(Location domainEntity) => throw new NotImplementedException();
     }
 }
