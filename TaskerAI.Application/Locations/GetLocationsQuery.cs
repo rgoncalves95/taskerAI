@@ -33,6 +33,7 @@
 
         public GetLocationsQueryHandler(ILocationRepository repository) => this.repository = repository;
 
-        public async Task<Paged<Location>> Handle(GetLocationsQuery request, CancellationToken cancellationToken) => await this.repository.GetAsync(request.Alias, request.Tags, request.PageSize, request.PageIndex, request.SortBy, request.SortAs);
+        public async Task<Paged<Location>> Handle(GetLocationsQuery request, CancellationToken cancellationToken)
+            => await this.repository.GetAsync(request.Alias, request.Tags, request.PageSize, request.PageIndex, request.SortBy, request.SortAs);
     }
 }

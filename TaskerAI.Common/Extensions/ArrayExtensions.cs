@@ -1,4 +1,4 @@
-﻿namespace TaskerAI.Common
+﻿namespace TaskerAI.Common.Extensions
 {
     using System;
     using System.Linq;

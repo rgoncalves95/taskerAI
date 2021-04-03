@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using TaskerAI.Common;
+    using TaskerAI.Common.Extensions;
 
     public abstract class PagedRespository
     {

@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using TaskerAI.Common;
+    using TaskerAI.Common.Extensions;
     using TaskerAI.Domain;
     using TaskerAI.Domain.Entities;
     using TaskerAI.Infrastructure.Repositories;
@@ -32,7 +33,7 @@
 
             if (tags.SafeAny())
             {
-                filter.Add(t => tags.Intersect(t.Tags, StringComparer.FromComparison(StringComparison.OrdinalIgnoreCase)).Any());
+                filter.Add(t => tags.Intersect(t.Tags, StringComparer.OrdinalIgnoreCase).Any());
             }
 
             return Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));

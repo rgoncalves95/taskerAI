@@ -1,6 +1,4 @@
-﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Application")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TaskerAI.Database")]
-namespace TaskerAI.Domain.Entities
+﻿namespace TaskerAI.Domain.Entities
 {
     using System;
     using System.Collections.Generic;

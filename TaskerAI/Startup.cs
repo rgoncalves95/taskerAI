@@ -18,14 +18,14 @@ namespace TaskerAI
             services.AddControllers()
                     .AddNewtonsoftJson()
                     .AddFluentValidation(c => c.ImplicitlyValidateChildProperties = true);
-            services.AddConfigurationOptions();
+            services.AddConfigurationOptions(this.Configuration);
             services.AddExceptionPolicies();
-            services.AddApplicationServices(Configuration);
+            services.AddApplicationServices();
             services.AddValidators();
             services.AddMediatr();
             services.AddSwagger();
-            services.AddMemoryCache();
-
+            services.AddHangfire();
+            services.AddHttpClient(this.Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +39,7 @@ namespace TaskerAI
                 endpoints.MapControllers();
             });
             app.UseSwagger();
+            app.UseHangfire();
         }
     }
 }
