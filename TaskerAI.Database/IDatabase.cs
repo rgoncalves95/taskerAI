@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text;
 using System.Threading.Tasks;
 
 using Dapper;
-using Dapper.Contrib;
-using Dapper.Contrib.Extensions;
 using Npgsql;
 
 namespace TaskerAI.Database
 {
     public interface IDatabase
     {
-        Task<T> Get<T>(string query);
-
+        Task<IEnumerable<T>> GetAsync<T>(string query);
+        Task<T> GetByIdAsync<T>(string query);
     }
 
-    public class Database : IDatabase
+    public class PostgreSql : IDatabase
     {
         private readonly IDbConnection db;
 
-        public Database(string connString)
-        {
-            this.db = new NpgsqlConnection(connString);
-        }
+        public PostgreSql(string connString) => this.db = new NpgsqlConnection(connString);
 
-        public Task<T> Get<T>(string query) => throw new NotImplementedException();
+        public Task<IEnumerable<T>> GetAsync<T>(string query) => this.db.QueryAsync<T>(query);
+
+        public Task<T> GetByIdAsync<T>(string query) => this.db.QueryFirstAsync<T>(query);
     }
 }

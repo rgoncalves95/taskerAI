@@ -65,7 +65,7 @@
             return Task.FromResult(GetPaged(query, filter, pageSize, pageIndex, sortBy, sortAs));
         }
 
-        public Task<Domain.Entities.Task> GetAsync(int id) => Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
+        public Task<Domain.Entities.Task> GetByIdAsync(int id) => Task.FromResult(Db.FirstOrDefault(t => t.Id == id));
 
         public async Task<Domain.Entities.Task> CreateAsync(Domain.Entities.Task domainEntity)
         {

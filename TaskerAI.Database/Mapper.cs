@@ -3,44 +3,8 @@
     using System;
     using System.Data;
 
-    class Mapper
+    class Mapper 
     {
-        public static Domain.Entities.Task map(TaskerAI.Database.Entities.Task task, IDbConnection db)
-        {
-            var taskTypeRep = new TaskTypeRepository(db);
-            var locationRep = new LocationRepository(db);
-
-            var newTask = Domain.Entities.Task.Create(task.Name, taskTypeRep.Get(task.IdType), locationRep.Get(task.IdLocation), task.Date, task.DueDate, task.DurationInSeconds, task.Notes, (Domain.TaskStatus)task.Status, (DateTimeOffset)task.FinishDate, task.Id);
-
-            return newTask;
-
-
-        }
-
-        public static TaskerAI.Database.Entities.Task map(TaskerAI.Domain.Entities.Task task)
-        {
-
-
-            var newTask = new TaskerAI.Database.Entities.Task()
-            {
-                Id = (int)task.Id,
-                Date = task.Date,
-                DueDate = task.DueDate,
-                DurationInSeconds = task.DurationInSeconds,
-                FinishDate = task.FinishDate,
-                IdLocation = (int)task.Location.Id,
-                IdType = (int)task.Type.Id,
-                Name = task.Name,
-                Notes = task.Notes,
-                Status = (int)task.Status
-
-            };
-
-            return newTask;
-
-
-        }
-
         public static Domain.Entities.TaskType map(TaskerAI.Database.Entities.TaskType taskType)
         {
            
@@ -108,6 +72,5 @@
         }
 
     }
-
 
 }

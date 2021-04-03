@@ -2,85 +2,98 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Dapper;
+    using Dapper.Contrib.Extensions;
     using TaskerAI.Common;
     using TaskerAI.Domain;
-    using System.Data;
-    using System.Data.SqlClient;
 
-    using System.Linq;
-
-
-    using Dapper;
-    using Dapper.Contrib;
-    using Dapper.Contrib.Extensions;
-
-    class TaskRepository : ITaskRepository
+    internal class TaskRepository : ITaskRepository
     {
         private readonly IDbConnection db;
+        private readonly ITaskMapper mapper;
 
-        public TaskRepository(IDbConnection db)
+        public TaskRepository(IDbConnection db, ITaskMapper mapper)
         {
             this.db = db;
+            this.mapper = mapper;
         }
 
-        public Domain.Entities.Task Create(Domain.Entities.Task domainEntity)
+        public async Task<Paged<Domain.Entities.Task>> GetAsync(string name, int? type, DateTimeOffset? intervalStart, DateTimeOffset? intervalEnd, int? status, int? pageSize, int? pageIndex, string sortBy, string sortAs)
         {
+            string sql = @"SELECT * FROM Tasks t 
+                        JOIN Location l on l.Id = t.LocationId
+                        JOIN TaskType tt on tt.Id = t.TaskTypeId
+                        WHERE name LIKE %@Name%";
 
-            var newTask = Mapper.map(domainEntity);
+            var builder = new StringBuilder(sql);
 
-            var id = this.db.Insert(newTask);
-            newTask.Id = (int)id;
-
-            return Mapper.map(newTask, this.db);
-
-
-        }
-        public Task<Domain.Entities.Task> CreateAsync(Domain.Entities.Task domainEntity) => throw new NotImplementedException();
-        public bool Delete(int id)
-        {
-
-            return this.db.Delete(new TaskerAI.Database.Entities.Task() { Id = id });
-
-        }
-        public Task<bool> DeleteAsync(int id) => throw new NotImplementedException();
-        public Paged<Domain.Entities.Task> Get(string name, int? type, DateTimeOffset? intervalStart, DateTimeOffset? intervalEnd, int? status, int? pageSize, int? pageIndex, string sortBy, string sortAs)
-        {
-            var sql = "SELECT * FROM Tasks WHERE name = @Name";
-            var list = this.db.Query<Entities.Task>(sql, new Entities.Task { Name = name }).ToList();
-
-            var result = new List<Domain.Entities.Task>();
-
-            foreach (Entities.Task item in list)
+            if (type.HasValue)
             {
-                result.Add(Mapper.map(item, db));
-
-
+                builder.Append(" AND");
             }
 
-            return Paged<Domain.Entities.Task>.CreatePagedObject(result, (int)pageIndex, (int)pageSize, result.Count);
+            if (intervalStart.HasValue)
+            {
+                builder.Append(" AND");
+            }
+
+            if (intervalStart.HasValue)
+            {
+                builder.Append(" AND");
+            }
+
+            if (status.HasValue)
+            {
+                builder.Append(" AND");
+            }
+
+            Func<Entities.Task, Entities.Location, Entities.TaskType, Entities.Task> mapResult = (task, location, taskType) =>
+            {
+                task.Location = location;
+                task.TaskType = taskType;
+                return task;
+            };
+
+            IEnumerable<Entities.Task> dbEntities = await this.db.QueryAsync(builder.ToString(), mapResult, new { Name = name });
+            IEnumerable<Domain.Entities.Task> domainEntities = this.mapper.Map(dbEntities);
+
+            return Paged<Domain.Entities.Task>.CreatePagedObject(domainEntities, (int)pageIndex, (int)pageSize, domainEntities.Count());
         }
-        public Domain.Entities.Task Get(int id)
+
+        public async Task<Domain.Entities.Task> GetAsync(int id)
         {
-            var task = this.db.Get<TaskerAI.Database.Entities.Task>(id);
+            string sql = @"SELECT * FROM Tasks t 
+                        JOIN Location l on l.Id = t.LocationId
+                        JOIN TaskType tt on tt.Id = t.TaskTypeId
+                        WHERE id = @Id";
 
+            Func<Entities.Task, Entities.Location, Entities.TaskType, Entities.Task> mapResult = (task, location, taskType) =>
+            {
+                task.Location = location;
+                task.TaskType = taskType;
+                return task;
+            };
 
-            return Mapper.map(task, this.db);
+            Entities.Task dbEntity = (await this.db.QueryAsync(sql, mapResult, new { Id = id })).FirstOrDefault();
 
+            return this.mapper.Map(dbEntity);
         }
-        public Task<Paged<Domain.Entities.Task>> GetAsync(string name, int? type, DateTimeOffset? intervalStart, DateTimeOffset? intervalEnd, int? status, int? pageSize, int? pageIndex, string sortBy, string sortAs) => throw new NotImplementedException();
-        public Task<Domain.Entities.Task> GetAsync(int id) => throw new NotImplementedException();
 
-        public Domain.Entities.Task Update(Domain.Entities.Task domainEntity)
+        public async Task<Domain.Entities.Task> CreateAsync(Domain.Entities.Task domainEntity)
         {
+            Entities.Task dbEntity = this.mapper.Map(domainEntity);
 
-            this.db.Update(Mapper.map(domainEntity));
+            int id = await this.db.InsertAsync(dbEntity);
+
             return domainEntity;
-
         }
-        public Task<Domain.Entities.Task> UpdateAsync(Domain.Entities.Task domainEntity) => throw new NotImplementedException();
+
+        public Task<bool> UpdateAsync(Domain.Entities.Task domainEntity) => this.db.UpdateAsync(this.mapper.Map(domainEntity));
+
+        public Task<bool> DeleteAsync(int id) => this.db.DeleteAsync(new Entities.Task() { Id = id });
     }
-
-
 }
