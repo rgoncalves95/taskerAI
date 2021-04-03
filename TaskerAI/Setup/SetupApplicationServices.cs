@@ -5,10 +5,12 @@
     using TaskerAI.Api.Models.Mappers;
     using TaskerAI.Common;
     using TaskerAI.MockRepository;
+    using TaskerAI.Database;
+    using Microsoft.Extensions.Configuration;
 
     public static class SetupApplicationServices
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services) => services.AddDomain().AddPersistence().AddApi();
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration) => services.AddDomain().AddPersistence().AddApi().AddDatabase(configuration);
 
         private static IServiceCollection AddDomain(this IServiceCollection services) => services;
 
@@ -32,6 +34,15 @@
                     .WithSingletonLifetime());
 
             services.AddSingleton<IRequestResultFactory, RequestResultFactory>();
+
+            return services;
+        }
+
+
+        private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration config)
+        {
+
+            services.AddScoped<IDatabase>(x => new Database(config.GetConnectionString("PostgreSQL")));
 
             return services;
         }

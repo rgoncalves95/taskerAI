@@ -20,11 +20,12 @@ namespace TaskerAI
                     .AddFluentValidation(c => c.ImplicitlyValidateChildProperties = true);
             services.AddConfigurationOptions();
             services.AddExceptionPolicies();
-            services.AddApplicationServices();
+            services.AddApplicationServices(Configuration);
             services.AddValidators();
             services.AddMediatr();
             services.AddSwagger();
             services.AddMemoryCache();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
