@@ -39,9 +39,16 @@
                             string value = cell.InnerText;
                             int index = int.Parse(value);
 
-                            if (cell.DataType != null && cell.DataType == CellValues.SharedString)
+                            if (cell.DataType != null)
                             {
-                                value = stringTable.SharedStringTable.ElementAt(index).InnerText;
+                                if (cell.DataType == CellValues.SharedString)
+                                {
+                                    value = stringTable.SharedStringTable.ElementAt(index).InnerText;
+                                }
+                                else
+                                {
+
+                                }
                             }
 
                             Console.WriteLine($"Console: {value}");

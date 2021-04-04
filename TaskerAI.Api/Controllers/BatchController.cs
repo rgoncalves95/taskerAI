@@ -20,13 +20,13 @@
         [ProducesResponseType(typeof(BatchModel), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
-        public async Task<IActionResult> Post([FromRoute] string jobId, [FromForm] BatchModel model)
+        public async Task<IActionResult> Post([FromForm] BatchModel model, [FromRoute] string jobId = "f9d7aeff-7d14-4528-a007-023c04b857e9")
         {
             using (var stream = new MemoryStream())
             {
                 await model.File.CopyToAsync(stream);
 
-                string id = await this.mediator.Send(new EnqueueBatchOperationCommand(jobId, model.Entity, model.File.ContentType, stream.ToArray()));
+                string id = await this.mediator.Send(new EnqueueBatchOperationCommand(jobId, model.Entity, model.File.ContentType, stream.ToArray(), model.Body));
 
                 return Accepted(new { Id = id, JobId = jobId });
             }

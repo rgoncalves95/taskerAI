@@ -3,8 +3,9 @@
     using System;
     using System.Threading.Tasks;
     using TaskerAI.Common;
+    using TaskerAI.Domain.Repositories;
 
-    public interface ITaskRepository
+    public interface ITaskRepository : IDomainRepository<Entities.Task>
     {
         Task<Paged<Entities.Task>> GetAsync(
             string name,
@@ -17,9 +18,7 @@
             string sortBy,
             string sortAs
         );
+
         Task<Entities.Task> GetAsync(int id);
-        Task<Entities.Task> CreateAsync(Entities.Task domainEntity);
-        Task<Entities.Task> UpdateAsync(Entities.Task domainEntity);
-        Task<bool> DeleteAsync(int id);
     }
 }

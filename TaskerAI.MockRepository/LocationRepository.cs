@@ -83,5 +83,7 @@
 
             return Task.FromResult(domainEntity);
         }
+
+        public Task<bool> DeleteAsync(int id) => throw new NotImplementedException();
     }
 }
