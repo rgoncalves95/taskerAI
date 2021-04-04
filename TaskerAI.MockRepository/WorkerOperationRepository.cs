@@ -15,9 +15,18 @@
 
         public Task<WorkerOperation> GetAsync(string id) => Task.FromResult(Db.FirstOrDefault(o => o.Id == id));
 
-        public Task<string> CreateAsync(string jobId, string entityType, string contentType, byte[] content)
+        public Task<string> CreateAsync(string jobId, string entityType, string contentType, byte[] content, string body)
         {
-            var operation = new WorkerOperation { Id = Guid.NewGuid().ToString(), JobId = jobId, Entity = entityType, ContentType = contentType, Content = content };
+            var operation = new WorkerOperation
+            {
+                Id = Guid.NewGuid().ToString(),
+                JobId = jobId,
+                Entity = entityType,
+                ContentType = contentType,
+                Content = content,
+                Body = body
+            };
+
             Db.Add(operation);
 
             return Task.FromResult(operation.Id);

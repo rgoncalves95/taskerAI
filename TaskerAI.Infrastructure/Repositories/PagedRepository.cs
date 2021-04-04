@@ -7,7 +7,7 @@
     using TaskerAI.Common;
     using TaskerAI.Common.Extensions;
 
-    public abstract class PagedRespository
+    public abstract class PagedRepository
     {
         protected virtual Paged<TEntity> GetPaged<TEntity>
         (
