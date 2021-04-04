@@ -2,7 +2,6 @@
 {
     namespace TaskerAI.Common
     {
-        using System;
         using System.Collections.Generic;
         using System.IO;
         using System.Linq;
@@ -37,14 +36,12 @@
                         foreach (Cell cell in row.Descendants<Cell>())
                         {
                             string value = cell.InnerText;
-                            int index = int.Parse(value);
 
-                            if (cell.DataType != null && cell.DataType == CellValues.SharedString)
+                            if (cell.DataType != null && cell.DataType == CellValues.SharedString && int.TryParse(value, out int index))
                             {
                                 value = stringTable.SharedStringTable.ElementAt(index).InnerText;
                             }
 
-                            Console.WriteLine($"Console: {value}");
                             obj.Add(GetColumn(cell.CellReference.Value), value);
                         }
 

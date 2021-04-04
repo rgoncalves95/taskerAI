@@ -6,6 +6,6 @@
     public interface IWorkerOperationRepository
     {
         Task<WorkerOperation> GetAsync(string id);
-        Task<string> CreateAsync(string jobId, string entityType, string contentType, byte[] content);
+        Task<string> CreateAsync(string jobId, string entityType, string contentType, byte[] content, string body);
     }
 }

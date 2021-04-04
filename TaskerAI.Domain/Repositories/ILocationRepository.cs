@@ -2,11 +2,11 @@
 {
     using System.Threading.Tasks;
     using TaskerAI.Common;
-    using TaskerAI.Domain.Entities;
+    using TaskerAI.Domain.Repositories;
 
-    public interface ILocationRepository
+    public interface ILocationRepository : IDomainRepository<Entities.Location>
     {
-        Task<Paged<Location>> GetAsync
+        Task<Paged<Entities.Location>> GetAsync
         (
             string alias,
             string[] tags,
@@ -15,8 +15,7 @@
             string sortBy,
             string sortAs
         );
-        Task<Location> GetAsync(string latitude, string longitude, string door, string floor);
-        Task<Location> CreateAsync(Location domainEntity);
-        Task<Location> UpdateAsync(Location domainEntity);
+
+        Task<Entities.Location> GetAsync(string latitude, string longitude, string door, string floor);
     }
 }

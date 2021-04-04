@@ -25,7 +25,7 @@ namespace TaskerAI
             services.AddMediatr();
             services.AddSwagger();
             services.AddHangfire();
-            services.AddHttpClient(this.Configuration);
+            services.AddServiceClients();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

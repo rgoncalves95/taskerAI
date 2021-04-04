@@ -12,7 +12,7 @@
     using TaskerAI.MockRepository.MockData;
     using Task = System.Threading.Tasks.Task;
 
-    public class TaskTypeRepository : PagedRespository, ITaskTypeRepository
+    public class TaskTypeRepository : PagedRepository, ITaskTypeRepository
     {
         private static readonly List<TaskType> Db;
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;

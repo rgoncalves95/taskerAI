@@ -1,6 +1,7 @@
 ﻿namespace TaskerAI.Setup
 {
     using System.Collections.Generic;
+    using FluentValidation;
     using Microsoft.Extensions.DependencyInjection;
     using TaskerAI.Api.ActionResults;
     using TaskerAI.Api.Models.Mappers;
@@ -41,6 +42,10 @@
 
             services.AddSingleton<IWorkerManager, WorkerManager>();
             services.AddSingleton<IWorkerOperationHandler, BatchCreateLocationOperationHandler>();
+            services.AddSingleton<IWorkerOperationHandler, BatchCreateTaskOperationHandler>();
+
+            services.AddSingleton<IValidator<LocationDto>, CreateLocationDtoValidator>();
+            services.AddSingleton<IValidator<TaskDto>, CreateTaskDtoValidator>();
 
             services.AddSingleton<IGeolocationProvider, SearchClient>();
 
@@ -49,7 +54,9 @@
 
         private static IServiceCollection AddCommon(this IServiceCollection services)
         {
+            services.AddSingleton<IContentParser<IEnumerable<TaskDto>>, SpreadsheetParser<TaskDto>>();
             services.AddSingleton<IContentParser<IEnumerable<LocationDto>>, SpreadsheetParser<LocationDto>>();
+            services.AddSingleton<IJsonParser, JsonParser>();
 
             return services;
         }
