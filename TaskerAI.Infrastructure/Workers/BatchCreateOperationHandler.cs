@@ -9,26 +9,30 @@
     using Microsoft.Extensions.Logging;
     using TaskerAI.Common;
     using TaskerAI.Domain.Repositories;
+    using TaskerAI.Infrastructure.Repositories;
 
-    public abstract class BatchCreateOperationHandler<TDomain, TDto> : IWorkerOperationHandler where TDomain : Domain.Entities.BaseEntity 
+    public abstract class BatchCreateOperationHandler<TDomain, TDto> : IWorkerOperationHandler where TDomain : Domain.Entities.BaseEntity
     {
         private readonly IEnumerable<IContentParser<IEnumerable<TDto>>> contentParser;
         private readonly IEnumerable<IEnricher<TDto>> enrichers;
-        private readonly IDomainRepository<TDomain> repository;
-        private readonly ILogger<BatchCreateOperationHandler<TDomain, TDto>> logger;
         private readonly IValidator<TDto> validator;
+        private readonly IDomainRepository<TDomain> repository;
+        private readonly IWorkerOperationStatusRepository workerOperationStatusRepository;
+        private readonly ILogger<BatchCreateOperationHandler<TDomain, TDto>> logger;
 
         public BatchCreateOperationHandler(IEnumerable<IContentParser<IEnumerable<TDto>>> contentParser,
                                            IEnumerable<IEnricher<TDto>> enrichers,
+                                           IValidator<TDto> validator,
                                            IDomainRepository<TDomain> repository,
-                                           ILogger<BatchCreateOperationHandler<TDomain, TDto>> logger,
-                                           IValidator<TDto> validator)
+                                           IWorkerOperationStatusRepository workerOperationStatusRepository,
+                                           ILogger<BatchCreateOperationHandler<TDomain, TDto>> logger)
         {
             this.contentParser = contentParser;
             this.enrichers = enrichers;
-            this.repository = repository;
-            this.logger = logger;
             this.validator = validator;
+            this.repository = repository;
+            this.workerOperationStatusRepository = workerOperationStatusRepository;
+            this.logger = logger;
         }
 
         public string OperationEntity => typeof(TDomain).Name;
@@ -52,7 +56,7 @@
 
                 if (!IsValid(dto, out string reason))
                 {
-                    failureReasons.Add($"Validation error processing row {i + 1}. {reason}");
+                    failureReasons.Add($"Validation error processing row {i + 1}. {reason}.");
                     continue;
                 }
 
@@ -67,17 +71,22 @@
 
                     await Task.WhenAll(enrichers);
 
-                    await this.repository.CreateAsync(CreateDomainEntity(dto, operation.Body));
-
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //logger.LogInformation();
-                    failureReasons.Add("");
+                    this.logger.LogError(ex, $"Failed to process row {i + 1} while running enricher.",
+                        new { operation.Id, operation.JobId, operation.ContentType, operation.Entity }, dto);
+
+                    failureReasons.Add($"Failed to process row {i + 1}.");
                 }
+
+                await this.repository.CreateAsync(CreateDomainEntity(dto, operation.Body));
             }
 
-            //TODO save failed WorkerOperation
+            if (failureReasons.Count > 0)
+            {
+                await this.workerOperationStatusRepository.CreateAsync(operation, failureReasons);
+            }
         }
 
         protected abstract TDomain CreateDomainEntity(TDto dto, string additionalData);

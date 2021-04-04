@@ -21,7 +21,7 @@
         public string EntityType { get; }
         public string ContentType { get; }
         public byte[] Content { get; }
-        public string Body { get;  }
+        public string Body { get; }
     }
 
     public class EnqueueBatchOperationCommandHandler : IRequestHandler<EnqueueBatchOperationCommand, string>

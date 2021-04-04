@@ -7,8 +7,8 @@
     public class BatchModelValidator : BaseFileValidator<BatchModel>
     {
         protected override string[] SupportedMediaTypeUploads => new[] { "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" };
-        private string[] SupportedEntities => new[] 
-        { 
+        private string[] SupportedEntities => new[]
+        {
             nameof(Domain.Entities.Location),
             nameof(Domain.Entities.Task)
         };

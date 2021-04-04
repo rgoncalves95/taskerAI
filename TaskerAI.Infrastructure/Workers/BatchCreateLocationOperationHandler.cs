@@ -8,15 +8,17 @@
     using TaskerAI.Domain.Repositories;
     using TaskerAI.Infrastructure;
     using TaskerAI.Infrastructure.Dto;
+    using TaskerAI.Infrastructure.Repositories;
 
     public class BatchCreateLocationOperationHandler : BatchCreateOperationHandler<Location, LocationDto>
     {
         public BatchCreateLocationOperationHandler(IEnumerable<IContentParser<IEnumerable<LocationDto>>> contentParser,
                                                    IEnumerable<IEnricher<LocationDto>> enrichers,
+                                                   IValidator<LocationDto> validator,
                                                    IDomainRepository<Location> repository,
-                                                   ILogger<BatchCreateOperationHandler<Location, LocationDto>> logger,
-                                                   IValidator<LocationDto> validator)
-            : base(contentParser, enrichers, repository, logger, validator)
+                                                   IWorkerOperationStatusRepository workerOperationStatusRepository,
+                                                   ILogger<BatchCreateLocationOperationHandler> logger)
+        : base(contentParser, enrichers, validator, repository, workerOperationStatusRepository, logger)
         {
         }
 

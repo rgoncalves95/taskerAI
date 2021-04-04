@@ -13,7 +13,7 @@
     using TaskerAI.MockRepository.MockData;
     using Task = System.Threading.Tasks.Task;
 
-    public class LocationRepository : PagedRespository, ILocationRepository
+    public class LocationRepository : PagedRepository, ILocationRepository
     {
         public static readonly List<Location> Db = LocationMockData.DatabaseSeed().ToList();
         private readonly int lastId = Db.Max(t => t.Id) ?? 0;

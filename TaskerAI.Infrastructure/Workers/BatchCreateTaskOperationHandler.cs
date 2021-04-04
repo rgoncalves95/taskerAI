@@ -9,6 +9,7 @@
     using TaskerAI.Domain.Repositories;
     using TaskerAI.Infrastructure;
     using TaskerAI.Infrastructure.Dto;
+    using TaskerAI.Infrastructure.Repositories;
 
     public class BatchCreateTaskOperationHandler : BatchCreateOperationHandler<Task, TaskDto>
     {
@@ -16,40 +17,36 @@
 
         public BatchCreateTaskOperationHandler(IEnumerable<IContentParser<IEnumerable<TaskDto>>> contentParser,
                                                IEnumerable<IEnricher<TaskDto>> enrichers,
+                                               IValidator<TaskDto> validator,
                                                IDomainRepository<Task> repository,
-                                               ILogger<BatchCreateOperationHandler<Task, TaskDto>> logger,
-                                               IValidator<TaskDto> validator, 
+                                               IWorkerOperationStatusRepository workerOperationStatusRepository,
+                                               ILogger<BatchCreateTaskOperationHandler> logger,
                                                IJsonParser parser)
-            : base(contentParser, enrichers, repository, logger, validator)
-        {
-            this.parser = parser;
-        }
+        : base(contentParser, enrichers, validator, repository, workerOperationStatusRepository, logger) => this.parser = parser;
 
         protected override Task CreateDomainEntity(TaskDto dto, string additionalData)
         {
-            const string DateFormat = "dd/MM/yyyy";
+            var taskType = TaskType.Create(this.parser.Deserialize<AdditionalData>(additionalData).TaskTypeId);
+            var location = Location.Create(dto.Location.Street,
+                                           dto.Location.Door,
+                                           dto.Location.Floor,
+                                           dto.Location.ZipCode,
+                                           dto.Location.City,
+                                           dto.Location.Country,
+                                           dto.Location.Latitude,
+                                           dto.Location.Longitude,
+                                           dto.Location.Alias,
+                                           dto.Location.Tags);
+            var date = DateTimeOffset.Parse(dto.Date);
+            var dueDate = DateTimeOffset.Parse(dto.DueDate);
+            int duration = int.Parse(dto.DurationInSeconds);
 
-            return Task.Create(dto.Name,
-                               TaskType.Create(this.parser.Deserialize<AdditionalData>(additionalData).Id),
-                               Location.Create(dto.Location.Street,
-                                               dto.Location.Door,
-                                               dto.Location.Floor,
-                                               dto.Location.ZipCode,
-                                               dto.Location.City,
-                                               dto.Location.Country,
-                                               dto.Location.Latitude,
-                                               dto.Location.Longitude,
-                                               dto.Location.Alias,
-                                               dto.Location.Tags),
-                               DateTimeOffset.ParseExact(dto.Date, DateFormat, null),
-                               DateTimeOffset.ParseExact(dto.DueDate, DateFormat, null),
-                               int.Parse(dto.DurationInSeconds),
-                               dto.Notes);
+            return Task.Create(dto.Name, taskType, location, date, dueDate, duration, dto.Notes);
         }
 
         private class AdditionalData
         {
-            public int Id { get; set; }
+            public int TaskTypeId { get; set; }
         }
     }
 }

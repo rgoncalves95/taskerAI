@@ -17,12 +17,12 @@
 
         public Task<string> CreateAsync(string jobId, string entityType, string contentType, byte[] content, string body)
         {
-            var operation = new WorkerOperation 
-            { 
-                Id = Guid.NewGuid().ToString(), 
-                JobId = jobId, 
-                Entity = entityType, 
-                ContentType = contentType, 
+            var operation = new WorkerOperation
+            {
+                Id = Guid.NewGuid().ToString(),
+                JobId = jobId,
+                Entity = entityType,
+                ContentType = contentType,
                 Content = content,
                 Body = body
             };
