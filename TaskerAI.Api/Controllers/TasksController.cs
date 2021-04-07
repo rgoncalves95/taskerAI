@@ -2,10 +2,13 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.IO;
     using System.Threading.Tasks;
     using MediatR;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Net.Http.Headers;
     using TaskerAI.Api.Attributes;
     using TaskerAI.Api.Models;
     using TaskerAI.Application;
@@ -17,11 +20,13 @@
     {
         private readonly IMediator mediator;
         private readonly IMapper<Domain.Entities.Task, TaskModel> mapper;
+        private readonly IWebHostEnvironment host;
 
-        public TasksController(IMediator mediator, IMapper<Domain.Entities.Task, TaskModel> mapper)
+        public TasksController(IMediator mediator, IMapper<Domain.Entities.Task, TaskModel> mapper, IWebHostEnvironment host)
         {
             this.mediator = mediator;
             this.mapper = mapper;
+            this.host = host;
         }
 
         [HttpGet]
@@ -131,15 +136,17 @@
             return NoContent();
         }
 
-        //[HttpPost("Batch")]
-        //[ProducesResponseType(StatusCodes.Status202Accepted)]
-        //public Task<IActionResult> Post(TaskModel[] models)
-        //{
-        //    System.Collections.Generic.IEnumerable<CreateTaskCommand> commands = models.Select(m => new CreateTaskCommand(m.Name, m.TypeId, m.LocationId, m.DurationInSeconds, m.Date, m.DueDate, m.Notes));
+        [HttpGet("BatchFile")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get()
+        {
+            Stream stream = this.host.ContentRootFileProvider.GetFileInfo(Path.Combine("Resources", "tasks.xlsx")).CreateReadStream();
 
-        //    Task.WhenAll(this.mediator.Send(commands));
-
-        //    return Task.FromResult((IActionResult)Accepted());
-        //}
+            return new FileStreamResult(stream, new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+            {
+                FileDownloadName = "locations"
+            };
+        }
     }
 }
