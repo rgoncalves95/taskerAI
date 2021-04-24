@@ -6,8 +6,8 @@
 
     internal class RouteResult
     {
-        public Guid StartTask { get; set; }
-        public int TotalDistance { get; set; }
+        public int StartTask { get; set; }
+        public float TotalDistance { get; set; }
 
         public int TaskFailed => this.TaskResults.Where(p => p.SecondsLost.HasValue).Count();
 
@@ -19,14 +19,14 @@
 
     internal class TaskResult
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public int? SecondsLost { get; set; }
 
-        public DateTime To { get; set; }
+        public DateTimeOffset To { get; set; }
 
-        public DateTime From { get; set; }
+        public DateTimeOffset From { get; set; }
 
-        public DateTime EstimatedArrival { get; set; }
+        public DateTimeOffset EstimatedArrival { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace TaskerAI.Domain
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using TaskerAI.Common;
     using TaskerAI.Domain.Repositories;
@@ -20,5 +21,7 @@
         );
 
         Task<Entities.Task> GetAsync(int id);
+
+        Task<IEnumerable<Entities.Task>> GetAsync(IEnumerable<int> ids);
     }
 }

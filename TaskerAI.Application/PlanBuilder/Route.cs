@@ -4,9 +4,9 @@
 
     internal class Route
     {
-        public Guid From { get; set; }
-        public Guid To { get; set; }
-        public int Distance { get; set; }
-        public int TimeInSeconds { get; set; }
+        public int From { get; set; }
+        public int To { get; set; }
+        public float Distance { get; set; }
+        public float TimeInSeconds { get; set; }
     }
 }

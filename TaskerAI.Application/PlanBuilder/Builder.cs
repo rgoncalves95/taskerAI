@@ -9,20 +9,20 @@
         private readonly List<RouteResult> _routeResults = new List<RouteResult>();
         private readonly int MaxCount = 6;
         private int _count;
-        private Task[] _path;
-        private Dictionary<(Guid, Guid), Route> _routes;
+        private Domain.Entities.Task[] _path;
+        private Dictionary<(int, int), Route> _routes;
 
-        public List<RouteResult> Build(List<Task> tasks, Dictionary<(Guid, Guid), Route> routes)
+        public List<RouteResult> Build(List<Domain.Entities.Task> tasks, Dictionary<(int, int), Route> routes)
         {
 
             Console.WriteLine(DateTime.Now);
             this._routes = routes;
             this._count = tasks.Count > this.MaxCount ? this.MaxCount : tasks.Count;
-            this._path = new Task[tasks.Count];
+            this._path = new Domain.Entities.Task[tasks.Count];
             for (int i = 0; i < tasks.Count; i++)
             {
                 this._path[i] = tasks[i];
-                Recursive(this._path[i], tasks, new List<Task> { this._path[i] });
+                Recursive(this._path[i], tasks, new List<Domain.Entities.Task> { this._path[i] });
             }
 
 
@@ -31,11 +31,15 @@
             var result = new List<RouteResult>();
 
             //Como exemplo retorna um que so tenha falhado uma tarefa, podia por tb p.TaskFailed == 1)  e que tenha a menor distancia percorrida
-            RouteResult route = this._routeResults.Where(p => p.TaskFailed < 2).OrderBy(p => p.TotalDistance).First();
-            result.Add(route);
+            RouteResult route = this._routeResults.Where(p => p.TaskFailed < 2 && p.TaskFailed > 0).OrderBy(p => p.TotalDistance).FirstOrDefault();
+            if (route != null)
+            {
+                result.Add(route);
+            }
+            
 
             //2 melhores resultados com tarefas a tempo
-            result.AddRange(this._routeResults.Where(p => p.TaskFailed == 0).OrderBy(p => p.TotalDistance).Take(2));
+            result.AddRange(this._routeResults.Where(p => p.TaskFailed == 0).OrderBy(p => p.TotalDistance).Take(result.Count == 0 ? 3 : 2));
 
             /*
             Console.WriteLine("Total routes : " + _routeResults.Count);
@@ -62,7 +66,7 @@
 
 
 
-        private void Recursive(Task task, List<Task> tasks, List<Task> chainedTasks)
+        private void Recursive(Domain.Entities.Task task, List<Domain.Entities.Task> tasks, List<Domain.Entities.Task> chainedTasks)
         {
             if (chainedTasks.Count == this._count)
             {
@@ -70,40 +74,40 @@
                 return;
             }
 
-            IEnumerable<Task> filteredTasks = tasks.Except(chainedTasks);
-            foreach (Task nextTask in filteredTasks)
+            IEnumerable<Domain.Entities.Task> filteredTasks = tasks.Except(chainedTasks);
+            foreach (Domain.Entities.Task nextTask in filteredTasks)
             {
-                Recursive(nextTask, tasks, new List<Task>(chainedTasks) { nextTask });
+                Recursive(nextTask, tasks, new List<Domain.Entities.Task>(chainedTasks) { nextTask });
             }
         }
 
-        private void DoLogic(List<Task> chainedTasks)
+        private void DoLogic(List<Domain.Entities.Task> chainedTasks)
         {
             var routeResult = new RouteResult();
             if (chainedTasks.Count < 2) { return; }
 
             //maneira de definir a hora de comeco
             var startTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 30, 0);
-            int distance = 0;
+            float distance = 0;
             for (int i = 0; i < chainedTasks.Count - 1; i++)
             {
-                Task start = chainedTasks[i];
-                Task end = chainedTasks[i + 1];
+                Domain.Entities.Task start = chainedTasks[i];
+                Domain.Entities.Task end = chainedTasks[i + 1];
                 if (i == 0)
                 {
-                    routeResult.StartTask = start.Id;
+                    routeResult.StartTask = start.Id.Value;
                 }
 
-                distance += this._routes[(start.Id, end.Id)].Distance;
+                distance += this._routes[(start.Id.Value, end.Id.Value)].Distance;
                 //exacto
-                startTime = startTime.AddSeconds(start.Duration).AddSeconds(this._routes[(start.Id, end.Id)].TimeInSeconds);
+                startTime = startTime.AddSeconds(start.DurationInSeconds).AddSeconds(this._routes[(start.Id.Value, end.Id.Value)].TimeInSeconds);
 
 
                 //duedate
                 //var time = start.DueDate.AddSeconds(_routes[(start.Id, end.Id)].TimeInSeconds).AddSeconds(end.Duration);
                 var taskResult = new TaskResult
                 {
-                    Id = end.Id
+                    Id = end.Id.Value
                 };
                 if (end.DueDate < startTime)
                 {

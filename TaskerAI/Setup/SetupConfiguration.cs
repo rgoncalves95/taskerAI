@@ -14,6 +14,7 @@
 
             services.Configure<MapBoxClientSettings>(configuration.GetSection("MapBoxConfiguration"));
             services.Configure<SearchClientSettings>(configuration.GetSection("MapBoxConfiguration:SearchEndpoint"));
+            services.Configure<MatrixClientSettings>(configuration.GetSection("MapBoxConfiguration:MatrixEndpoint"));
 
             return services;
         }

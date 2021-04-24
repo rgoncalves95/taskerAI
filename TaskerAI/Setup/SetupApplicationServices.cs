@@ -48,6 +48,7 @@
             services.AddSingleton<IValidator<TaskDto>, CreateTaskDtoValidator>();
 
             services.AddSingleton<IGeolocationProvider, SearchClient>();
+            services.AddSingleton<IMatrixRouteProvider, MatrixClient>();
 
             return services;
         }

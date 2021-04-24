@@ -8,23 +8,23 @@
         public List<Task> GetTasks()
         {
             var task = new List<Task>();
-            var spot1 = new Task { Display = "Rua Pedro Hispano", Id = Guid.NewGuid(), DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 30, 0), Duration = 1800, Latitude = 41.16631978314229, Longitude = -8.628359301804583 };
+            var spot1 = new Task { Display = "Rua Pedro Hispano", Id = 1, DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 30, 0), Duration = 1800, Latitude = 41.16631978314229, Longitude = -8.628359301804583 };
             task.Add(spot1);
-            var spot2 = new Task { Display = "Rua 5 Outubro", Id = Guid.NewGuid(), DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 0, 0), Duration = 1800, Latitude = 41.159793151840326, Longitude = -8.630722501804744 };
+            var spot2 = new Task { Display = "Rua 5 Outubro", Id = 2, DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 0, 0), Duration = 1800, Latitude = 41.159793151840326, Longitude = -8.630722501804744 };
             task.Add(spot2);
-            var spot3 = new Task { Display = "Rua dos Vanzeleres", Id = Guid.NewGuid(), DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 3, 0), Duration = 1800, Latitude = 41.16036735049578, Longitude = -8.632483544133414 };
+            var spot3 = new Task { Display = "Rua dos Vanzeleres", Id = 3, DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 3, 0), Duration = 1800, Latitude = 41.16036735049578, Longitude = -8.632483544133414 };
             task.Add(spot3);
-            var spot4 = new Task { Display = "Rua da Boavista", Id = Guid.NewGuid(), DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0), Duration = 1800, Latitude = 41.15568979550674, Longitude = -8.615541315297849 };
+            var spot4 = new Task { Display = "Rua da Boavista", Id = 4, DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0), Duration = 1800, Latitude = 41.15568979550674, Longitude = -8.615541315297849 };
             task.Add(spot4);
-            var spot5 = new Task { Display = "Rua do Almada", Id = Guid.NewGuid(), DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 16, 0, 0), Duration = 1800, Latitude = 41.15097122271649, Longitude = -8.612106444133595 };
+            var spot5 = new Task { Display = "Rua do Almada", Id = 5, DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 16, 0, 0), Duration = 1800, Latitude = 41.15097122271649, Longitude = -8.612106444133595 };
             task.Add(spot5);
-            var spot6 = new Task { Display = "Rua de Entreparedes", Id = Guid.NewGuid(), DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 18, 0, 0), Duration = 1800, Latitude = 41.1455248852477, Longitude = -8.605598501805044 };
+            var spot6 = new Task { Display = "Rua de Entreparedes", Id = 6, DueDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 18, 0, 0), Duration = 1800, Latitude = 41.1455248852477, Longitude = -8.605598501805044 };
             task.Add(spot6);
 
             return task;
         }
 
-        public Dictionary<(Guid, Guid), Route> GetRoutes(List<Task> tasks)
+        public Dictionary<(int, int), Route> GetRoutes(List<Task> tasks)
         {
             Task spot1 = tasks[0];
             Task spot2 = tasks[1];
@@ -33,7 +33,7 @@
             Task spot5 = tasks[4];
             Task spot6 = tasks[5];
 
-            var routes = new Dictionary<(Guid, Guid), Route>();
+            var routes = new Dictionary<(int, int), Route>();
             var route = new Route { From = spot1.Id, To = spot2.Id, Distance = 1000, TimeInSeconds = 120 };
             routes.Add((route.From, route.To), route);
             route = new Route { From = spot2.Id, To = spot1.Id, Distance = 1700, TimeInSeconds = 300 };

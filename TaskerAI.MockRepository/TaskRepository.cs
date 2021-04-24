@@ -122,5 +122,6 @@
         }
 
         public Task<bool> DeleteAsync(int id) => Task.FromResult(Db.RemoveAll(e => e.Id == id) == 1);
+        public Task<IEnumerable<Domain.Entities.Task>> GetAsync(IEnumerable<int> ids) => Task.FromResult(Db.Where(t => ids.Contains(t.Id.Value)));
     }
 }

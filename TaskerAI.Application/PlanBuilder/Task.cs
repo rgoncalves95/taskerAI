@@ -6,7 +6,7 @@
     {
         public string Display { get; set; }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime DueDate { get; set; }
 
