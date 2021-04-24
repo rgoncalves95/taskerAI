@@ -83,13 +83,15 @@
 
             var result = new List<PlanResult>();
 
+            //TODO: We need to discuss this start time
+            var startTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 30, 0);
 
             foreach (Builder.RouteResult routeResult in routeResults)
             {
                 var tasksPlanned = new List<TaskPlanned>();
                 Domain.Entities.Task task = tasks.First(p => p.Id.Value == routeResult.StartTask);
 
-                var startTask = new TaskPlanned(task.Name, 0, task.DueDate, task.DueDate, float.Parse(task.Location.Latitude), float.Parse(task.Location.Longitude));
+                var startTask = new TaskPlanned(task.Name, 0, task.DueDate, startTime, float.Parse(task.Location.Latitude), float.Parse(task.Location.Longitude));
                 tasksPlanned.Add(startTask);
                 for (int i = 0; i < routeResult.TaskResults.Count; i++)
                 {
